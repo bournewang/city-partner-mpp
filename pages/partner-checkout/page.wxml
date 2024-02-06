@@ -1,0 +1,16 @@
+<!--index.wxml-->
+<scroll-view class="scrollarea" scroll-y type="list">
+  <image style="position:relative;width:96%;" src="/static/images/checkout-bg.jpg" />
+  <view class="block title">
+    开始挑战，瓜分300万大奖！
+  </view>
+  <view class="block">
+    <t-radio-group bind:change="onChange" value="{{current}}" options="{{options}}" />
+  </view>
+  <view class="block checkout">
+    <t-button offset-left="10em" size="large" theme="primary" t-class="checkout-btn" bind:tap="checkout">下一步</t-button>
+  </view>
+  <tab-bar value="/pages/index/page"></tab-bar>
+
+  
+</scroll-view>

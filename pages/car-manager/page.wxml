@@ -1,0 +1,4 @@
+<!--pages/car-manager/page.wxml-->
+<text>pages/car-manager/page.wxml</text>
+
+<tab-bar value="/pages/car-manager/page"></tab-bar>

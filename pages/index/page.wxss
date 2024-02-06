@@ -1,0 +1,50 @@
+/**index.wxss**/
+page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.scrollarea {
+  flex: 1;
+  padding: .5em;
+  overflow-y: scroll;
+  /* background-image: url("/static/images/landing.png"); */
+  /* padding: .5em; */
+  /* border: 1px solid red; */
+}
+#head{
+  /* padding: .5em; */
+  text-align: center;
+}
+#head-img{
+  height: 30vh;
+  width: 100%;
+}
+.red-text div{
+  color: red;
+}
+#btn-div {
+  margin-bottom: 1em;
+  padding-bottom: 1em;
+}
+.success-btn {
+  /* position: absolute; */
+  /* bottom: 5em; */
+  /* margin-top: 2em; */
+  width: 10em;
+  margin-left: calc(50% - 5em);
+  /* padding-bottom: 1em; */
+}
+.t-grid-item__content .t-grid-item__text {
+  color: var(--td-brand-color);
+  font-size: 1.8em;
+}
+.t-grid-item__content .t-grid-item__description {
+  /* color: var(--td-warning-color); */
+  /* font-size: 1.8em; */
+}
+
+.t-divider .t-divider__content {
+  font-size: 1.5em !important;
+  color: var(--td-brand-color) !important;
+}

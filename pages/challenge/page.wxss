@@ -1,0 +1,36 @@
+page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.scrollarea {
+  /* flex: 1; */
+  /* position: relative; */
+  overflow-y: hidden;
+  padding: .5em;
+  /* border: 1px solid red; */
+}
+
+.description{
+  font-size: 1em;
+  /* margin-bottom: 2em; */
+  /* border: 1px solid red; */
+}
+/* 
+#challenge{
+  margin-top: 2em;
+} */
+
+.btn-wrap{
+  position:fixed;
+  bottom:6em;
+  /* margin-top: 1em; */
+  width: 100%;
+}
+.challenge-btn {
+  /* position: absolute;
+  top: 0em; */
+  width: 10em;
+  margin-left: calc(50% - 5em);
+  /* background-color: green !important; */
+}

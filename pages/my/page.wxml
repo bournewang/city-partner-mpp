@@ -1,0 +1,43 @@
+<!--index.wxml-->
+<scroll-view class="scrollarea" scroll-y type="list">
+
+  <view class="userinfo">
+    <!-- <image class="userinfo-avatar" src="{{info.avatar||'/static/images/search_no.png'}}"/> -->
+    <t-avatar wx:if="{{info.avatar}}" class="avatar--large" t-class="u1serinfo-avatar" image="https://tdesign.gtimg.com/mobile/demos/avatar1.png" />
+    <t-avatar wx:else class="avatar--large" t-class="userinfo-avatar" icon="user" size="medium"/>
+
+    <view class='userinfo-nickname' >
+      <view wx:if="{{!info.id}}" class="a login-btn" bind:tap="toLogin" >点击登录</view>
+      <view wx:else class="a" lang="zh_CN">{{info.nickname||'微信用户'}}</view>
+      <view>{{info.mobile}}
+        <van-icon name="qr" color="#000" bind:tap="toQr"/>
+      </view>
+    </view>
+  </view>
+  <view class="block">
+    <t-grid column="{{3}}">
+      <t-grid-item text="12" description="直推"/>
+      <t-grid-item text="230" description="公排" />
+      <t-grid-item text="15" description="消费商" />
+      <!-- <t-grid-item text="标题文字" description="" image="/static/images/partner2.jpg" />
+      <t-grid-item text="标题文字" description="" image="/static/images/partner2.jpg" /> -->
+    </t-grid>
+  </view>
+  <t-divider/>
+  <!-- <t-divider content="我的团队" align="center" />   -->
+  <view class="block">
+    <t-cell title="我的团队" hover arrow/>
+    <t-cell title="权益明细" hover arrow/>
+    <t-cell title="联系客服" hover arrow/>
+    <t-cell title="意见反馈" hover arrow/>
+    <!-- <t-cell title="张三" hover note="直推5 公排22"  />
+    <t-cell title="李四" hover note="直推5 公排22"  />
+    <t-cell title="刘明明" hover note="直推15 公排340"  />
+    <t-cell title="吴晓丽" hover note="直推7 公排215"  />
+    <t-cell title="张三" hover note="直推5 公排22"  />
+    <t-cell title="李四" hover note="直推5 公排22"  />
+    <t-cell title="刘明明" hover note="直推15 公排340"  />
+    <t-cell title="吴晓丽" hover note="直推7 公排215"  /> -->
+  </view>
+  <tab-bar value="/pages/my/page"></tab-bar>
+</scroll-view>
