@@ -1,13 +1,17 @@
 <!--index.wxml-->
 <scroll-view class="scrollarea" scroll-y type="list">
-  <view class="block center">
-  <h1>挑战动态</h1>
+  <view class="title text-center" >
+    <h1>挑战动态</h1>
+    <t-divider/>
   </view>
-    <!-- <t-divider/> -->
-    <!-- <t-divider content="挑战动态" align="left" />   -->
-    <view wx:for="{{list}}" wx:key="index" wx:for-item="item">
-      <t-divider content="{{item.success_at}}" align="left"/>
-      <p style="padding-left: 1em;">{{item.content}}</p>
-    </view>
+
+  <view wx:for="{{list}}" wx:key="index" wx:for-item="item">
+    <t-divider content="{{item.success_at}}" align="left"/>
+    <p style="padding-left: 1em;">{{item.content}}</p>
+  </view>
+  
+  <view class="text-center mt-20" wx:if="{{list.length < 1}}">
+    暂无数据
+  </view>
   <tab-bar value="/pages/discovery/page"></tab-bar>
 </scroll-view>

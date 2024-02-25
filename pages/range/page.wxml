@@ -1,0 +1,21 @@
+<!--index.wxml-->
+<scroll-view class="scrollarea" scroll-y type="list">
+  <view class="title text-center">
+    挑战排行榜
+    <t-divider/>
+  </view>
+  <view class="block" wx:if="{{list.length > 0}}">
+    <t-cell 
+      wx:for="{{list}}" 
+      wx:for-item="item"
+      wx:key="index"
+      title="{{item.label}}" 
+      description="{{item.value}}"
+      hover arrow 
+      />
+  </view>
+  <view wx:else class="text-center">
+    暂无数据
+  </view>
+</scroll-view>
+<tab-bar value="/pages/range/page"></tab-bar>

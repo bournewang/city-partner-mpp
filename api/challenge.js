@@ -14,7 +14,22 @@ function stats(data) {
   })
 }
 
-export {
+function levels(data) {
+  return request({
+    uri: '/challenge/levels',
+    data
+  })
+}
+
+function range() {
+  return request({
+    uri: '/challenge/range'
+  })
+}
+
+export default {
   successList, 
-  stats
+  stats,
+  levels,
+  range
 }

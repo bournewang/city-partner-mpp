@@ -1,4 +1,4 @@
 <!--index.wxml-->
 <scroll-view class="scrollarea" scroll-y type="list">
-CAR MANAGER RULES
+
 </scroll-view>

@@ -4,11 +4,14 @@
     "pages/challenge/page",
     "pages/car-manager/page",
     "pages/discovery/page",
+    "pages/range/page",
     "pages/my/page",
+    "pages/my-challenge/page",
     "pages/login/page",
-    "pages/car-manager-rules/page",
+    "pages/car-rules/page",
     "pages/partner-rules/page",
-    "pages/partner-checkout/page",
+    "pages/partner-challenge/page",
+    "pages/team/page",
     "pages/logs/logs"
   ],
   "usingComponents": {
@@ -28,6 +31,9 @@
     "t-row": "tdesign-miniprogram/row/row",
     "t-col": "tdesign-miniprogram/col/col",
     "t-link": "tdesign-miniprogram/link/link",
+    "t-image": "tdesign-miniprogram/image/image",
+    "t-popup": "tdesign-miniprogram/popup/popup",
+    "t-dialog": "tdesign-miniprogram/dialog/dialog",
     "tab-bar": "components/tab-bar/page"
   },
   "window": {

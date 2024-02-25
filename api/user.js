@@ -18,38 +18,18 @@ export function register(data) {
 export function info() {
   return request({
     uri: '/user/info',
-
   })
 }
-export function saveInfo(data) {
+export function challenge() {
   return request({
-    uri: '/user/info',
+    uri: '/user/challenge',
+  })
+}
+
+export function start_challenge(){
+  return request({
     method: 'post',
-    data
-
-  })
-}
-
-export function type(type) {
-  return request({
-    uri: `/user/type/${type}`,
-    method: 'put'
-  })
-}
-
-export function uploadCommonFile(filePath, data) {
-  return uploadFile({
-    uri: '/file',
-    filePath,
-    data
-  })
-}
-
-export function mobile(data) {
-  return request({
-    uri: '/user/mobile',
-    method: 'post',
-    data
+    uri: '/user/challenge'
   })
 }
 
@@ -59,67 +39,55 @@ export function qrcode() {
   })
 }
 
-export function health() {
+// export function saveInfo(data) {
+//   return request({
+//     uri: '/user/info',
+//     method: 'post',
+//     data
+
+//   })
+// }
+
+// export function uploadCommonFile(filePath, data) {
+//   return uploadFile({
+//     uri: '/file',
+//     filePath,
+//     data
+//   })
+// }
+
+// export function mobile(data) {
+//   return request({
+//     uri: '/user/mobile',
+//     method: 'post',
+//     data
+//   })
+// }
+
+export function teamOverview(){
   return request({
-    uri: '/health',
+    uri: `/user/team-overview`,
+  })
+}
+// export function directMembersRange(){
+//   return request({
+//     uri: `/direct-members-range`,
+//   })
+// }
+
+export function teamDetail(){
+  return request({
+    uri: `/user/team-detail`,
   })
 }
 
-export function healthCreate(data) {
-  return request({
-    uri: '/health',
-    method: 'post',
-    data
-  })
-}
-
-
-export function healthDetail(id) {
-  return request({
-    uri: `/health/${id}`,
-  })
-}
-
-export function redpackets(){
-  return request({
-    uri: `/red-packets`,
-  })
-}
-
-export function openRedpacket(id){
-  return request({
-    uri: `/red-packets/${id}`,
-    method: 'put'
-  })
-}
-
-export function withdrawList(){
-  return request({
-    uri: `/withdraw`,
-  })
-}
-
-export function withdraw(data){
-  return request({
-    uri: `/withdraw`,
-    method: 'post',
-    data
-  })
-}
-
-export function team(){
-  return request({
-    uri: `/user/team`,
-  })
-}
-export function directMembersRange(){
-  return request({
-    uri: `/direct-members-range`,
-  })
-}
-
-export function directTeam(){
-  return request({
-    uri: `/user/direct-team`,
-  })
+export default {
+  register,
+  login,
+  info,
+  challenge,
+  start_challenge,
+  qrcode,
+  teamOverview,
+  teamDetail
 }

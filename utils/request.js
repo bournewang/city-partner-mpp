@@ -1,11 +1,9 @@
-import {
-  getLocalToken, removeLocalToken, setLocalToken,
-  setLocalUserInfo
-} from './auth'
+import authApi from './auth'
 import { login } from '../api/user.js'
 import { log } from './util'
 
-let api = 'http://localhost:8000/api'
+let api = 'https://xiaofeice.com/api'
+// let api = 'http://localhost:8000/api'
 const accountInfo = wx.getAccountInfoSync()
 console.log('accountInfo', accountInfo)
 // if (accountInfo.miniProgram.envVersion == "develop") {
@@ -14,45 +12,10 @@ console.log('accountInfo', accountInfo)
 
 // const api = 'http://mall.yzsmjkkjcom.com/api'
 
-var wxloginRes = null
-export var wxLogin = () => {
-  console.log("===== wxLogin")
-  if (1) {
-    // console.log("===== return wxloginRes==")
-    // console.log(wxloginRes) 
-    // return wxloginRes
-  // } else {
-    console.log("===== call  wx.login")
-    wxloginRes = new Promise((resolve, reject) => {
-      wx.login({
-        success: res2 => {
-          login({ code: res2.code }).then(res3 => {
-            log('login', res3)
-            if (res3.data.api_token) {
-              setLocalToken(res3.data.api_token)
-              resolve(res3.data)
-            } else {
-              console.log('login reject session_key')
-              reject(res3.data)
-            }
-
-            log('reset wxloginRes')
-            wxloginRes = null
-          })
-        },
-        error: res => {
-          reject('获取code失败 ' + res)
-        }
-      })
-    })
-    return wxloginRes
-
-  }
-}
 
 var request = async (config) => {
   log("request", config)
-  const token = getLocalToken()
+  const token = authApi.getLocalToken()
   if (!config.header) {
     config.header = {}
   }
@@ -90,23 +53,23 @@ var request = async (config) => {
           resolve(res.data)
         } else if (res.statusCode === 403) {
           reject(res)
-          // wxLogin().then(res => {
-          //   resolve(request(config))
-          // }, _ => {
-          //   //跳转到授权
-          //   // wx.navigateTo({
-          //   //   url: '/pages/user/center/login',
-          //   // })
-          //   reject(res)
-          // })
-
+        } else if (res.statusCode === 401) {
+          console.log("statuscode 401====, clear local token& userInfo, and relogin")
+          authApi.removeLocalUserInfo()
+          authApi.removeLocalToken()
+          authApi.wxLogin()
         } else {
-          console.warn('服务器错误', res)
+          console.warn('服务器错误====', res.statusCode)
+          if (res.statusCode == 401) {
+            console.log("message: ", res.data)
+          }
+
           reject(res)
         }
 
       },
       fail(res) {
+        console.log("request fail========= ", res)
         reject(res)
       }
     })
@@ -119,7 +82,7 @@ var request = async (config) => {
 }
 
 export function uploadFile(config) {
-  const token = getLocalToken()
+  const token = authApi.getLocalToken()
   if (!config.header) {
     config.header = {}
   }

@@ -5,7 +5,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    items: [
+      {label: "轻资产生活方式", icon: "sunny"},
+      {label: "不贷款无月供", icon: "money"},
+      {label: "每年2万使用费", icon: "saving-pot"},
+      {label: "自驾搭乘均免费", icon: "vehicle"},
+      {label: "买全险有保障", icon: "support"},
+      {label: "维修保养皆省心", icon: "tools"},
+    ]
   },
 
   /**
@@ -13,6 +20,12 @@ Page({
    */
   onLoad(options) {
 
+  },
+  goRules(){
+    console.log("go rules")
+    wx.navigateTo({
+      url: '/pages/car-rules/page',
+    })
   },
 
   /**

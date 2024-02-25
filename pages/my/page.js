@@ -1,17 +1,31 @@
 // logs.js
 // const util = require('../../utils/util.js')
-import { getLocalUserInfo, setLocalToken, setLocalUserInfo } from '../../utils/auth'
+import authApi from '../../utils/auth'
 import { wxLogin } from '../../utils/request'
+import userApi from "../../api/user"
 
 Page({
   data: {
-    info: {}
+    info: {},
+    teamOverview: [],
+    challenge: {}
   },
   onLoad() {
-    var info = getLocalUserInfo()
-    if (info) {
-      this.setData({info})
-    }
+    // var info = authApi.getLocalUserInfo()
+    // if (info) {
+    //   this.setData({info})
+    // }
+    userApi.info().then(res => {
+      this.setData({info: res.data})
+      authApi.setLocalUserInfo(res.data)
+    })
+    userApi.teamOverview().then(res => {
+      this.setData({teamOverview: res.data})
+    })
+    userApi.challenge().then(res => {
+      console.log("====== challenge data", res.data)
+      this.setData({challenge: res.data})
+    })
   },
   toLogin() {
     // wx.navigateTo({
@@ -22,14 +36,6 @@ Page({
       console.log("call wxLogin")
       wxLogin().then(res => {
         console.log("response ", res)
-        if (res.mobile) {
-          // this.setData({ type: 2 })
-          console.log("set userinfo and token:", res.api_token)
-          setLocalUserInfo(res)
-          setLocalToken(res.api_token)
-        }else{
-          // wx.navigateBack()
-        }
       }, loginRes => {
         console.log('reject login, goto login page', loginRes)
         wx.navigateTo({

@@ -1,0 +1,40 @@
+<!--index.wxml-->
+<scroll-view class="scrollarea" scroll-y type="list">
+  <image style="position:relative;width:96%;" src="/static/images/checkout-bg.jpg" />
+  <view class="block title" wx:if="{{!challenge.status}}">
+    开始挑战，瓜分300万大奖！
+    <t-button size="large" theme="primary" t-class="challenge-btn" bind:tap="continueChallenge">开始挑战</t-button>
+  </view>
+  <view class="block content" wx:elif="{{challenge.status == 'applying'}}">
+    <t-icon name="fact-check" size="100rpx" t-class="success"/>
+    <view class="content">已记录您的挑战，</view>
+    <view class="content">请联系{{challenge.referer_id ? "您的推荐人"+challenge["referer.name"] : "客服"}}确认挑战资格</view>
+  </view>
+  <view class="block content mt-40" wx:elif="{{challenge.status == 'challenging'}}">
+    <t-icon name="rocket" size="100rpx"  t-class="success"/>
+    <view class="content">您的挑战资格已确认，<p wx:if="{{challenge.current_level > 0}}">目前等级：{{challenge.current_level_label}}，</p>正在挑战{{challenge.level_label}}, 可截屏保存下面推荐码转发该给其他人开始挑战。</view>
+    <image id="qrcode" src="{{challenge.qrcode}}" />
+  </view>
+  <view class="block content" wx:elif="{{challenge.status == 'success'}}">
+    <t-icon name="check-circle" size="100rpx" t-class="success"/>
+    <!-- <view class="content">您已挑战成功{{challenge.level_label}}。</view> -->
+    <!-- <view>您可以结束挑战，</view> 
+    <view>或者选择继续挑战下一等级，</view> 
+    <view>提高瓜分到奖金的概率。</view> -->
+    <!-- <view>{{levels[challenge.level]['success_text']}}</view> -->
+    <rich-text nodes="{{levels[challenge.level]['success_text']}}">
+        </rich-text>
+    <!-- <t-icon name="check-circle" size="48rpx" prefix="icon" data-type="prefix" /> -->
+    <t-button size="large" theme="primary" t-class="challenge-btn" bind:tap="continueChallenge">继续挑战</t-button>
+  </view>
+  <view class="block content" wx:elif="{{challenge.status == 'canceled'}}">
+    <t-icon name="check-circle" size="100rpx" t-class="danger"/>
+    <view class="content">您已挑战资格已取消。</view>
+  </view>
+  <view class="block checkout">
+    <!-- <t-button offset-left="10em" size="large" theme="primary" t-class="checkout-btn" bind:tap="checkout">下一步</t-button> -->
+  </view>
+  <tab-bar value="/pages/index/page"></tab-bar>
+
+  
+</scroll-view>

@@ -1,8 +1,8 @@
 // pages/user/center/login.js
 import { redirect } from '../../utils/util'
 import { wxLogin } from '../../utils/request'
-import { register, login, mobile } from '../../api/user'
-import Message from '../../miniprogram_dist/message/index';
+import userApi from '../../api/user'
+// import Message from '../../miniprogram_dist/message/index';
 Page({
 
   /**
@@ -32,22 +32,9 @@ Page({
     if (referer_id) {
       this.data.referer_id = referer_id
     }
-
-    console.log("call wxLogin")
-    wxLogin().then(res => {
-      if (!res.mobile) {
-        this.setData({ type: 2 })
-      }else{
-        wx.navigateBack()
-      }
-    }, loginRes => {
-      console.log('reject', loginRes)
-      this.setData({ loginRes, type: 2 })
-    })
   },
 
   onShow: function () {
-
   },
   async getUserInfo(e) {
     console.log('getUserInfo')
@@ -62,12 +49,12 @@ Page({
       success: (res) => {
         console.log('profile', res)
         const formData = {
-          session_key: this.data.loginRes.session_key,
+          session_key: wx.getStorageSync('session_key'),
           store_id: this.data.store_id,
           referer_id: this.data.referer_id,
           ...res
         }
-        register(formData).then(res => {
+        userApi.register(formData).then(res => {
           // wx.navigateBack()
           this.setData({ type: 2 })
         })
@@ -85,14 +72,14 @@ Page({
     }
     // await wx.$loading.show()
     const formData = {
-      session_key: this.data.loginRes.session_key,
+      session_key: wx.getStorageSync('session_key'),
       // store_id: this.data.store_id,
       referer_id: this.data.referer_id,
       code: e.detail.code
     }
     console.log('regesiter', formData)
     // return;
-    const res = await register(formData).catch(_ => false)
+    const res = await userApi.register(formData).catch(_ => false)
     // const res = await mobile({ code: e.detail.code }).catch(_ => false)
     // wx.$loading.hide()
     if (res) {

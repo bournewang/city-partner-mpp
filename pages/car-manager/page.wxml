@@ -1,4 +1,12 @@
 <!--pages/car-manager/page.wxml-->
-<text>pages/car-manager/page.wxml</text>
+<t-image src="/static/images/car.jpg" mode="aspectFill" width="100%" />
+<t-grid column="3">
+      <!-- <view > -->
+      <t-grid-item wx:for="{{items}}" wx:for-item="item" icon="{{item.icon}}" description="{{item.label}}" />
+</t-grid>
+<t-button size="large" theme="success" t-class="success-btn" bind:tap="challengePartner">立即挑战</t-button>
 
-<tab-bar value="/pages/car-manager/page"></tab-bar>
+<view class="block rules" bind:tap="goRules">  查看规则</view>
+  
+<tab-bar value="/pages/car-manager/page">
+</tab-bar>

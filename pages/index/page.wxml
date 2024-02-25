@@ -16,28 +16,28 @@
     </view> -->
     <!-- <t-divider/> -->
     <t-grid column="{{3}}">
-      <t-grid-item description="消费商" icon="user" />
-      <t-grid-item description="服务站.经理" icon="usergroup" />
-      <t-grid-item description="运营中心.总监" icon="user-avatar" />
-      <t-grid-item description="县级子公司.总经理" icon="user-list" />
-      <t-grid-item description="地级子公司.总裁" icon="user-setting" />
-      <t-grid-item description="省级执行长.董事" icon="user-checked-1" />
+      <t-grid-item 
+        wx:for="{{levels}}" 
+        wx:for-item="item" 
+        description="{{item.label}}" 
+        icon="{{item.icon}}" 
+        data-title="{{item.rules}}" 
+        data-text="{{item.bonus_text}}" 
+        bindclick="popup" 
+        />
     </t-grid>
   </view>
-  
-  <!-- <view class="block red-text">
-    <t-grid column="{{3}}" >
-      <t-grid-item text="消费商"/>
-      <t-grid-item text="县级运营中心"  />
-      <t-grid-item text="消费者服务站"  />
-      <t-grid-item text="地级执行长"  />
-      <t-grid-item text="地级城市合伙人"  />
-      <t-grid-item text="县级城市合伙人"  />
-    </t-grid>
-  </view> -->
+
   <view class="block" id="btn-div">
     <t-button size="large" theme="success" t-class="success-btn" bind:tap="challengePartner">立即挑战</t-button>
-    
+  </view>
+  <view>
+    <t-popup visible="{{popup}}" bind:visible-change="onVisibleChange" placement="bottom">
+      <view class="block popup">
+        <rich-text nodes="{{popup_title}}<br/>{{popup_text}}">
+        </rich-text>
+      </view>
+    </t-popup>    
     
   </view>
 </scroll-view>

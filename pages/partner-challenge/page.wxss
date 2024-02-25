@@ -1,0 +1,36 @@
+.scrollarea{
+  padding: .5em;
+}
+
+.block.title{
+  font-size: 1.5em;
+  color: red;
+  margin-top: 1em;
+  text-align: center;
+}
+.block.checkout{
+  text-align: center;
+  margin-top: 2em;
+}
+.checkout-btn{
+  width: 10em;
+  margin: auto;
+}
+.content{
+  /* margin-top: 2em; */
+  padding: .5em;
+  text-align: center;
+  line-height: 2em;
+}
+.challenge-btn{
+  margin-top: 2em;
+}
+
+#qrcode{
+  /* object-fit: contain; */
+  /* width: 80%; */
+  width: 300px;
+  height: 300px;
+}
+.success{color: var(--td-success-color);}
+.danger{color: var(--td-error-color);}
