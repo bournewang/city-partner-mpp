@@ -1,17 +1,10 @@
 import authApi from './auth'
 import { login } from '../api/user.js'
 import { log } from './util'
+import {API_URL} from "../config"
 
-let api = 'https://xiaofeice.com/api'
-// let api = 'http://localhost:8000/api'
 const accountInfo = wx.getAccountInfoSync()
 console.log('accountInfo', accountInfo)
-// if (accountInfo.miniProgram.envVersion == "develop") {
-//   api = 'http://mall.yzsmjkkjcom.com/api'
-// }
-
-// const api = 'http://mall.yzsmjkkjcom.com/api'
-
 
 var request = async (config) => {
   log("request", config)
@@ -43,7 +36,7 @@ var request = async (config) => {
   }
   const res = await new Promise((resolve, reject) => {
     wx.request({
-      url: api + config.uri,
+      url: API_URL + config.uri,
       method: config.method,
       data: config.data,
       header: config.header,
@@ -93,7 +86,7 @@ export function uploadFile(config) {
   config.header['content-type'] = 'multipart/form-data'
   return new Promise((resolve, reject) => {
     wx.uploadFile({
-      url: `${api}${config.uri}`,
+      url: `${API_URL}${config.uri}`,
       filePath: config.filePath,
       header: config.header,
       formData: config.data,

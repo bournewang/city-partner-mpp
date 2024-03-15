@@ -1,0 +1,20 @@
+.suffix--line {
+  width: 1px;
+  /* height: 24px; */
+  background-color: #f6f6f6;
+  margin-right: 16px;
+}
+
+.image {
+  width: 3em;
+  height: 3em;
+  /* display: block;
+  margin-top: -6px;
+  margin-bottom: -6px; */
+}
+
+#avatar-btn{
+  width: 3em;
+  height: 3em;
+  padding: 0 0;
+}

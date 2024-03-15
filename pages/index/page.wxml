@@ -1,44 +1,65 @@
 <!--index.wxml-->
-<scroll-view class="scrollarea" scroll-y type="list">
 
-  <view id="head">
-    <image id="head-img" style="position:relative;" src="/static/images/partner.jpg" />
-    <!-- --东家通路消费侧城市合伙人-- -->
-  </view>
   <view class="block">
-    <t-grid column="{{challengeData.length}}">
-      <!-- <view > -->
-      <t-grid-item wx:for="{{challengeData}}" wx:for-item="item" text="{{item.value}}" description="{{item.label}}" />
-    </t-grid>
-    <t-divider content="挑战合伙人"/>
-    <!-- <view class="block text-center">
-      挑战合伙人
-    </view> -->
-    <!-- <t-divider/> -->
-    <t-grid column="{{3}}">
-      <t-grid-item 
-        wx:for="{{levels}}" 
-        wx:for-item="item" 
-        description="{{item.label}}" 
-        icon="{{item.icon}}" 
-        data-title="{{item.rules}}" 
-        data-text="{{item.bonus_text}}" 
-        bindclick="popup" 
-        />
-    </t-grid>
+    <t-tabs defaultValue="{{0}}" bind:change="onTabsChange" bind:click="onTabsClick" t-class="custom-tabs">
+      <t-tab-panel label="消费商合作社" value="0" >
+        <scroll-view class="scrollarea" scroll-y type="list">
+        <view class="head">
+          <image class="head-img" style="position:relative;" src="/static/images/butie-1.jpg" />
+        </view>      
+        <t-grid column="{{challengeData.length}}">
+          <t-grid-item wx:for="{{challengeData}}" wx:for-item="item" text="{{item.value}}" description="{{item.label}}" />
+        </t-grid>
+        <!-- <t-divider content="挑战合伙人"/> -->
+        <!-- <t-grid column="{{3}}">
+          <t-grid-item 
+            wx:for="{{levels}}" 
+            wx:for-item="item" 
+            description="{{item.label}}" 
+            icon="{{item.icon}}" 
+            data-title="{{item.rules}}" 
+            data-text="{{item.bonus_text}}" 
+            bindclick="popup" 
+            />
+        </t-grid> -->
+        <view class="block btn-wrap" >
+          <t-button size="large" theme="primary" block  bind:tap="challengePartner">立即挑战</t-button>
+        </view>
+        </scroll-view>     
+      </t-tab-panel>
+      <!-- <t-tab-panel label="招募消费服务商" value="1" >
+       招募消费商
+      </t-tab-panel> -->
+      <t-tab-panel label="车管家合作社" value="2" >
+        <scroll-view class="scrollarea" scroll-y type="list">
+        <view class="head">
+          <image class="full-page" style="position:relative;" src="/static/images/car-manager.jpg" />
+        </view>      
+        <!-- <view class="block btn-wrap" >
+          <t-button size="large" theme="primary" block  bind:tap="gotoOneCarbon">了解详情</t-button>
+        </view> -->
+        </scroll-view>
+      </t-tab-panel>
+      <t-tab-panel label="车东家合作社" value="3" >
+        <scroll-view class="scrollarea" scroll-y type="list">
+        <view class="head">
+          <image class="full-page" style="position:relative;" src="/static/images/car-owner.jpg" />
+        </view>  
+        <!-- <view class="block btn-wrap" >
+          <t-button size="large" theme="primary" block  bind:tap="gotoOneCarbon">了解详情</t-button>
+        </view>  -->
+        </scroll-view>
+      </t-tab-panel>
+    </t-tabs>  
   </view>
 
-  <view class="block" id="btn-div">
-    <t-button size="large" theme="success" t-class="success-btn" bind:tap="challengePartner">立即挑战</t-button>
-  </view>
-  <view>
+
+  <!-- <view>
     <t-popup visible="{{popup}}" bind:visible-change="onVisibleChange" placement="bottom">
       <view class="block popup">
         <rich-text nodes="{{popup_title}}<br/>{{popup_text}}">
         </rich-text>
       </view>
     </t-popup>    
-    
-  </view>
-</scroll-view>
+  </view> -->
 <tab-bar value="/pages/index/page"></tab-bar>

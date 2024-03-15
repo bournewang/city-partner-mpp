@@ -28,21 +28,21 @@ Page({
     })
   },
   toLogin() {
-    // wx.navigateTo({
-    //   url: '/pages/login/page',
-    // })
-    console.log("info:", this.data.info)
-    if (!this.data.info || !this.data.info.id){
-      console.log("call wxLogin")
-      wxLogin().then(res => {
-        console.log("response ", res)
-      }, loginRes => {
-        console.log('reject login, goto login page', loginRes)
-        wx.navigateTo({
-          url: '/pages/login/page',
-        })
-        // this.setData({ loginRes, type: 2 })
-      })
-    }
+    wx.navigateTo({
+      url: '/pages/login/page',
+    })
+    // console.log("info:", this.data.info)
+    // if (!this.data.info || !this.data.info.id){
+    //   console.log("call wxLogin")
+    //   wxLogin().then(res => {
+    //     console.log("response ", res)
+    //   }, loginRes => {
+    //     console.log('reject login, goto login page', loginRes)
+    //     wx.navigateTo({
+    //       url: '/pages/login/page',
+    //     })
+    //     // this.setData({ loginRes, type: 2 })
+    //   })
+    // }
   } 
 })

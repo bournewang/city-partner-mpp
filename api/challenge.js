@@ -7,6 +7,12 @@ function successList(data) {
   })
 }
 
+function activity() {
+  return request({
+    uri: '/challenge/activity',
+  })
+}
+
 function stats(data) {
   return request({
     uri: '/challenge/stats',
@@ -21,6 +27,12 @@ function levels(data) {
   })
 }
 
+function types() {
+  return request({
+    uri: '/challenge/types'
+  })
+}
+
 function range() {
   return request({
     uri: '/challenge/range'
@@ -28,8 +40,10 @@ function range() {
 }
 
 export default {
+  activity,
   successList, 
   stats,
   levels,
+  types,
   range
 }

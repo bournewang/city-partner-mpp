@@ -26,10 +26,11 @@ export function challenge() {
   })
 }
 
-export function start_challenge(){
+export function start_challenge(data={}){
   return request({
     method: 'post',
-    uri: '/user/challenge'
+    uri: '/user/challenge',
+    data
   })
 }
 
@@ -39,14 +40,13 @@ export function qrcode() {
   })
 }
 
-// export function saveInfo(data) {
-//   return request({
-//     uri: '/user/info',
-//     method: 'post',
-//     data
-
-//   })
-// }
+export function saveInfo(data) {
+  return request({
+    uri: '/user/info',
+    method: 'post',
+    data
+  })
+}
 
 // export function uploadCommonFile(filePath, data) {
 //   return uploadFile({
@@ -85,6 +85,7 @@ export default {
   register,
   login,
   info,
+  saveInfo,
   challenge,
   start_challenge,
   qrcode,

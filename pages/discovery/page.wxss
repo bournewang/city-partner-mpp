@@ -8,3 +8,31 @@ page {
   flex: 1;
   overflow-y: hidden;
 }
+
+.avatar-example {
+  display: flex;
+  margin-bottom: 32rpx;
+  /* border: 1px solid red; */
+  vertical-align: middle;
+  /* line-height: 4em; */
+}
+
+.date{
+  color: gray;
+}
+.external-class-content {
+  color: #fff;
+  background-color: #0052d9;
+  font-weight: 400;
+}
+
+.loading-container {
+  text-align: center;
+  margin-top: 50%;
+  color: #000;
+}
+
+/* .wrapper {
+  display: flex;
+  margin-right: 64px;
+} */

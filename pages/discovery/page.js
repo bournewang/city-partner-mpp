@@ -4,13 +4,14 @@ import "../../api/challenge";
 import challengeApi from "../../api/challenge";
 Page({
   data: {
-    list: []
+    list: [],
+    loading: true
   },
   onLoad() {
-    challengeApi.successList().then(res => {
+    challengeApi.activity().then(res => {
       console.log("get challenge list ========")
       console.log(res.data)
-      this.setData({ list: res.data })
+      this.setData({ list: res.data, loading: false })
       console.log("challenge list end ========")
     })
     // 

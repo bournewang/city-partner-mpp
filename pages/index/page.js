@@ -25,6 +25,17 @@ Page({
       this.setData({levels: res.data})
     })
   },
+  onTabsChange(event) {
+    console.log(`Change tab, tab-panel value is ${event.detail.value}.`);
+  },
+
+  onTabsClick(event) {
+    console.log(`Click tab, tab-panel value is ${event.detail.value}.`);
+  },
+
+  onStickyScroll(event) {
+    console.log(event.detail);
+  },
   popup(e){
     console.log("click popup");
     console.log(e.target.dataset)
@@ -53,7 +64,11 @@ Page({
     wx.navigateTo({
       url: '/pages/partner-challenge/page',
     })
-
   },
+  gotoOneCarbon(){
+    return wx.navigateToMiniProgram({
+      appId: "wx2abd98b5a29e8fa3"
+    })
+  }
   
 })

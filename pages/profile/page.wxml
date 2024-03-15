@@ -1,0 +1,29 @@
+<!--index.wxml-->
+<view type="list" id="container">
+  <view class="title text-center">
+    用户信息
+  </view>
+  <view>
+    <t-input type="nickname" label="昵称" placeholder="{{info.nickname || '请输入昵称'}}" bindenter="bindInputNickname" bindblur="bindInputNickname"  align="right" ></t-input>
+
+    <t-input placeholder="" label="头像" disabled>
+      <view slot="suffix" class="suffix">
+        <view class="suffix--line"></view>
+        <!-- <t-button open-type="chooseAvatar" bindchooseavatar="chooseAvatar" slot="suffix" theme="primary" size="extra-small"> 操作按钮 </t-button> -->
+        <button id="avatar-btn" 
+          open-type="chooseAvatar" 
+          bindchooseavatar="chooseAvatar">
+          <image class="image" src="{{info.avatar}}"
+            slot="suffix" mode="heightFix"/>
+        </button>
+      </view>
+    </t-input>      
+    
+    <t-input label="手机号码" placeholder="{{info.mobile || '请输入手机号码'}}" bindenter="bindInputMobile" align="right"></t-input>
+
+    <t-button theme="light" size="large" block bind:tap="saveProfile" style="margin-top: 2em;">保存</t-button>
+
+    <t-toast id="t-toast" />
+  </view>
+  <t-button theme="primary" size="large" block bind:tap="saveProfile" style="position: fixed; bottom: 2em; " >退出登录</t-button>  
+</view>
