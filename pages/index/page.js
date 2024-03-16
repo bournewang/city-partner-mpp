@@ -2,9 +2,19 @@
 const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
 import challengeApi from "../../api/challenge"
 import authApi from "../../utils/auth"
+import userApi from "../../api/user"
+import { getScene } from "../../utils/util"
 
 Page({
   data: {
+    scene: {
+      referer_id: 0
+    },    
+    userInfo: {},
+    challenge: null,
+    tab: 0,
+    type: null,
+    options: [],
     challengeData: [],
     levels: [],
     level: 2,
@@ -16,7 +26,17 @@ Page({
   methods: {
     
   },
-  onLoad(){
+  onLoad(options){
+    console.log("options: ")
+    console.log(options)
+    if (options.scene) {
+      const {referer_id} = getScene(options.scene)
+      console.log('referer_id: ', referer_id)
+      if (referer_id) {
+        console.log("set referer_id: ", referer_id)
+        wx.setStorageSync('referer_id', referer_id)
+      }
+    }
     challengeApi.stats().then(res => {
       console.log("===========res data", res.data)
       this.setData({challengeData: res.data})
@@ -24,9 +44,24 @@ Page({
     challengeApi.levels().then(res => {
       this.setData({levels: res.data})
     })
+    challengeApi.types().then(res => {
+      console.log("challenge types === ")
+      console.log(res)
+      // this.setData({types: res.data})
+      const keys = Object.keys(res.data)
+      var options = []
+      for (var i=0; i<keys.length; i++) {
+        options.push({value: keys[i], label: res.data[keys[i]]})
+      }
+      this.setData({options})
+    })
+    userApi.challenge().then(res => {
+      this.setData({challenge: res.data})
+    })    
   },
   onTabsChange(event) {
     console.log(`Change tab, tab-panel value is ${event.detail.value}.`);
+    this.setData({tab: event.detail.value})
   },
 
   onTabsClick(event) {
@@ -54,21 +89,32 @@ Page({
       popup: e.detail.visible,
     });
   },
-  challengePartner(){
-    var info =authApi.getLocalUserInfo()
-    var token = authApi.getLocalToken()
-    if (!info && !token) {
-      authApi.wxLogin("need_register")
-    }
-    
-    wx.navigateTo({
-      url: '/pages/partner-challenge/page',
-    })
+  
+  // challengePartner(){
+  //   var info =authApi.getLocalUserInfo()
+  //   var token = authApi.getLocalToken()
+  //   if (!info && !token) {
+  //     authApi.wxLogin("need_register")
+  //   }
+  //   this.setData({tab: 1})
+  //   // wx.navigateTo({
+  //   //   url: '/pages/partner-challenge/page',
+  //   // })
+  // },
+  onChange(event){
+    const { value } = event.detail;
+
+    this.setData({ type: value });
   },
+  challenge(){
+    console.log("click continueChallenge")
+    userApi.start_challenge({type: this.data.type}).then(res => {
+      this.setData({challenge: res.data})
+    })
+  },  
   gotoOneCarbon(){
     return wx.navigateToMiniProgram({
       appId: "wx2abd98b5a29e8fa3"
     })
   }
-  
 })

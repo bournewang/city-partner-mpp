@@ -17,6 +17,10 @@ page {
   /* line-height: 4em; */
 }
 
+.avatar-example--medium{
+  color: black;
+}
+
 .date{
   color: gray;
 }

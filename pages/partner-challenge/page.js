@@ -11,15 +11,8 @@ Page({
     popup_title: "",
     popup_text: "",    
     challenge: null,
-    // current: 3000,
     type: null,
-    options: [
-      // { value: 3000, label: '缴纳3000元权益金立即开始挑战' },
-      // { value: 500, label: '先缴纳500元占据前排座位，并与72小时内补齐3000元权益金。' }
-      // {value: 'consumer',     label: "消费商"},
-      // {value: 'car-manager',  label: "车管家"},
-      // {value: 'car-owner',    label: "车东家"},
-    ]
+    options: []
   },
   onLoad() {
     // this.setData({userInfo: authApi.getLocalUserInfo()})

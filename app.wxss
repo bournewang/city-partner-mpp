@@ -29,6 +29,12 @@ page{
 .text-center{text-align: center;}
 
 image.full-page{height: 75vh; width: 100vw;}
+.success{color: var(--td-success-color);}
+.danger{color: var(--td-error-color);}
+
+.t-icon-user{
+  color: gray;
+}
 
 .m-0{margin: 0px;}
 .mx-0{margin-left: 0px;

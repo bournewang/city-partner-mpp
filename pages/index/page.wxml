@@ -1,31 +1,78 @@
 <!--index.wxml-->
 
   <view class="block">
-    <t-tabs defaultValue="{{0}}" bind:change="onTabsChange" bind:click="onTabsClick" t-class="custom-tabs">
-      <t-tab-panel label="消费商合作社" value="0" >
+    <t-tabs value="{{tab}}" bind:change="onTabsChange" bind:click="onTabsClick" t-class="custom-tabs">
+      <t-tab-panel label="城市合伙人" value="0" >
         <scroll-view class="scrollarea" scroll-y type="list">
-        <view class="head">
-          <image class="head-img" style="position:relative;" src="/static/images/butie-1.jpg" />
-        </view>      
-        <t-grid column="{{challengeData.length}}">
-          <t-grid-item wx:for="{{challengeData}}" wx:for-item="item" text="{{item.value}}" description="{{item.label}}" />
-        </t-grid>
-        <!-- <t-divider content="挑战合伙人"/> -->
-        <!-- <t-grid column="{{3}}">
-          <t-grid-item 
-            wx:for="{{levels}}" 
-            wx:for-item="item" 
-            description="{{item.label}}" 
-            icon="{{item.icon}}" 
-            data-title="{{item.rules}}" 
-            data-text="{{item.bonus_text}}" 
-            bindclick="popup" 
-            />
-        </t-grid> -->
-        <view class="block btn-wrap" >
-          <t-button size="large" theme="primary" block  bind:tap="challengePartner">立即挑战</t-button>
+        <view class="block">
+          <image class="partner-img" src="/static/images/city-partner.jpg" />
+          <t-grid column="{{challengeData.length}}">
+              <t-grid-item wx:for="{{challengeData}}" wx:for-item="item" text="{{item.value}}" description="{{item.label}}" />
+            </t-grid>
+            <view wx:if="{{!challenge}}">
+              <t-radio-group bind:change="onChange" value="{{current}}" options="{{options}}" borderless t-class="box"/>
+              <t-button size="large" theme="primary" block  bind:tap="challenge">立即挑战</t-button>
+            </view>
+            <view wx:else class="text-center">
+              <view class="block content mt-2" wx:if="{{challenge.status == 'applying'}}">
+                <t-icon name="fact-check" size="100rpx" t-class="success"/>
+                <!-- <view class="content">挑战请求已提交</view> -->
+                <view class="content">您还不是合伙人身份，</view>
+                <view class="content">请联系{{challenge.referer_id ? "您的推荐人"+challenge["referer.name"] : "客服"}}确认挑战资格</view>
+              </view>
+              <view class="block content mt-2" wx:elif="{{challenge.status == 'challenging'}}">
+                <!-- <t-icon name="rocket" size="100rpx"  t-class="success"/> -->
+                <view>您的挑战资格已确认，为第{{challenge.id}}位挑战者</view>
+                <view><p wx:if="{{challenge.current_level > 0}}">目前等级：{{challenge.current_level_label}}，</p>正在挑战{{challenge.level_label}}。</view>
+                <view>可截屏保存下面推荐码转发该给其他人开始挑战。</view>
+                <image id="qrcode" src="{{challenge.qrcode}}" />
+              </view>
+              <view class="block content mt-2" wx:elif="{{challenge.status == 'success'}}">
+                <t-icon name="check-circle" size="100rpx" t-class="success"/>
+                <rich-text nodes="{{levels[challenge.level]['success_text']}}">
+                </rich-text>
+                <t-button size="large" theme="primary" block t-class="challenge-btn" bind:tap="challenge">继续挑战</t-button>
+              </view>
+              <view class="block content" wx:elif="{{challenge.status == 'canceled'}}">
+                <t-icon name="check-circle" size="100rpx" t-class="danger"/>
+                <view class="content">您已挑战资格已取消。</view>
+              </view>
+            </view>
+          <view>
+          <t-popup visible="{{popup}}" bind:visible-change="onVisibleChange" placement="bottom">
+            <view class="block popup">
+              <rich-text nodes="{{popup_title}}<br/>{{popup_text}}">
+              </rich-text>
+            </view>
+          </t-popup>    
+        </view>    
         </view>
-        </scroll-view>     
+        
+        </scroll-view>
+      </t-tab-panel>
+      <t-tab-panel label="消费商合作社" value="1" >
+        <scroll-view class="scrollarea" scroll-y type="list" >
+          <view class="head">
+            <image class="consumer-img" style="position:relative;" src="/static/images/consumer.jpg" />
+          </view>
+                 
+          <view class="" >
+            <t-grid column="{{3}}">
+                <t-grid-item 
+                  wx:for="{{levels}}" 
+                  wx:for-item="item" 
+                  description="{{item.label}}" 
+                  icon="{{item.icon}}" 
+                  data-title="{{item.rules}}" 
+                  data-text="{{item.bonus_text}}" 
+                  bindclick="popup" 
+                  />
+              </t-grid> 
+            <!-- <t-button size="large" theme="primary" block  bind:tap="continueChallenge">立即挑战</t-button> -->
+          </view>
+        <!-- </scroll-view>      -->
+          
+        </scroll-view>
       </t-tab-panel>
       <!-- <t-tab-panel label="招募消费服务商" value="1" >
        招募消费商
@@ -43,7 +90,7 @@
       <t-tab-panel label="车东家合作社" value="3" >
         <scroll-view class="scrollarea" scroll-y type="list">
         <view class="head">
-          <image class="full-page" style="position:relative;" src="/static/images/car-owner.jpg" />
+          <image class="full-page" style="position:relative;" src="/static/images/car-owner-1.jpg" />
         </view>  
         <!-- <view class="block btn-wrap" >
           <t-button size="large" theme="primary" block  bind:tap="gotoOneCarbon">了解详情</t-button>

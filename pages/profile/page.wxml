@@ -25,5 +25,5 @@
 
     <t-toast id="t-toast" />
   </view>
-  <t-button theme="primary" size="large" block bind:tap="saveProfile" style="position: fixed; bottom: 2em; " >退出登录</t-button>  
+  <!-- <t-button theme="primary" size="large" block bind:tap="logout" style="position: fixed; bottom: 2em; " >退出登录</t-button>   -->
 </view>

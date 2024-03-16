@@ -1,16 +1,14 @@
 {
   "pages": [
     "pages/index/page",
-    "pages/challenge/page",
     "pages/car-manager/page",
     "pages/discovery/page",
     "pages/range/page",
     "pages/my/page",
     "pages/profile/page",
+    "pages/qrcode/page",
     "pages/my-challenge/page",
     "pages/login/page",
-    "pages/car-rules/page",
-    "pages/partner-rules/page",
     "pages/partner-challenge/page",
     "pages/team/page",
     "pages/logs/logs"

@@ -18,12 +18,27 @@ page {
   /* padding: .5em; */
   text-align: center;
 }
-.head-img{
-  height: 60vh;
+.partner-img{
   width: 100vw;
-  object-fit:fill;
+  height: 55vh;
+}
+.head-img{
+  /* height: 60vh; */
+  width: 100vw;
+  object-fit: fill;
+}
+.consumer-img{
+  height: 70vh;
+  width: 100vw;
+  /* object-fit: contain; */
 }
 
+#qrcode{
+  /* object-fit: contain; */
+  /* width: 80%; */
+  width: 15em;
+  height: 15em;
+}
 .btn-wrap{
   /* position: fixed; */
   /* bottom: 8em; */
@@ -69,4 +84,11 @@ page {
 
 .popup{
   padding: .5em;
+}
+
+.box {
+  /* padding: 32rpx; */
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
 }

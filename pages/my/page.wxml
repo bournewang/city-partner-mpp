@@ -1,5 +1,5 @@
 <!--index.wxml-->
-<scroll-view class="scrollarea" scroll-y type="list">
+<view>
 
   <view class="head-view">
     <t-row>
@@ -29,21 +29,7 @@
   </view>
   <view class="block">
     <t-cell title="个人信息" hover arrow url="/pages/profile/page"/>
-    <t-cell 
-      wx:if="{{challenge}}" 
-      title="我的挑战" hover arrow 
-      description="{{challenge.level_label}} {{challenge.status_label}}"
-      url="/pages/my-challenge/page"
-      />
-    <!-- <t-cell title="意见反馈" hover arrow/> -->
-    <!-- <t-cell title="张三" hover note="直推5 公排22"  />
-    <t-cell title="李四" hover note="直推5 公排22"  />
-    <t-cell title="刘明明" hover note="直推15 公排340"  />
-    <t-cell title="吴晓丽" hover note="直推7 公排215"  />
-    <t-cell title="张三" hover note="直推5 公排22"  />
-    <t-cell title="李四" hover note="直推5 公排22"  />
-    <t-cell title="刘明明" hover note="直推15 公排340"  />
-    <t-cell title="吴晓丽" hover note="直推7 公排215"  /> -->
+    <t-cell wx:if="{{challenge && challenge.status == 'challenging'}}" title="推广码" hover arrow url="/pages/qrcode/page"/>
   </view>
   <tab-bar value="/pages/my/page"></tab-bar>
-</scroll-view>
+</view>

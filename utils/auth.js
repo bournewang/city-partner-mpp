@@ -28,7 +28,7 @@ function wxLogin(need_register = 0) {
   return new Promise((resolve, reject) => {
     wx.login({
       success: res2 => {
-        login({ code: res2.code }).then(res3 => {
+        login({ code: res2.code, referer_id: wx.getStorageSync('referer_id') }).then(res3 => {
           // log('login', res3)
           if (res3.data.api_token) {
             setLocalToken(res3.data.api_token)

@@ -43,4 +43,11 @@ Page({
       // wx.navigateBack({delta: 1})
     })
   },
+  logout(){
+    authApi.removeLocalUserInfo()
+    authApi.removeLocalToken()
+    wx.navigateTo({
+      url: '/pages/index/page',
+    })
+  }
 })
