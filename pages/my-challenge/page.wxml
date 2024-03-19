@@ -1,22 +1,31 @@
 <!--index.wxml-->
-<scroll-view class="scrollarea" scroll-y type="list">
-<view class="title">
-  我的挑战
-  <t-divider />
-</view>
-<view wx:if="{{loading}}">
-  LOADING...
-</view>
-<view wx:for="{{teamData}}" wx:for-item="user" wx:key="index">
-  <t-cell 
-    title="{{user.head.label}}" 
-    description="{{user.head.desc}}" hover >
-    <view class="avatar" slot="left-icon">
-      <open-data type="userAvatarUrl" />
+<scroll-view class="scrollarea text-center mt-20" scroll-y type="list">
+  <view class="text-center">
+    <view class="block content mt-2" wx:if="{{$state.challenge.status == 'applying'}}">
+      <t-icon name="fact-check" size="100rpx" t-class="success" />
+      <!-- <view class="content">挑战请求已提交</view> -->
+      <view class="content">您还不是合伙人身份，</view>
+      <view class="content">请联系{{$state.challenge.referer_id ? "您的推荐人"+challenge["referer.name"] : "客服"}}确认挑战资格</view>
     </view>
-  </t-cell>
-  <t-grid column="{{user.data.length}}">
-    <t-grid-item wx:for="{{user.data}}" wx:for-item="item" text="{{item.value}}" description="{{item.label}}" />
-  </t-grid>
-</view>
+    <view class="block content mt-2" wx:elif="{{$state.challenge.status == 'challenging'}}">
+      <!-- <t-icon name="rocket" size="100rpx"  t-class="success"/> -->
+      <view>您的挑战资格已确认，为第{{$state.challenge.id}}位挑战者</view>
+      <view>
+        <p wx:if="{{$state.challenge.current_level > 0}}">目前等级：{{$state.challenge.current_level_label}}，</p>正在挑战{{$state.challenge.level_label}}。
+      </view>
+      <view>可截屏保存下面推荐码转发该给其他人开始挑战。</view>
+      <image class="qrcode" src="{{$state.challenge.qrcode}}" />
+    </view>
+    <view class="block content mt-2 p-1em" style="text-align: left;" wx:elif="{{$state.challenge.status == 'success'}}">
+      <t-icon name="check-circle" size="100rpx" t-class="success" />
+      <rich-text nodes="{{levels[$state.challenge.level]['bonus_text']}}"/>
+      <t-divider />
+      <rich-text nodes="{{levels[$state.challenge.level]['success_text']}}"/>
+      <t-button size="large" theme="primary" block t-class="challenge-btn mt-8" bind:tap="challenge">继续挑战</t-button>
+    </view>
+    <view class="block content" wx:elif="{{$state.challenge.status == 'canceled'}}">
+      <t-icon name="check-circle" size="100rpx" t-class="danger" />
+      <view class="content">您已挑战资格已取消。</view>
+    </view>
+  </view>
 </scroll-view>

@@ -1,5 +1,7 @@
 // app.js
+import {store} from "./store"
 App({
+  store,
   onLaunch() {
     // 展示本地存储能力
     const logs = wx.getStorageSync('logs') || []

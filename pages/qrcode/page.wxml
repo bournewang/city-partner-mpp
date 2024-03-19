@@ -1,7 +1,0 @@
-<!--index.wxml-->
-<scroll-view class="scrollarea text-center mt-20" scroll-y type="list">
-  <view>您的挑战资格已确认，为第{{challenge.id}}位挑战者</view>
-  <view><p wx:if="{{challenge.current_level > 0}}">目前等级：{{challenge.current_level_label}}，</p>正在挑战{{challenge.level_label}}。</view>
-  <view>可截屏保存下面推荐码转发该给其他人开始挑战。</view>
-  <image id="qrcode" class="mt-10" src="{{user.qrcode}}" />
-</scroll-view>

@@ -1,7 +1,5 @@
-.title{
-  font-size: 1.5em;
-  text-align: center;
-}
-.avatar{
-  width: 5em;
+
+#qrcode{
+  width: 15em;
+  height: 15em;
 }

@@ -91,3 +91,16 @@ export function getScene(scene) {
   }
   return paramsObj
 }
+
+export function getQuery(query)
+{
+  const params = query.split('&')
+  let paramsObj = {}
+  if (params.length) {
+    params.map(param => {
+      const [k, v] = param.split('=')
+      paramsObj[k] = v
+    })
+  }
+  return paramsObj
+}

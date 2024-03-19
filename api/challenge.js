@@ -7,24 +7,19 @@ function successList(data) {
   })
 }
 
-function activity() {
-  return request({
-    uri: '/challenge/activity',
-  })
+function stats(include_activity) {
+  return request({uri: '/challenge/stats' + (include_activity ? "?activity=1" : "")})
 }
 
-function stats(data) {
-  return request({
-    uri: '/challenge/stats',
-    data
-  })
-}
-
-function levels(data) {
-  return request({
-    uri: '/challenge/levels',
-    data
-  })
+function levels() {
+  let app = getApp();
+  if (!app.store.getState().challengeLevels) {
+    return request({uri: '/challenge/levels'}).then(res => {
+      if (res.success) {
+        getApp().store.setState({challengeLevels: res.data})
+      }
+    })
+  }
 }
 
 function types() {
@@ -40,7 +35,7 @@ function range() {
 }
 
 export default {
-  activity,
+  // activity,
   successList, 
   stats,
   levels,

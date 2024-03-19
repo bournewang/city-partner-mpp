@@ -1,8 +1,0 @@
-/* pages/car-manager/page.wxss */
-.success-btn{
-  margin-top: 2em;
-  width: 10em;
-  margin-left: calc(50% - 5em);
-}
-
-.rules{margin-top: 2em;text-align: center;}

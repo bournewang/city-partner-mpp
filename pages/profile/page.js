@@ -3,37 +3,44 @@
 import Toast from '../../tdesign-miniprogram/toast/index';
 import authApi from "../../utils/auth"
 import userApi from "../../api/user"
+import user from '../../api/user';
+
 Page({
   data: {
-    nickname: null,
-    info: {
-      nickname: null,
-      avatar: null
-    }
+    info: {}
   },
   onLoad() {
-    // var info = authApi.getLocalUserInfo()
-    this.setData({info: authApi.getLocalUserInfo()})
+    userApi.info("include_images").then(res => {
+      this.setData({info: res.data})
+    })
+    
   },
   chooseAvatar(e) {
     console.log(e)
     this.setData({ 'info.avatar': e.detail.avatarUrl })
-  },
+    userApi.uploadImage(e.detail.avatarUrl, "head-img")
+  },  
   bindInputNickname(e) {
     console.log(e.type +"," + e.detail.value)
     this.setData({ 'info.nickname': e.detail.value })
   },  
+  bindInputName(e) {
+    console.log(e.type +"," + e.detail.value)
+    this.setData({ 'info.name': e.detail.value })
+  },
+  bindInputIdNo(e) {
+    console.log(e.type +"," + e.detail.value)
+    this.setData({ 'info.id_no': e.detail.value })
+  },
   bindInputMobile(e) {
     console.log(e.type +"," + e.detail.value)
     this.setData({ 'info.mobile': e.detail.value })
-  },   
+  },
+  
   saveProfile() {
-    let { nickname, avatar, mobile } = this.data.info
-    // var nickname = this.data.nickname
-    console.log("nickname: "+nickname)
-    console.log("avatar: "+avatar)
-    console.log("mobile: "+mobile)
-    userApi.saveInfo({nickname, avatar, mobile}).then(res => {
+    let { nickname, avatar, name, id_no, mobile } = this.data.info
+    console.log({nickname, avatar, name, id_no, mobile})
+    userApi.saveInfo({nickname, avatar, name, id_no, mobile}).then(res => {
       authApi.setLocalUserInfo(res.data)
       Toast({
         context: this,

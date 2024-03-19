@@ -1,0 +1,14 @@
+<scroll-view scroll-y type="list">
+  <view wx:for="{{challengeActivity}}" wx:key="index" wx:for-item="item">
+        <!-- <view class="ml-24 mt- updated_at">{{item.updated_at}}</view> -->
+        <view class="avatar-example ml-2 flex">
+          <t-avatar wx:if="{{item.avatar}}" class="avatar-example--large" size="large" image="{{item.avatar}}" />
+          <t-avatar wx:else class="avatar-example--medium" size="large" icon="user" />
+          <view class="ml-4 mt-2">
+            <view class="date">{{item.updated_at}}</view>
+            <view>{{item.content}}</view>
+          </view>
+        </view>
+        <t-divider align="left" />
+      </view>
+</scroll-view>

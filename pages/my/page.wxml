@@ -1,35 +1,41 @@
 <!--index.wxml-->
-<view>
+<view class="">
 
-  <view class="head-view">
+  <view class="p-1em">
     <t-row>
       <t-col span="4" t-class="">
-        <t-avatar wx:if="{{info && info.avatar}}"
-        class="avatar-example--large" size="large" image="{{info.avatar}}"/>
-        <t-avatar wx:else
-        class="avatar-example--large" icon="user" size="large" />
+        <t-avatar wx:if="{{info && info.avatar}}" class="avatar-example--large" size="large" image="{{info.avatar}}" />
+        <t-avatar wx:else class="avatar-example--large" icon="user" size="large" />
       </t-col>
-      <t-col span="16" t-class="nickname">{{info.display_name || '微信用户'}}</t-col>
+      <t-col span="14" t-class="nickname1">
+        <view class="mt-4 ml-6">{{info.display_name || '微信用户'}}</view>
+        <box class="ml-6 referer">保荐人： {{info.referer_name}}</box>
+      </t-col>
+      <t-col span="6">
+        <view class="mt-4">
+          <t-link prefixIcon="assignment-checked" size="large" theme="primary" content="注 册" hover underline navigatorProps="{{profileLink}}" />
+        </view>
+      </t-col>
     </t-row>
   </view>
-  
-  <view class="block" wx:if="{{1}}">
-    <t-grid column="3">
-      <t-grid-item 
-        wx:for="{{teamOverview}}" 
-        wx:for-item="item" 
-        wx:key="index"
-        text="{{item.value}}" 
-        description="{{item.label}}" />
-      <!-- <t-grid-item description="直推"/>
-      <t-grid-item text="230" description="公排" />
-      <t-grid-item text="15" description="消费商" /> -->
+  <t-divider />
+  <view class="block1" wx:if="{{challenge}}">
+    <t-grid column="2">
+      <t-grid-item wx:for="{{teamOverview}}" wx:for-item="item" wx:key="index" text="{{item.value}}" description="{{item.label}}" />
     </t-grid>
-    <t-divider/>
+    <t-divider />
   </view>
-  <view class="block">
-    <t-cell title="个人信息" hover arrow url="/pages/profile/page"/>
-    <t-cell wx:if="{{challenge && challenge.status == 'challenging'}}" title="推广码" hover arrow url="/pages/qrcode/page"/>
+
+  <!-- <t-cell leftIcon="flight-takeoff" title="我要入伙" hover arrow url="/pages/apply/page" /> -->
+  <!-- <t-cell leftIcon="navigation-arrow" title="消费者注册" hover arrow url="/pages/my-challenge/page" /> -->
+  <t-cell leftIcon="certificate" title="我的授职" hover arrow url="/pages/my-challenge/page" />
+  <t-cell leftIcon="usergroup" title="我的保荐" hover arrow url="/pages/recommends/page" />
+  <t-cell leftIcon="cooperate" title="车管家互助社" hover arrow url="/pages/my-funding/page"/>
+  <view class="disabled-cell">
+    <t-cell leftIcon="cart" title="我的消费商" hover arrow description="未开通"/>
+    <t-cell leftIcon="houses-1" title="我的车管家" hover arrow description="未开通"/>
+    <t-cell leftIcon="houses-2" title="我的车东家" hover arrow description="未开通" /> 
+    <t-cell leftIcon="shop-5" title="我的商家" hover arrow description="未开通"/>
   </view>
   <tab-bar value="/pages/my/page"></tab-bar>
 </view>

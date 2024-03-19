@@ -25,17 +25,38 @@ page{
   font-size: 1.5em;
 }
 
+.t-grid-item__content .t-grid-item__text {
+  color: var(--td-brand-color);
+  font-size: 1.5em;
+}
+.t-grid-item__content .t-grid-item__description {
+  margin-top: .1em;
+}
+
+.t-upload .t-grid-item {
+  width: 100% !important;
+}
+
 .text-left{text-align: left;}
 .text-center{text-align: center;}
 
 image.full-page{height: 75vh; width: 100vw;}
+image.qrcode{width: 15em;
+height: 15em;}
 .success{color: var(--td-success-color);}
 .danger{color: var(--td-error-color);}
 
-.t-icon-user{
-  color: gray;
+.t-icon {
+  /* font-family: t !important; */
+  color: darkred !important;
 }
-
+.t-avatar__wrapper .t-icon{
+  color: grey !important;
+}
+.bold{font-weight: bold;}
+.p-05em{padding: .5em;}
+.p-1em{padding: 1em;}
+.p-2em{padding: 2em;}
 .m-0{margin: 0px;}
 .mx-0{margin-left: 0px;
 margin-right: 0px;}

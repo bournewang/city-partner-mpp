@@ -1,0 +1,4 @@
+<scroll-view scroll-y type="list" class="p-1em">
+  <view>目前有238位参与车管家互助合作</view>
+  <view>您排在32位，</view>
+</scroll-view>

@@ -1,18 +1,22 @@
 // logs.js
 // const util = require('../../utils/util.js')
+import authApi from "../../utils/auth"
 import userApi from "../../api/user"
-
+import challengeApi from "../../api/challenge"
 Page({
   data: {
-    teamData: [],
-    loading: true
+    user: {},
+    levels: [],
+    challenge: {}
   },
   onLoad() {
-    var that = this
-    // that.setData({loading: true})
-    userApi.teamDetail().then(res => {
-      console.log(res.data)
-      that.setData({teamData: res.data, loading: false})
-    })
+    this.setData({user: authApi.getLocalUserInfo()})
+    // challengeApi.levels().then(res => {
+    //   this.setData({levels: res.data})
+    // })    
+    const {challenge} = getApp().store.getState()
+    if (!challenge) {
+      userApi.challenge()
+    }
   }
 })

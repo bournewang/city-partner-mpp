@@ -1,17 +1,16 @@
 {
   "pages": [
     "pages/index/page",
-    "pages/car-manager/page",
+    "pages/projects/page",
     "pages/discovery/page",
-    "pages/range/page",
+    "pages/apply/page",
+    "pages/funding-rules/page",
     "pages/my/page",
     "pages/profile/page",
-    "pages/qrcode/page",
     "pages/my-challenge/page",
-    "pages/login/page",
-    "pages/partner-challenge/page",
-    "pages/team/page",
-    "pages/logs/logs"
+    "pages/my-funding/page",
+    "pages/recommends/page",
+    "pages/company-consumer/page"
   ],
   "usingComponents": {
     "t-navbar": "./tdesign-miniprogram/navbar/navbar",
@@ -27,6 +26,8 @@
     "t-icon": "./tdesign-miniprogram/icon/icon",
     "t-radio": "./tdesign-miniprogram/radio/radio",
     "t-radio-group": "./tdesign-miniprogram/radio-group/radio-group",
+    "t-checkbox": "tdesign-miniprogram/checkbox/checkbox",
+    "t-checkbox-group": "tdesign-miniprogram/checkbox-group/checkbox-group",
     "t-tab-bar": "./tdesign-miniprogram/tab-bar/tab-bar",
     "t-tab-bar-item": "./tdesign-miniprogram/tab-bar-item/tab-bar-item",
     "t-row": "./tdesign-miniprogram/row/row",
@@ -36,11 +37,14 @@
     "t-popup": "./tdesign-miniprogram/popup/popup",
     "t-dialog": "./tdesign-miniprogram/dialog/dialog",
     "t-input": "./tdesign-miniprogram/input/input",
+    "t-tree-select": "./tdesign-miniprogram/tree-select/tree-select",
     "t-radio": "./tdesign-miniprogram/radio/radio",
     "t-radio-group": "./tdesign-miniprogram/radio-group/radio-group",  
     "t-toast": "./tdesign-miniprogram/toast/toast",
-    "t-loading": "tdesign-miniprogram/loading/loading",
-    "tab-bar": "components/tab-bar/page"
+    "t-loading": "./tdesign-miniprogram/loading/loading",
+    "t-fab": "./tdesign-miniprogram/fab/fab",
+    "tab-bar": "components/tab-bar/page",
+    "uploader": "components/uploader/page"
   },
   "window": {
     "navigationBarTextStyle": "black",
