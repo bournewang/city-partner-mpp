@@ -30,8 +30,9 @@
     <view>
       <view class="mt-2 1p-1em bold">上传身份证正反面</view>
       <t-row class="mt-2 ">
-        <t-col span="12"><uploader text="正面" collection="id-card-front" /></t-col>
-        <t-col span="12"><uploader text="反面" collection="id-card-end" /></t-col>
+        <t-col span="12"><uploader text="正面" collection="id_card_front" preview="{{$state.user.id_card_front.preview}}"/></t-col>
+        <t-col span="12"><uploader text="反面" collection="id_card_end" preview="{{$state.user.id_card_end.preview}}"/></t-col>
+        
       </t-row>
     </view>
     <view wx:if="{{apply_type == 'funding'}}">
@@ -52,10 +53,13 @@
       <view>
         <uploader text="付款凭证" collection="pay-receipt" />
         <view class="mt-4 bold">
-          {{type == 'challenge' ? "挑战权益金3000元" : "风险保证金5万元" }}须转入企业对公账号：
+          {{apply_type == 'challenge' ? "挑战权益金3000元" : "风险保证金5万元" }}须转入企业对公账号：
         </view>
         <view>账户名称：广西东家通路消费侧发展有限公司</view>
-        <view>开户行：中国邮政储蓄银行股份有限公司梧州市新兴二路东支行</view>
+        <view>开户行：
+          中国邮储银行梧州市新兴二路东支行
+          <!-- 中国邮政储蓄银行股份有限公司梧州市新兴二路东支行 -->
+        </view>
         <view>账号：945009010089928889</view>
       </view>
     </view>

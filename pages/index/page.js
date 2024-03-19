@@ -36,18 +36,18 @@ Page({
     
   },
   onLoad(options){
-    console.log("options: ")
-    console.log(options)
+    //console.log("options: ")
+    //console.log(options)
     if (options.scene) {
       const {referer_id} = getScene(options.scene)
-      console.log('referer_id: ', referer_id)
+      //console.log('referer_id: ', referer_id)
       if (referer_id) {
-        console.log("set referer_id: ", referer_id)
+        //console.log("set referer_id: ", referer_id)
         wx.setStorageSync('referer_id', referer_id)
       }
     }
     challengeApi.stats().then(res => {
-      console.log("===========res data", res.data)
+      //console.log("===========res data", res.data)
       this.setData({challengeData: res.data.stats})
     })
     challengeApi.levels()
@@ -64,19 +64,19 @@ Page({
     }
   },
   showRules(e) {
-    console.log(e);
+    //console.log(e);
     wx.navigateTo({
       url: '/pages/funding-rules/page',
     })
   },  
   onTabsChange(event) {
-    console.log(`Change tab, tab-panel value is ${event.detail.value}.`);
+    //console.log(`Change tab, tab-panel value is ${event.detail.value}.`);
     this.setData({tab: event.detail.value})
   },
 
   popup(e){
-    console.log("click popup");
-    console.log(e.target.dataset)
+    //console.log("click popup");
+    //console.log(e.target.dataset)
     this.setData({
       popup: true,
       popup_title: e.target.dataset.title,
@@ -94,14 +94,15 @@ Page({
   },
 
   // challenge(){
-  //   console.log("click continueChallenge")
+  //   //console.log("click continueChallenge")
   //   userApi.start_challenge({type: this.data.type}).then(res => {
   //     this.setData({challenge: res.data})
   //   })
   // },  
   goApply(e){
-    console.log(e)
+    //console.log(e)
     let type = e.currentTarget.dataset.type
+    //console.log(type)
     return wx.navigateTo({
       url: "/pages/apply/page?type="+type
     })

@@ -1,7 +1,5 @@
 {
   "usingComponents": {
-    "t-upload": "../../tdesign-miniprogram/upload/upload",
-    "t-col": "../../tdesign-miniprogram/col/col",
-    "t-row": "../../tdesign-miniprogram/row/row"
+    "t-upload": "tdesign-miniprogram/upload/upload"
   }
 }

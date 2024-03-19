@@ -54,11 +54,11 @@ Component({
     value: [],    
   },
   created: function(){
-    console.log("========= area selector created")
+    // console.log("========= area selector created")
     publicApi.areaData().then(data => {
       const options = generateTree(data)
-      console.log("made area options ")
-      console.log(options)
+      // console.log("made area options ")
+      // console.log(options)
       this.setData({options, areaList: data})
     })
     const {user} = getApp().store.getState()

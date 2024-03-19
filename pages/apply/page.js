@@ -13,15 +13,18 @@ Page({
   onLoad(option) {
     this.setData({apply_type: option.type})
     
-    const {user} = getApp().store.getState()
-    this.setData({user})
+    // const {user} = getApp().store.getState()
+    // this.setData({user})
+    userApi.info("include_images").then(res => {
+      console.log(res)
+    })
   },
   toggleCitySelector(){
     this.setData({edit_city: !this.data.edit_city})
   },
   onAreaChange(e) {
-    console.log("======= onAreaChange")
-    console.log(e)
+    // console.log("======= onAreaChange")
+    // console.log(e)
     this.setData({
       // area_name: e.detail.area_name,
       "user.province_code": e.detail.area_code[0],
@@ -52,7 +55,7 @@ Page({
     let data = {};
     fields.map((key) => {data[key] = this.data.user[key]})
 
-    console.log(data)
+    // console.log(data)
     data.apply_type = this.data.apply_type
     userApi.apply(data).then(res => {
       if (res.success) {

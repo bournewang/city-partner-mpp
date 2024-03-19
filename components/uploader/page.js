@@ -8,14 +8,16 @@ Component({
   data: {
     fileList: []
   },
+  ready: function(options){
+    console.log("uploader ready ---- ")
+    console.log(options)
+    console.log(this.properties)
+    if (this.properties.preview) {
+      this.setData({fileList: [{url: this.properties.preview}]})
+      // console.log(fileList)
+    }
+  },
   methods:{  
-    onLoad: function(){
-      console.log("uploader onload ---- ")
-      console.log(this.properties.preview)
-      // if (this.properties.preview) {
-      //   this.setData({fileList: [{url: this.properties.preview}]})
-      // }
-    },
     handleAdd(e) {
       console.log("handle add: "+e.currentTarget.dataset['type'])
       const type = e.currentTarget.dataset['type']

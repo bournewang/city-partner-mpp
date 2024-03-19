@@ -13,7 +13,7 @@
       </t-col>
       <t-col span="6">
         <view class="mt-4">
-          <t-link prefixIcon="assignment-checked" size="large" theme="primary" content="注 册" hover underline navigatorProps="{{profileLink}}" />
+          <t-link prefixIcon="assignment-checked" size="large" theme="primary" content="{{$state.user.mobile ? '个人信息' : '注册'}}" hover underline navigatorProps="{{profileLink}}" />
         </view>
       </t-col>
     </t-row>

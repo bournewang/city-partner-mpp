@@ -16,12 +16,12 @@ Page({
        
   },
   onTabsChange(event) {
-    console.log(`Change tab, tab-panel value is ${event.detail.value}.`);
+    // console.log(`Change tab, tab-panel value is ${event.detail.value}.`);
     this.setData({tab: event.detail.value})
   },
 
   onTabsClick(event) {
-    console.log(`Click tab, tab-panel value is ${event.detail.value}.`);
+    // console.log(`Click tab, tab-panel value is ${event.detail.value}.`);
   },
   showRegister(){
     this.setData({popup: true})
@@ -32,11 +32,11 @@ Page({
     });
   },  
   bindInputName(e) {
-    console.log(e.type +"," + e.detail.value)
+    // console.log(e.type +"," + e.detail.value)
     this.setData({ 'name': e.detail.value })
   },  
   bindInputMobile(e) {
-    console.log(e.type +"," + e.detail.value)
+    // console.log(e.type +"," + e.detail.value)
     this.setData({ 'mobile': e.detail.value })
   },  
   register(){
