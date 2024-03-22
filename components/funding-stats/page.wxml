@@ -1,0 +1,10 @@
+<view class="funding-stats">
+  <t-grid column="4">
+    <t-grid-item 
+      wx:for="{{$state.fundingStats}}" 
+      wx:for-item="item" 
+      wx:key="index"
+      text="{{item.value}}" 
+      description="{{item.label}}" />
+  </t-grid>
+</view>

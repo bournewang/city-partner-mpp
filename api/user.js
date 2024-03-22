@@ -74,6 +74,9 @@ export function start_challenge(data={}){
     method: 'post',
     uri: '/user/challenge',
     data
+  }).then(res => {
+    getApp().store.setState({challenge: res.data})
+    return res
   })
 }
 
@@ -84,11 +87,13 @@ export function qrcode() {
 }
 
 export function saveInfo(data) {
+  getApp().store.setState({loading: true})
   return request({
     uri: '/user/info',
     method: 'post',
     data
   }).then(res => {
+    getApp().store.setState({loading: false})
     if (res.success) {
       getApp().store.setState({user: res.data})
     }
@@ -97,11 +102,13 @@ export function saveInfo(data) {
 }
 
 export function apply(data) {
+  getApp().store.setState({loading: true})
   return request({
     uri: '/user/apply',
     method: 'post',
     data
   }).then(res => {
+    getApp().store.setState({loading: false})
     if (res.success) {
       let state = {}
       if (data.apply_type == 'challenge') {
@@ -112,6 +119,14 @@ export function apply(data) {
       getApp().store.setState(state)
     }
     return res
+  })
+}
+
+export function recommends(page=1) {
+  return request({
+    uri: '/user/recommends'
+  }).then(res => {
+    getApp().store.setState({recommends: res.data})
   })
 }
 
@@ -156,6 +171,7 @@ export default {
   uploadImage,
   challenge,
   crowdFunding,
+  recommends,
   apply,
   getLocalChallenge,
   start_challenge,

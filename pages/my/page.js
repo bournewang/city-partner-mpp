@@ -9,34 +9,31 @@ Page({
     info: {},
     teamOverview: [],
     challenge: null,
+    linkIcon: {
+      consumer: "cart",
+      car_manager: "vehicle", 
+      car_owner: "houses-2"
+    },
     profileLink: {url: '/pages/profile/page'}
   },
   onLoad() {
-    app.store.setState({msg: "hahaah"})
-    var info = authApi.getLocalUserInfo()
-    if (info) {
-      this.setData({info})
-    }else{
-      userApi.info().then(res => {
-        this.setData({info: res.data})
-        authApi.setLocalUserInfo(res.data)
-      })
-    }
+    // var info = authApi.getLocalUserInfo()
+    // if (info) {
+    //   this.setData({info})
+    // }else{
+    //   userApi.info().then(res => {
+    //     this.setData({info: res.data})
+    //     authApi.setLocalUserInfo(res.data)
+    //   })
+    // }
     
-    const challenge = userApi.getLocalChallenge()
-    if (challenge) {
-      this.setData({challenge})
-
+    // const challenge = userApi.getLocalChallenge()
+    let {user} = app.store.getState()
+    if (user.challenge_id) {
+      // this.setData({challenge})
       userApi.teamOverview().then(res => {
         this.setData({teamOverview: res.data})
       })
-    }else{
-      userApi.challenge().then(res => {
-        // console.log("====== challenge data", res.data)
-        this.setData({challenge: res.data})
-      })
     }
-    
-
   } 
 })

@@ -33,8 +33,9 @@ page {
   object-fit: contain;
 }
 
-.full-
-
+rich-text{
+  text-align: left;
+}
 
 #qrcode{
   /* object-fit: contain; */

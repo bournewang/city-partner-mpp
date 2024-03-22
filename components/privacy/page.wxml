@@ -1,0 +1,20 @@
+<view>
+  <t-row>
+      <t-col span="12">
+        <t-checkbox-group t-class="box" borderless bind:change="onPrivacyChange" defaultValue="0">
+          <t-checkbox block="{{false}}" value="1" label="同意隐私政策" class="ml-1" />
+        </t-checkbox-group>
+      </t-col>
+      <t-col span="8" class="text-left">
+        <t-button block size="small" bind:tap="popup">查看</t-button>
+      </t-col>
+    </t-row>
+    <view wx:if="{{showError}}" class="danger">须同意隐私政策</view>
+    <t-popup visible="{{popup}}" bind:visible-change="onVisibleChange" placement="bottom">
+    <view class="block popup-content text-center ">
+      <rich-text nodes="<h3>隐私政策</h3><br/>{{$state.privacy}}">
+      </rich-text>
+      <t-button block bind:tap="closeDialog">关闭</t-button>
+    </view>
+  </t-popup>
+</view>

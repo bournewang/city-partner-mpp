@@ -8,7 +8,11 @@ function successList(data) {
 }
 
 function stats(include_activity) {
-  return request({uri: '/challenge/stats' + (include_activity ? "?activity=1" : "")})
+  getApp().store.setState({loading: true})
+  return request({uri: '/challenge/stats' + (include_activity ? "?activity=1" : "")}).then(res => {
+    getApp().store.setState({loading: false})
+    return res
+  })
 }
 
 function levels() {

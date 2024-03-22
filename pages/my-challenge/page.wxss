@@ -3,3 +3,32 @@
   width: 15em;
   height: 15em;
 }
+
+.content{
+  /* font-size: 1.2em; */
+  /* text-align: left; */
+}
+.pos-wrap{
+  position: relative;
+  width: 100%;
+  height: 1em;
+  background-color: lightsalmon;
+  border-radius: .5em;
+}
+
+#progress{
+  position: relative;
+  /* width: 50%; */
+  height: 1em;
+  border-radius: .5em;
+  background-color: var(--td-brand-color);
+}
+#progress .t-icon{
+  position: absolute;
+  top: -1em;
+  right: -1em;
+}
+
+.pos-base .t-progress__info {
+  display: none;
+}

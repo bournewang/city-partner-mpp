@@ -1,5 +1,5 @@
 // index.js
-const defaultAvatarUrl = 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwNRna42FI242Lcia07jQodd2FJGIYQfG0LAJGFxM4FbnQP6yfMxBgJ0F3YRqJCJ1aPAK2dQagdusBZg/0'
+import publicApi from "../../api/public"
 import challengeApi from "../../api/challenge"
 import authApi from "../../utils/auth"
 import userApi, { challenge } from "../../api/user"
@@ -46,21 +46,20 @@ Page({
         wx.setStorageSync('referer_id', referer_id)
       }
     }
-    challengeApi.stats().then(res => {
-      //console.log("===========res data", res.data)
-      this.setData({challengeData: res.data.stats})
-    })
-    challengeApi.levels()
+    publicApi.index()
+    // challengeApi.stats().then(res => {
+    //   //console.log("===========res data", res.data)
+    //   this.setData({challengeData: res.data.stats})
+    // })
+    // challengeApi.levels()
     // .then(res => {
       // this.setData({levels: res.data})
     // })
-    carManagerApi.fundingStats().then(res => {
-      this.setData({stats: res.data.stats})
-    })  
+
     const {user, token, challenge, crowdFunding} = getApp().store.getState()
     if (!user || !token) {
       // userApi.info()
-      authApi.wxLogin(fetchUserData)
+      authApi.wxLogin()
     }
   },
   showRules(e) {
@@ -100,9 +99,7 @@ Page({
   //   })
   // },  
   goApply(e){
-    //console.log(e)
     let type = e.currentTarget.dataset.type
-    //console.log(type)
     return wx.navigateTo({
       url: "/pages/apply/page?type="+type
     })

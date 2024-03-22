@@ -1,5 +1,6 @@
 {
-  "navigationBarTitleText": "我的挑战",
+  "navigationBarTitleText": "我的授职",
   "usingComponents": {
+    "t-progress": "tdesign-miniprogram/progress/progress"
   }
 }

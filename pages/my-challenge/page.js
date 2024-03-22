@@ -5,18 +5,19 @@ import userApi from "../../api/user"
 import challengeApi from "../../api/challenge"
 Page({
   data: {
-    user: {},
-    levels: [],
-    challenge: {}
+    show_rank: false
   },
   onLoad() {
-    this.setData({user: authApi.getLocalUserInfo()})
-    // challengeApi.levels().then(res => {
-    //   this.setData({levels: res.data})
-    // })    
-    const {challenge} = getApp().store.getState()
-    if (!challenge) {
-      userApi.challenge()
-    }
+    userApi.challenge()
+  },
+  toggleRank(){
+    this.setData({show_rank: !this.data.show_rank})
+  },
+  startChallenge(){
+    userApi.start_challenge().then(res => {
+      wx.navigateTo({
+        url: '/pages/my/page',
+      })
+    })
   }
 })

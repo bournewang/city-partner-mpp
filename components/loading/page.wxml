@@ -1,0 +1,5 @@
+<view class="loading-wrap" wx:if="{{$state.loading}}">
+    <view class="loading">
+      <t-loading theme="circular" size="3em" class="large"/> 
+    </view>
+</view>

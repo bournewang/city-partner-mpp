@@ -5,13 +5,10 @@ Page({
     rules: null
   },
   onLoad() {
-    const rules = wx.getStorageSync('fundingRules');
-    if (rules) {
-      this.setData({rules})
-    }else{
-      carManagerApi.fundingRules().then(res => {
-        this.setData({rules: res.data})
-      })
+    // const rules = wx.getStorageSync('fundingRules');
+    let {fundingConfig} = getApp().store.getState()
+    if (!fundingConfig) {
+      carManagerApi.fundingConfig()
     }
   }
 })

@@ -1,16 +1,10 @@
-import challengeApi from "../../api/challenge"
+import userApi from "../../api/user"
 Page({
   data: {
     challengeStats: [],
     challengeActivity: []
   },
   onLoad() {
-    challengeApi.stats("include_activity").then(res => {
-      this.setData({
-        challengeStats:     res.data.stats, 
-        challengeActivity:  res.data.activity, 
-        loading: false
-      })
-    })     
+    userApi.recommends()
   }
 })

@@ -1,60 +1,71 @@
-<scroll-view scroll-y type="list">
-
-  <view class="p-1em">
-    <view class="mt-2 p-1em bold">合伙人身份</view>
-    <!-- <t-radio-group default-value="0" borderless t-class="box">
-      <t-radio block="{{false}}" label="普通合伙人" value="0" class="ml-4"/>
-      <t-radio block="{{false}}" label="企业发起人" value="1" class="ml-8"/>
-    </t-radio-group> -->
-    <t-checkbox-group t-class="box" borderless bind:change="onChange" defaultValue="{{demoCheckboxMax}}">
-      <t-checkbox block="{{false}}" value="checkbox1" label="普通合伙人" class="ml-4" />
-      <t-checkbox block="{{false}}" value="checkbox2" label="企业发起人" class="ml-8" />
-    </t-checkbox-group>
-    <view class="mt-1 p-1em bold">完善您的实名信息</view>
-    <t-input prefixIcon="app" label="姓名" placeholder="{{user.name ||'请输入您的真实姓名'}}" bindenter="bindInputName" bindblur="bindInputName" align="right" />
-    <t-input prefixIcon="app" label="身份证" placeholder="{{user.id_no || '请输入您的身份证号码'}}" bindenter="bindInputIdNo" bindblur="bindInputIdNo" align="right" />
-    <t-input prefixIcon="mobile" label="手机号码" placeholder="{{user.mobile || '请输入手机号码'}}" bindenter="bindInputMobile" bindblur="bindInputMobile" align="right" />
-
-    <view class="mt-1 p-1em bold">居住地址</view>
-    <t-input prefixIcon="map" label="省市区" placeholder="{{user.province_name+user.city_name+user.county_name}}" >
-      <t-button bind:tap="toggleCitySelector" content="选择省市区" slot="suffix" theme="primary" size="extra-small"></t-button>
-      </t-input>
+<scroll-view class="p-1em" scroll-y type="list">
+  <view class="challenge-type" wx:if="{{apply_type == 'challenge'}}"> 
+    <view class="p-1em bold">授职类别 <p wx:if="{{errors['challenge_type']}}" class="text-center danger ml-10" style=" font-size: .8em;">必填项</p></view>
     <view>
-      
+      <t-radio-group t-class="box" bind:change="onChallengeChange" options="{{challengeOptions}}" />
     </view>
+  </view>
+  <view class="partner-role">
+    <view class="p-1em bold">合伙人身份<p wx:if="{{errors['partner_role']}}" class="text-center danger ml-10" style=" font-size: .8em;">必填项</p></view>
+    <t-row>
+      <t-col span="18">
+        <t-checkbox-group t-class="box" borderless bind:change="onChange" defaultValue="{{demoCheckboxMax}}">
+          <t-checkbox block="{{false}}" value="common_partner" label="普通合伙人" class="ml-1" />
+          <t-checkbox wx:if="{{apply_type != 'consumer'}}" block="{{false}}" value="company_launcher" label="企业发起人" class="ml-2" />
+        </t-checkbox-group>
+      </t-col>
+      <!-- <t-col span="6">
+        <view wx:if="{{errors['partner_role']}}" class="text-center danger" style=" font-size: .8em;">必填项</view>
+      </t-col> -->
+    </t-row>
+  </view>
+  <view class="realname">
+    <view class="mt-1 p-1em bold">完善您的实名信息</view>
+    <t-input prefixIcon="app" label="姓名" placeholder="{{$state.user.name ||'请输入您的真实姓名'}}" bindenter="bindInputName" bindblur="bindInputName" align="right" status="error" tips="{{errors.name ? '必填项' : ''}}" />
+    <t-input prefixIcon="app" label="身份证" placeholder="{{$state.user.id_no || '请输入您的身份证号码'}}" bindenter="bindInputIdNo" bindblur="bindInputIdNo" align="right" status="error" tips="{{errors.id_no ? '必填项' : ''}}" />
+    <t-input prefixIcon="mobile" label="手机号码" placeholder="{{$state.user.mobile || '请输入手机号码'}}" bindenter="bindInputMobile" bindblur="bindInputMobile" align="right" status="error" tips="{{errors.mobile ? '必填项' : ''}}" />
+  </view>
+  <view class="address">
+    <view class="mt-1 p-1em bold">居住地址</view>
+    <t-input prefixIcon="map" label="省市区" placeholder="{{user.province_name+(user.city_name || '')+user.county_name}}" status="error" tips="{{errors.province_code || errors.city_code || errors.county_code ? '必填项' : ''}}">
+      <t-button bind:tap="toggleCitySelector" content="选择" slot="suffix" theme="primary" size="extra-small"></t-button>
+    </t-input>
+
     <view wx:if="{{edit_city}}">
       <area-selector bind:areaChange="onAreaChange" />
     </view>
-    <t-input prefixIcon="street-road" label="街道门牌号" placeholder="{{user.street || '请输入街道门牌号'}}" bindenter="bindInputStreet" bindblur="bindInputStreet" align="right" />
-
+    <t-input prefixIcon="street-road" label="街道门牌号" placeholder="{{$state.user.street || '请输入街道门牌号'}}" bindenter="bindInputStreet" bindblur="bindInputStreet" align="right" status="error" tips="{{errors.street ? '必填项' : ''}}" />
+  </view>
+  <view class="ID-card">
+    <view class="mt-2 bold">上传身份证正反面</view>
+    <t-row class="mt-2 ">
+      <t-col span="12">
+        <uploader text="正面" collection="id_card_front" preview="{{$state.user.id_card_front.preview}}" />
+      </t-col>
+      <t-col span="12">
+        <uploader text="反面" collection="id_card_end" preview="{{$state.user.id_card_end.preview}}" />
+      </t-col>
+    </t-row>
+  </view>
+  <view class="driver-licence" wx:if="{{apply_type == 'funding'}}">
+    <t-divider />
+    <view class="mt-2 bold">上传驾照</view>
+    <t-row class="mt-2 ">
+      <t-col span="12">
+        <uploader text="信息页" collection="driver_licence_front" preview="{{$state.user.driver_licence_front.preview}}" />
+      </t-col>
+      <t-col span="12">
+        <uploader text="年审页" collection="driver_licence_end" preview="{{$state.user.driver_licence_end.preview}}" />
+      </t-col>
+    </t-row>
+  </view>
+  <view class="pay"> 
+    <t-divider />
+    <view class="mt-2 bold">上传{{apply_type == 'consumer' ? '实缴' : ''}}付款凭证</view>
     <view>
-      <view class="mt-2 1p-1em bold">上传身份证正反面</view>
-      <t-row class="mt-2 ">
-        <t-col span="12"><uploader text="正面" collection="id_card_front" preview="{{$state.user.id_card_front.preview}}"/></t-col>
-        <t-col span="12"><uploader text="反面" collection="id_card_end" preview="{{$state.user.id_card_end.preview}}"/></t-col>
-        
-      </t-row>
-    </view>
-    <view wx:if="{{apply_type == 'funding'}}">
-      <t-divider />
-      <view class="mt-2 bold">上传驾照</view>
-      <t-row class="mt-2 ">
-        <t-col span="12">
-          <uploader text="信息页" collection="driver-licence-front" />
-        </t-col>
-        <t-col span="12">
-          <uploader text="年审页" collection="driver-licence-end" />
-        </t-col>
-      </t-row>
-    </view>
-    <view>
-      <t-divider />
-      <view class="mt-2 bold">上传付款凭证</view>
-      <view>
-        <uploader text="付款凭证" collection="pay-receipt" />
-        <view class="mt-4 bold">
-          {{apply_type == 'challenge' ? "挑战权益金3000元" : "风险保证金5万元" }}须转入企业对公账号：
-        </view>
+      <uploader text="{{apply_type == 'consumer' ? '实缴' : ''}}付款凭证" collection="pay_receipt_{{apply_type}}" preview="{{$state.user['pay_receipt_'+apply_type].preview}}" />
+      <view class="mt-4" wx:if="{{apply_type != 'consumer'}}">
+        <view class="bold">{{apply_type == 'challenge' ? "挑战权益金" : "风险保证金" }}须转入企业对公账号：</view>
         <view>账户名称：广西东家通路消费侧发展有限公司</view>
         <view>开户行：
           中国邮储银行梧州市新兴二路东支行
@@ -63,11 +74,17 @@
         <view>账号：945009010089928889</view>
       </view>
     </view>
+  </view>
+  <view class="privacy mt-10 p-1em">
+    <privacy-agree bind:agreeChange="onAgreeChange" showError="{{showPrivacyError}}"></privacy-agree>
+  </view>
+  <view class="submit mt-2 ">
+    <view wx:if="{{Object.keys(errors).length}}" style="color: darkred;">*请填写每一项</view>
+    <t-button class="mt-4" size="large" theme="primary" block bind:tap="submit">
+      {{apply_type == 'consumer' ? "确认入伙" : (apply_type == "challenge" ? "确认挑战" : "确认加入互助")}}
+    </t-button>
     <t-toast id="t-toast" />
   </view>
-  <view class="mt-2 p-1em">
-    <t-button size="large" theme="primary" block bind:tap="submit">
-      {{apply_type == "challenge" ? "确认挑战" : "确认加入互助"}}
-    </t-button>
-  </view>
+  <loading />
+  <t-toast id="t-toast" />
 </scroll-view>

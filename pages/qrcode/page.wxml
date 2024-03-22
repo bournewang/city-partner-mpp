@@ -1,0 +1,6 @@
+<view>
+  <view class="text-center mt-10">
+    <image id="qrcode" src="{{$state.user.qrcode}}"/>
+  </view>
+  <view class="text-center mt-8">可截屏保存该推荐码转发该给其他人开始推广</view>
+</view>

@@ -9,6 +9,7 @@
     "pages/profile/page",
     "pages/my-challenge/page",
     "pages/my-funding/page",
+    "pages/qrcode/page",
     "pages/recommends/page",
     "pages/company-consumer/page"
   ],
@@ -39,10 +40,12 @@
     "t-radio": "tdesign-miniprogram/radio/radio",
     "t-radio-group": "tdesign-miniprogram/radio-group/radio-group",  
     "t-toast": "tdesign-miniprogram/toast/toast",
-    "t-loading": "tdesign-miniprogram/loading/loading",
     "t-fab": "tdesign-miniprogram/fab/fab",
     "tab-bar": "components/tab-bar/page",
-    "uploader": "components/uploader/page"
+    "uploader": "components/uploader/page",
+    "funding-stats": "components/funding-stats/page",
+    "privacy-agree": "components/privacy/page",
+    "loading": "components/loading/page"
   },
   "window": {
     "navigationBarTextStyle": "black",

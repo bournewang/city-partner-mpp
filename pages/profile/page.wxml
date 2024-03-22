@@ -7,7 +7,7 @@
       <view slot="suffix" class="suffix">
         <view class="suffix--line"></view>
         <button id="avatar-btn" open-type="chooseAvatar" bindchooseavatar="chooseAvatar">
-          <image class="image" src="{{$state.user.avatar}}" slot="suffix" mode="heightFix" />
+          <image class="image" src="{{info.avatar}}" slot="suffix" mode="heightFix" />
         </button>
       </view>
     </t-input>
@@ -27,10 +27,12 @@
         <uploader text="反面" collection="id_card_end" preview="{{$state.user.id_card_end.preview}}"/>
       </t-col>
     </t-row>
-
+    <view class="mt-10 p-1em">
+      <privacy-agree bind:agreeChange="onAgreeChange" showError="{{showPrivacyError}}"></privacy-agree>
+    </view>
     <t-button theme="primary" size="large" block bind:tap="saveProfile" style="margin-top: 2em;">保存</t-button>
     <t-button theme="info" size="large" block bind:tap="logout" class="mt-10">退出登录</t-button>  
     <t-toast id="t-toast" />
   </view>
-  
+  <loading/>
 </scroll-view>

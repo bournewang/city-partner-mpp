@@ -7,16 +7,17 @@ function fundingStats(include_activity) {
   })
 }
 
-function fundingRules() {
+function fundingConfig() {
   return request({
-    uri: '/car-manager/funding-rules'
+    uri: '/car-manager/funding-config'
   }).then(res => {
-    wx.setStorageSync('fundingRules', res.data)
+    // wx.setStorageSync('fundingConfig', res.data)
+    getApp().store.setState({fundingConfig: res.data})
     return res
   })
 }
 
 export default{
-  fundingRules,
+  fundingConfig,
   fundingStats
 }

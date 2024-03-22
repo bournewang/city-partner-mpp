@@ -4,24 +4,24 @@
   <t-tabs value="{{tab}}" bind:change="onTabsChange" t-class="custom-tabs">
     <t-tab-panel label="城市合伙人" value="0">
       <scroll-view class="scrollarea" scroll-y type="list">
-        <view class="block">
+        <view class="block text-center">
           <image class="partner-img" src="/static/images/city-partner.jpg" />
           <t-grid column="{{challengeData.length}}">
-            <t-grid-item wx:for="{{challengeData}}" wx:key="label" wx:for-item="item" text="{{item.value}}" description="{{item.label}}" />
+            <t-grid-item wx:for="{{$state.challengeStats}}" wx:key="label" wx:for-item="item" text="{{item.value}}" description="{{item.label}}" />
           </t-grid>
           <t-grid column="{{3}}">
             <t-grid-item wx:for="{{$state.challengeLevels}}" wx:key="level" wx:for-item="item" description="{{item.label}}" icon="{{item.icon}}" data-title="{{item.rules}}" data-text="{{item.bonus_text}}" bindclick="popup" />
           </t-grid>
-          <view wx:if="{{!$state.challenge}}">
+          <view wx:if="{{!$state.user.challenge_id}}">
             <t-radio-group bind:change="onChange" value="{{current}}" options="{{options}}" borderless t-class="box" />
-            <t-button size="large" theme="primary" block bind:tap="goApply" data-type="challenge">征召授职挑战</t-button>
+            <t-button size="large" theme="primary" block bind:tap="goApply" data-type="challenge">我要征召</t-button>
           </view>
           <view wx:else class="text-center">
-            <t-button size="large" theme="primary" block bind:tap="goMyChallenge">我的挑战</t-button>
+            <t-button size="large" theme="primary" block bind:tap="goMyChallenge">我的授职</t-button>
           </view>
           <view>
             <t-popup visible="{{popup}}" bind:visible-change="onVisibleChange" placement="bottom">
-              <view class="block popup">
+              <view class="block popup text-center">
                 <rich-text nodes="{{popup_title}}<br/>{{popup_text}}">
                 </rich-text>
               </view>
@@ -36,18 +36,13 @@
         <view class="head">
           <image class="funding-img" style="position:relative;" src="/static/images/funding.jpg" />
         </view>
-        <t-grid column="4">
-          <t-grid-item 
-            wx:for="{{stats}}" 
-            wx:for-item="item" 
-            wx:key="index"
-            text="{{item.value}}" 
-            description="{{item.label}}" />
-        </t-grid>
+        <view>
+          <funding-stats/>
+        </view>
         <t-button wx:if="{{tab==1}}" bind:tap="showRules" style="background-color: rgba(0,0,0,.5); color:white; position: fixed; bottom: 20em;right: 1em;" size="small"> 查看详情>
         </t-button>
         
-        <t-button wx:if="{{!$state.crowdFunding}}" size="large" theme="primary" block bind:tap="goApply" data-type="funding">请完成身份认证</t-button>
+        <t-button wx:if="{{!$state.user.crowd_funding_id}}" size="large" theme="primary" block bind:tap="goApply" data-type="funding">请完成身份认证</t-button>
         <view wx:else class="text-center">
             <t-button size="large" theme="primary" block bind:tap="goMyFunding">我的互助</t-button>
           </view>

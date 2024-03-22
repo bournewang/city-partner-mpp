@@ -30,12 +30,6 @@ page {
   font-weight: 400;
 }
 
-.loading-container {
-  text-align: center;
-  margin-top: 50%;
-  color: #000;
-}
-
 /* .wrapper {
   display: flex;
   margin-right: 64px;

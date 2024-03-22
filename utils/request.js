@@ -63,6 +63,7 @@ var request = async (config) => {
       },
       fail(res) {
         console.log("request fail========= ", res)
+        getApp().store.setState({loading: false})
         reject(res)
       }
     })

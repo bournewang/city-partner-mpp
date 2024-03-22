@@ -1,58 +1,55 @@
 <!--index.wxml-->
 <view>
-<t-tabs defaultValue="0" bind:change="onTabsChange" bind:click="onTabsClick" t-class="custom-tabs">
-  <t-tab-panel label="合伙人挑战动态" value="0">
-    <scroll-view>
-      <t-grid column="{{challengeStats.length}}">
-        <t-grid-item wx:for="{{challengeStats}}" wx:for-item="item" text="{{item.value}}" description="{{item.label}}" />
-      </t-grid>
-      <t-divider />
-      <view wx:for="{{challengeActivity}}" wx:key="index" wx:for-item="item">
-        <!-- <view class="ml-24 mt- updated_at">{{item.updated_at}}</view> -->
-        <view class="avatar-example ml-2">
-          <t-avatar wx:if="{{item.avatar}}" class="avatar-example--large" size="large" image="{{item.avatar}}" />
-          <t-avatar wx:else class="avatar-example--medium" size="large" icon="user" />
-          <view class="ml-4 mt-2">
-            <view class="date">{{item.updated_at}}</view>
-            <view>{{item.content}}</view>
+  <loading/>
+  <t-tabs defaultValue="0" bind:change="onTabsChange" bind:click="onTabsClick" t-class="custom-tabs">
+    <t-tab-panel label="合伙人挑战动态" value="0">
+      <scroll-view>
+        <t-grid column="{{challengeStats.length}}">
+          <t-grid-item wx:for="{{challengeStats}}" wx:for-item="item" text="{{item.value}}" description="{{item.label}}" />
+        </t-grid>
+        <t-divider />
+        <view wx:for="{{challengeActivity}}" wx:key="index" wx:for-item="item">
+          <!-- <view class="ml-24 mt- updated_at">{{item.updated_at}}</view> -->
+          <view class="avatar-example ml-2">
+            <t-avatar wx:if="{{item.avatar}}" class="avatar-example--large" size="large" image="{{item.avatar}}" />
+            <t-avatar wx:else class="avatar-example--medium" size="large" icon="user" />
+            <view class="ml-4 mt-2">
+              <view class="date">{{item.updated_at}}</view>
+              <view>{{item.content}}</view>
+            </view>
           </view>
+          <t-divider align="left" />
         </view>
-        <t-divider align="left" />
-      </view>
 
-      <view class="text-center mt-20" wx:if="{{!loading && list.length < 1}}">
-        暂无数据
-      </view>
-    </scroll-view>
-  </t-tab-panel>
-  <t-tab-panel label="车管家互助动态" value="1">
-    <scroll-view>
-      <t-grid column="{{fundingStats.length}}">
-        <t-grid-item wx:for="{{fundingStats}}" wx:for-item="item" text="{{item.value}}" description="{{item.label}}" />
-      </t-grid>
-      <t-divider />
-      <view wx:for="{{fundingActivity}}" wx:key="index" wx:for-item="item">
-        <!-- <view class="ml-24 mt- updated_at">{{item.updated_at}}</view> -->
-        <view class="avatar-example ml-2">
-          <t-avatar wx:if="{{item.avatar}}" class="avatar-example--large" size="large" image="{{item.avatar}}" />
-          <t-avatar wx:else class="avatar-example--medium" size="large" icon="user" />
-          <view class="ml-4 mt-2">
-            <view class="date">{{item.updated_at}}</view>
-            <view>{{item.content}}</view>
+        <view class="text-center mt-20" wx:if="{{!loading && list.length < 1}}">
+          暂无数据
+        </view>
+      </scroll-view>
+    </t-tab-panel>
+    <t-tab-panel label="车管家互助动态" value="1">
+      <scroll-view>
+        <t-grid column="{{fundingStats.length}}">
+          <t-grid-item wx:for="{{fundingStats}}" wx:for-item="item" text="{{item.value}}" description="{{item.label}}" />
+        </t-grid>
+        <t-divider />
+        <view wx:for="{{fundingActivity}}" wx:key="index" wx:for-item="item">
+          <!-- <view class="ml-24 mt- updated_at">{{item.updated_at}}</view> -->
+          <view class="avatar-example ml-2">
+            <t-avatar wx:if="{{item.avatar}}" class="avatar-example--large" size="large" image="{{item.avatar}}" />
+            <t-avatar wx:else class="avatar-example--medium" size="large" icon="user" />
+            <view class="ml-4 mt-2">
+              <view class="date">{{item.updated_at}}</view>
+              <view>{{item.content}}</view>
+            </view>
           </view>
+          <t-divider align="left" />
         </view>
-        <t-divider align="left" />
-      </view>
 
-      <view class="text-center mt-20" wx:if="{{!loading && list.length < 1}}">
-        暂无数据
-      </view>
-    </scroll-view>
-  </t-tab-panel>
-
-  <!-- <view class="loading-container" wx:if="{{loading}}">
-    <t-loading theme="circular" size="40rpx" text="加载中..." class="wrapper" />
-  </view> -->
-</t-tabs>
+        <view class="text-center mt-20" wx:if="{{!loading && list.length < 1}}">
+          暂无数据
+        </view>
+      </scroll-view>
+    </t-tab-panel>
+  </t-tabs>
 </view>
 <tab-bar value="/pages/discovery/page"></tab-bar>

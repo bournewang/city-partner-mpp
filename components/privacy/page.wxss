@@ -1,0 +1,8 @@
+.popup-content{
+  height: 80vh;
+  overflow-y: scroll;
+  text-align: left;
+  padding: .5em;
+}
+
+.danger{color: var(--td-error-color);}

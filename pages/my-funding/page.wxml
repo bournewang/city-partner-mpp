@@ -1,4 +1,15 @@
 <scroll-view scroll-y type="list" class="p-1em">
-  <view>目前有238位参与车管家互助合作</view>
-  <view>您排在32位，</view>
+  <funding-stats />
+  <t-divider />
+  <view class="mt-8">
+    <t-icon name="{{$state.fundingConfig['icon'][$state.crowdFunding.status]}}" size="100rpx" />
+    <view class="content text-center mt-8">
+      <rich-text nodes="{{$state.fundingConfig['prompt'][$state.crowdFunding.status]}}"></rich-text>
+      <view class="mt-4" wx:if="{{$state.crowdFunding.status == 'using'}}">
+        <rich-text nodes="起始日：{{$state.crowdFunding.start_at}} 2024-04-10<br/>到期日：{{$state.crowdFunding.end_at}} 2024-07-10" />
+        <!-- <div>起始日：{{$state.crowdFunding.start_at}} 2024-04-10</div>
+        <div>到期日：{{$state.crowdFunding.end_at}} 2024-07-10</div> -->
+      </view>
+    </view>
+  </view>
 </scroll-view>

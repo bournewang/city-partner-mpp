@@ -1,13 +1,13 @@
 // logs.js
 // const util = require('../../utils/util.js')
-import Toast from 'tdesign-miniprogram/toast/index';
 import authApi from "../../utils/auth"
 import userApi from "../../api/user"
 import {getScene} from "../../utils/util"
-import user from '../../api/user';
 
 Page({
   data: {
+    privacy_agree: false,
+    showPrivacyError: false,
     info: {}
   },
   onLoad(options) {
@@ -20,10 +20,13 @@ Page({
       }
       authApi.wxLogin()
     }
-    let {user} = getApp().store.getState()    
-    if (!user.id_card_front || !user.id_card_front.preview) {
-      userApi.info("include_images")
-    }
+    // let {user} = getApp().store.getState()    
+    // if (!user.id_card_front || !user.id_card_front.preview) {
+    userApi.info("include_images").then(res => {
+      this.setData({info: res.data})
+    })
+    // }
+    
   },
   chooseAvatar(e) {
     //console.log(e)
@@ -46,17 +49,19 @@ Page({
     //console.log(e.type +"," + e.detail.value)
     this.setData({ 'info.mobile': e.detail.value })
   },
-  
+  onAgreeChange(e){
+    console.log("checked: "+e.detail.value)
+    this.setData({privacy_agree: e.detail.value})
+  },
   saveProfile() {
+    if (!this.data.privacy_agree) {
+      this.setData({showPrivacyError: true});
+      return;
+    }
     let { nickname, avatar, name, id_no, mobile } = this.data.info
     //console.log({nickname, avatar, name, id_no, mobile})
     userApi.saveInfo({nickname, avatar, name, id_no, mobile}).then(res => {
-      authApi.setLocalUserInfo(res.data)
-      Toast({
-        context: this,
-        selector: '#t-toast',
-        message: '保存成功！',
-      });
+      // authApi.setLocalUserInfo(res.data)
       wx.navigateTo({url: "/pages/my/page"})
     })
   },

@@ -2,6 +2,7 @@ import Store from "wxministore";
 let store = new Store({
   state: {
     msg: "这是一个全局状态",
+    loading: null,
     token: null,
     user: {},
     challenge: null,

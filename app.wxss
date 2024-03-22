@@ -43,6 +43,11 @@ page{
 image.full-page{height: 75vh; width: 100vw;}
 image.qrcode{width: 15em;
 height: 15em;}
+.fit-height{
+  /* height: 70vh; */
+  mode: heightFix;
+  /* width: 100%; */
+}
 .success{color: var(--td-success-color);}
 .danger{color: var(--td-error-color);}
 

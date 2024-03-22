@@ -1,14 +1,24 @@
 <scroll-view scroll-y type="list">
-  <view wx:for="{{challengeActivity}}" wx:key="index" wx:for-item="item">
-        <!-- <view class="ml-24 mt- updated_at">{{item.updated_at}}</view> -->
-        <view class="avatar-example ml-2 flex">
-          <t-avatar wx:if="{{item.avatar}}" class="avatar-example--large" size="large" image="{{item.avatar}}" />
-          <t-avatar wx:else class="avatar-example--medium" size="large" icon="user" />
-          <view class="ml-4 mt-2">
-            <view class="date">{{item.updated_at}}</view>
-            <view>{{item.content}}</view>
-          </view>
+  <view class="text-center">
+    <view wx:if="{{$state.user.challenge_type}}">我的{{$state.user.challenge_type_label}}</view>
+    <view wx:else>我的推广</view>
+    <t-divider/>
+  </view>
+  <view class="mt-10 text-center" wx:if="{{$state.recommends.length < 1}}"> 
+    没有记录
+  </view>
+  <view wx:else>
+    <view wx:for="{{$state.recommends}}" wx:key="id" wx:for-item="item">
+      <!-- <view class="ml-24 mt- updated_at">{{item.updated_at}}</view> -->
+      <view class="avatar-example ml-2 flex">
+        <t-avatar wx:if="{{item.avatar}}" class="avatar-example--large1" size="large" image="{{item.avatar}}" />
+        <t-avatar wx:else class="avatar-example--medium1" size="large" icon="user" />
+        <view class="ml-4 mt-2">
+          <view>{{item.display_name}}</view>
+          <view class="date">{{item.created_at}}</view>
         </view>
-        <t-divider align="left" />
       </view>
+      <t-divider align="left" />
+    </view>
+  </view>
 </scroll-view>
