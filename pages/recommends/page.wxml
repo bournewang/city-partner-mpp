@@ -1,9 +1,4 @@
 <scroll-view scroll-y type="list">
-  <view class="text-center">
-    <view wx:if="{{$state.user.challenge_type}}">我的{{$state.user.challenge_type_label}}</view>
-    <view wx:else>我的推广</view>
-    <t-divider/>
-  </view>
   <view class="mt-10 text-center" wx:if="{{$state.recommends.length < 1}}"> 
     没有记录
   </view>

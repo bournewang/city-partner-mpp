@@ -26,9 +26,9 @@
   </view>
 
   <view  wx:if="{{$state.user.challenge_id}}">
+    <t-cell leftIcon="qrcode" title="我的保荐码" hover arrow url="/pages/qrcode/page" />
+    <t-cell leftIcon="usergroup" title="我的保荐" hover arrow url="/pages/recommends/page"/>
     <t-cell leftIcon="certificate" title="我的授职" hover arrow url="/pages/my-challenge/page"/>
-    <!-- <t-cell leftIcon="usergroup" title="我的保荐" hover arrow url="/pages/recommends/page"/> -->
-    <t-cell leftIcon="{{linkIcon[$state.user.challenge_type]}}" title="我的{{$state.user.challenge_type_label}}" hover arrow url="/pages/recommends/page"/>
   </view>
   <view wx:else>
     <t-cell leftIcon="qrcode" title="我的推广码" hover arrow url="/pages/qrcode/page" />
