@@ -23,7 +23,7 @@ Page({
     userApi.company().then(res => {
       let company = res.data
       if (company && company.id) {
-        company.partner_role = JSON.parse(company.partner_role)
+        // company.partner_role = JSON.parse(company.partner_role)
         this.setData({company, pickerText: {bank: company.bank_label}})
       }else{
         // init
@@ -37,6 +37,8 @@ Page({
           company = {}
           companyOptions.fieldOptions.map((item) => company[item.name] = item.defaultValue)
           this.setData({company})
+          console.log("init company =====")
+          console.log(company)
           // clearInterval(timer)
         // }, 200)
       }
@@ -98,9 +100,11 @@ Page({
       
       return;
     }
-    fieldOptions.map( item => {Array.isArray(company[item.name]) ? company[item.name] = JSON.stringify(company[item.name]) : {}})
+    // fieldOptions.map( item => {Array.isArray(company[item.name]) ? company[item.name] = JSON.stringify(company[item.name]) : {}})
+    let data = {}
+    fieldOptions.map( item => {if (company[item.name])data[item.name] = company[item.name]})
     
-    companyApi.create(company).then(res => {
+    companyApi.create(data).then(res => {
       if (res.success) {
         getApp().store.setState({company: res.data})
         // authApi.setLocalUserInfo(res.data)

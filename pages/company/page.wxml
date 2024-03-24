@@ -3,7 +3,7 @@
     <view wx:if="{{item.type == 'checkbox' || item.type == 'radio'}}" class="p-1em bold">{{item.label}} <p wx:if="{{errors[item.name]}}" class="text-center danger ml-10" style=" font-size: .8em;">必填项</p>
     </view>
     <t-radio-group wx:if="{{item.type == 'radio'}}" t-class="box" bind:change="bindInput" options="{{item.options}}" value="{{company[item.name]}}" data-name="{{item.name}}"/>
-    <t-checkbox-group wx:if="{{item.type == 'checkbox'}}" t-class="box" borderless bind:change="bindInput" options="{{item.options}}" value="{{company[item.name]}}" data-name="{{item.name}}"/>
+    <t-checkbox-group wx:if="{{item.type == 'checkbox'}}" t-class="box" bind:change="bindInput" options="{{item.options}}" value="{{company[item.name]}}" data-name="{{item.name}}"/>
 
     <t-cell class="" wx:if="{{item.type == 'picker'}}" title="选择{{item.label}}" arrow hover bind:click="showPicker" note="{{pickerText[item.name]}}" data-name="{{item.name}}"/>
     <t-picker wx:if="{{item.type == 'picker'}}"
@@ -18,7 +18,17 @@
     >
       <t-picker-item options="{{item.options}}" />
     </t-picker>    
-    <t-input wx:if="{{!item.type}}" prefixIcon="{{item.icon}}" label="{{item.label}}" placeholder="{{company[item.name] || '请输入'+item.label}}" bindenter="bindInput" bindblur="bindInput" data-name="{{item.name}}" align="right" status="error" tips="{{errors[item.name] ? '必填项' : ''}}" disabled="{{item.disabled ? '1' : null}}"/>
+    <t-input wx:if="{{!item.type}}" 
+      prefixIcon="{{item.icon}}" 
+      label="{{item.label}}" 
+      placeholder="{{'请输入'+item.label}}" 
+      value="{{company[item.name]}}"
+      bindenter="bindInput" bindblur="bindInput" 
+      data-name="{{item.name}}" 
+      align="right" status="error" 
+      tips="{{errors[item.name] ? '必填项' : ''}}" 
+      disabled="{{item.disabled ? '1' : null}}"
+      />
   </view>
   <t-button class="mt-4 mb-10" size="large" theme="primary" block bind:tap="onSubmit">提交
   </t-button>

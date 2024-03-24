@@ -37,7 +37,7 @@
     <t-input prefixIcon="street-road" label="街道门牌号" placeholder="{{$state.user.street || '请输入街道门牌号'}}" bindenter="bindInputStreet" bindblur="bindInputStreet" align="right" status="error" tips="{{errors.street ? '必填项' : ''}}" />
   </view>
   <view class="ID-card">
-    <view class="mt-2 bold">上传身份证正反面</view>
+    <view class="mt-2 ml-2 bold">上传身份证正反面</view>
     <t-row class="mt-2 ">
       <t-col span="12">
         <uploader text="正面" collection="id_card_front" preview="{{$state.user.id_card_front.preview}}" />
@@ -49,7 +49,7 @@
   </view>
   <view class="driver-licence" wx:if="{{apply_type == 'funding'}}">
     <t-divider />
-    <view class="mt-2 bold">上传驾照</view>
+    <view class="mt-2 ml-2 bold">上传驾照</view>
     <t-row class="mt-2 ">
       <t-col span="12">
         <uploader text="信息页" collection="driver_licence_front" preview="{{$state.user.driver_licence_front.preview}}" />
@@ -61,10 +61,10 @@
   </view>
   <view class="pay"> 
     <t-divider />
-    <view class="mt-2 bold">上传{{apply_type == 'consumer' ? '实缴' : ''}}付款凭证</view>
+    <view class="mt-2 ml-2 bold">上传{{apply_type == 'consumer' ? '实缴' : ''}}付款凭证</view>
     <view>
       <uploader text="{{apply_type == 'consumer' ? '实缴' : ''}}付款凭证" collection="pay_receipt_{{apply_type}}" preview="{{$state.user['pay_receipt_'+apply_type].preview}}" />
-      <view class="mt-4" wx:if="{{apply_type != 'consumer'}}">
+      <view class="mt-4 ml-2" wx:if="{{apply_type != 'consumer'}}">
         <view class="bold">{{apply_type == 'challenge' ? "挑战权益金" : "风险保证金" }}须转入企业对公账号：</view>
         <view>账户名称：广西东家通路消费侧发展有限公司</view>
         <view>开户行：
