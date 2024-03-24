@@ -88,7 +88,6 @@ Page({
         selector: '#t-toast',
         message: '请填写所有项目',
       });
-      
       return;
     }
 

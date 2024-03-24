@@ -1,7 +1,6 @@
 // logs.js
 // const util = require('../../utils/util.js')
 import authApi from '../../utils/auth'
-import { wxLogin } from '../../utils/request'
 import userApi from "../../api/user"
 const app = getApp()
 Page({
@@ -29,7 +28,9 @@ Page({
     
     // const challenge = userApi.getLocalChallenge()
     let {user} = app.store.getState()
-    if (user.challenge_id) {
+    if (!user){
+      authApi.wxLogin()
+    }else if(user.challenge_id) {
       // this.setData({challenge})
       userApi.teamOverview().then(res => {
         this.setData({teamOverview: res.data})
