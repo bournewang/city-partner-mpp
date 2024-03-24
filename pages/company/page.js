@@ -26,21 +26,10 @@ Page({
         // company.partner_role = JSON.parse(company.partner_role)
         this.setData({company, pickerText: {bank: company.bank_label}})
       }else{
-        // init
-        // let timer = setInterval(()=>{
-          let {companyOptions} = getApp().store.getState()
-          // if (!companyOptions) {
-          //   console.log("companyOptions is null, wait 200ms")
-          //   return
-          // }
-          console.log("get companyOptions, clear timer")
-          company = {}
-          companyOptions.fieldOptions.map((item) => company[item.name] = item.defaultValue)
-          this.setData({company})
-          console.log("init company =====")
-          console.log(company)
-          // clearInterval(timer)
-        // }, 200)
+        let {companyOptions} = getApp().store.getState()
+        company = {}
+        companyOptions.fieldOptions.map((item) => company[item.name] = item.defaultValue)
+        this.setData({company})
       }
     })
   },
@@ -107,7 +96,6 @@ Page({
     companyApi.create(data).then(res => {
       if (res.success) {
         getApp().store.setState({company: res.data})
-        // authApi.setLocalUserInfo(res.data)
         Toast({
           context: this,
           selector: '#t-toast',

@@ -26,9 +26,10 @@
   </view>
 
   <view  wx:if="{{$state.user.challenge_id}}">
+    <t-cell leftIcon="certificate" title="我的授职" hover arrow url="/pages/my-challenge/page"/>
     <t-cell leftIcon="qrcode" title="我的保荐码" hover arrow url="/pages/qrcode/page" />
     <t-cell leftIcon="usergroup" title="我的保荐" hover arrow url="/pages/recommends/page"/>
-    <t-cell leftIcon="certificate" title="我的授职" hover arrow url="/pages/my-challenge/page"/>
+    
     <t-cell wx:if="{{$state.user.challenge_type == 'consumer'}}" leftIcon="cart" title="我的消费商" hover arrow url="/pages/company/page"/>
     <t-cell wx:if="{{$state.user.challenge_type == 'car_manager'}}" leftIcon="vehicle" title="我的车管家" hover arrow url="/pages/company/page"/>
     <t-cell wx:if="{{$state.user.challenge_type == 'car_owner'}}" leftIcon="houses-2" title="我的车东家" hover arrow url="/pages/company/page"/>
@@ -40,10 +41,10 @@
   </view>
   <t-cell wx:if="{{$state.user.crowd_funding_id}}" leftIcon="cooperate" title="车管家互助社" hover arrow url="/pages/my-funding/page" />
   <view class="disabled-cell">
-    <t-cell wx:if="{{$state.user.challenge_type != 'consumer'}}" leftIcon="cart" title="我的消费商" description="未开通" hover />
-    <t-cell wx:if="{{$state.user.challenge_type != 'car_manager'}}" leftIcon="vehicle" title="我的车管家" description="未开通" hover />
-    <t-cell wx:if="{{$state.user.challenge_type != 'car_owner'}}" leftIcon="houses-2" title="我的车东家" description="未开通" hover />
-    <t-cell leftIcon="shop-5" title="我的商家" hover description="未开通" />
+    <t-cell wx:if="{{$state.user.challenge_type != 'consumer'}}" leftIcon="cart" title="我的消费商" description="未入伙" hover />
+    <t-cell wx:if="{{$state.user.challenge_type != 'car_manager'}}" leftIcon="vehicle" title="我的车管家" description="未入伙" hover />
+    <t-cell wx:if="{{$state.user.challenge_type != 'car_owner'}}" leftIcon="houses-2" title="我的车东家" description="未入伙" hover />
+    <t-cell leftIcon="shop-5" title="我的商家" hover description="未入驻" />
   </view>
   <tab-bar value="/pages/my/page"></tab-bar>
 </view>

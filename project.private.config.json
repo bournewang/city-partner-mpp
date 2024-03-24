@@ -9,23 +9,23 @@
     "miniprogram": {
       "list": [
         {
+          "name": "pages/my/page",
+          "pathName": "pages/my/page",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "company",
+          "pathName": "pages/company/page",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "my-challenge",
           "pathName": "pages/my-challenge/page",
           "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "pages/projects/page",
-          "pathName": "pages/index/page",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "pages/profile/page",
-          "pathName": "pages/profile/page",
-          "query": "scene=referer_id%3D202",
           "launchMode": "default",
           "scene": null
         },

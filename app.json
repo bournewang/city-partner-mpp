@@ -11,6 +11,7 @@
     "pages/my-funding/page",
     "pages/qrcode/page",
     "pages/recommends/page",
+    "pages/company/page",
     "pages/company-consumer/page"
   ],
   "usingComponents": {

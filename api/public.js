@@ -31,8 +31,18 @@ function privacy() {
   })
 }
 
+function companyOptions() {
+  return request({
+    uri: '/public/company-options',
+  }).then(res => {
+    getApp().store.setState({companyOptions: res.data})
+    return res
+  })
+}
+
 export default {
   index,
   privacy,
+  companyOptions,
   areaData
 }

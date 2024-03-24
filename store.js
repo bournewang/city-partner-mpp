@@ -1,10 +1,11 @@
 import Store from "wxministore";
+import {IMAGE_URL} from "./config"
 let store = new Store({
   state: {
-    msg: "这是一个全局状态",
     loading: null,
+    IMAGE_URL: IMAGE_URL,
     token: null,
-    user: {},
+    user: null,
     challenge: null,
     challengeStats: null,
     challengeLevels: null

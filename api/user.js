@@ -49,6 +49,16 @@ export function crowdFunding() {
   })
 }
 
+export function company() {
+  getApp().store.setState({loading: true})
+  return request({
+    uri: '/user/company',
+  }).then(res => {
+    getApp().store.setState({company: res.data, loading: false})
+    return res
+  })
+}
+
 export function getLocalChallenge(){
   return wx.getStorageSync('my_challenge')
 }
@@ -171,6 +181,7 @@ export default {
   uploadImage,
   challenge,
   crowdFunding,
+  company,
   recommends,
   apply,
   getLocalChallenge,
