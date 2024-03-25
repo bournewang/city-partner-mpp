@@ -1,0 +1,21 @@
+<scroll-view scroll-y type="list">
+  <view class="mt-30">
+    <!-- <t-icon name="{{$state.agent.status_icon}}" size="100rpx"></t-icon> -->
+  </view>
+  <view class="mt-20 text-center">
+    申请代理区域： {{$state.agent.province_name}} {{$state.agent.city_name || ''}} {{$state.agent.county_name || ''}}
+  </view>
+
+  <view class="m-4 ml-40">
+    <view class="block">
+      <t-steps layout="vertical" theme="default" current="{{$state.agent.step_index}}" bind:change="onThirdChange">
+        <t-step-item wx:for="{{$state.agent.step_options}}" 
+          wx:key="status" 
+          icon="{{item.icon}}"
+          title="{{item.title}}" 
+          content="{{item.tips}}" />
+      </t-steps>
+
+    </view>
+  </view>
+</scroll-view>

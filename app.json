@@ -9,9 +9,11 @@
     "pages/profile/page",
     "pages/my-challenge/page",
     "pages/my-funding/page",
+    "pages/my-agent/page",
     "pages/qrcode/page",
     "pages/recommends/page",
     "pages/company/page",
+    "pages/agent/page",
     "pages/company-consumer/page"
   ],
   "usingComponents": {

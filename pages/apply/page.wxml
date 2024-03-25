@@ -5,7 +5,7 @@
       <t-radio-group t-class="box" bind:change="onChallengeChange" options="{{challengeOptions}}" />
     </view>
   </view>
-  <view class="partner-role">
+  <view class="partner-role" wx:if="{{apply_type != 'agent'}}">
     <view class="p-1em bold">合伙人身份<p wx:if="{{errors['partner_role']}}" class="text-center danger ml-10" style=" font-size: .8em;">必填项</p></view>
     <t-row>
       <t-col span="18">
@@ -36,6 +36,18 @@
     </view>
     <t-input prefixIcon="street-road" label="街道门牌号" placeholder="{{$state.user.street || '请输入街道门牌号'}}" bindenter="bindInputStreet" bindblur="bindInputStreet" align="right" status="error" tips="{{errors.street ? '必填项' : ''}}" />
   </view>
+  <view class="address" wx:if="{{apply_type == 'agent'}}">
+    <view class="mt-1 p-1em bold">代理区域</view>
+    <t-input prefixIcon="map" label="省市区" 
+      placeholder="{{agent_area_text}}" status="error" 
+      tips="{{errors.agent_province_code || errors.agent_city_code ? '必填项' : ''}}">
+      <t-button bind:tap="toggleCitySelector1" content="选择" slot="suffix" theme="primary" size="extra-small"></t-button>
+    </t-input>
+
+    <view wx:if="{{edit_city1}}">
+      <area-selector bind:areaChange="onAreaChange1" />
+    </view>
+  </view>  
   <view class="ID-card">
     <view class="mt-2 ml-2 bold">上传身份证正反面</view>
     <t-row class="mt-2 ">
@@ -59,13 +71,13 @@
       </t-col>
     </t-row>
   </view>
-  <view class="pay"> 
+  <view class="pay" wx:if="{{apply_type != 'agent'}}"> 
     <t-divider />
-    <view class="mt-2 ml-2 bold">上传{{apply_type == 'consumer' ? '实缴' : ''}}付款凭证</view>
+    <view class="mt-2 ml-2 bold">上传{{payPrompt}}付款凭证</view>
     <view>
-      <uploader text="{{apply_type == 'consumer' ? '实缴' : ''}}付款凭证" collection="pay_receipt_{{apply_type}}" preview="{{$state.user['pay_receipt_'+apply_type].preview}}" />
+      <uploader text="{{payPrompt}}付款凭证" collection="pay_receipt_{{apply_type}}" preview="{{$state.user['pay_receipt_'+apply_type].preview}}" />
       <view class="mt-4 ml-2" wx:if="{{apply_type != 'consumer'}}">
-        <view class="bold">{{apply_type == 'challenge' ? "挑战权益金" : "风险保证金" }}须转入企业对公账号：</view>
+        <view class="bold">{{payPrompt}}须转入企业对公账号：</view>
         <view>账户名称：广西东家通路消费侧发展有限公司</view>
         <view>开户行：
           中国邮储银行梧州市新兴二路东支行
@@ -81,7 +93,7 @@
   <view class="submit mt-2 mb-10">
     <view wx:if="{{Object.keys(errors).length}}" style="color: darkred;">*请填写每一项</view>
     <t-button class="mt-4" size="large" theme="primary" block bind:tap="submit">
-      {{apply_type == 'consumer' ? "确认入伙" : (apply_type == "challenge" ? "确认挑战" : "确认加入互助")}}
+      {{submitText}}
     </t-button>
   </view>
   <loading />

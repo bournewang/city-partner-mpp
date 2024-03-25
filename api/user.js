@@ -23,9 +23,11 @@ export function info(include_images = false) {
   if (include_images) {
     url += "?include_images=1"
   }
+  getApp().store.setState({loading: true})
   return request({
     uri: url,
   }).then(res => {
+    getApp().store.setState({loading: false})
     if (res.success) {
       getApp().store.setState({user: res.data})
     }
@@ -55,6 +57,16 @@ export function company() {
     uri: '/user/company',
   }).then(res => {
     getApp().store.setState({company: res.data, loading: false})
+    return res
+  })
+}
+
+export function agent() {
+  getApp().store.setState({loading: true})
+  return request({
+    uri: '/user/agent',
+  }).then(res => {
+    getApp().store.setState({agent: res.data, loading: false})
     return res
   })
 }
@@ -182,6 +194,7 @@ export default {
   challenge,
   crowdFunding,
   company,
+  agent,
   recommends,
   apply,
   getLocalChallenge,
