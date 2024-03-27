@@ -1,6 +1,6 @@
 const {miniProgram: {envVersion}} = wx.getAccountInfoSync()
 
-// const API_URL = 'https://xiaofeice.com/api'
+// const HOST = 'https://xiaofeice.com'
 const HOST = envVersion == "release" || envVersion == "trial" ? 
   'https://xiaofeice.com' : 'http://localhost:8000'
 

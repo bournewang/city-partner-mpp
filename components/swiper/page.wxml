@@ -1,0 +1,24 @@
+<!-- <t-swiper
+  current="{{current}}"
+  autoplay="{{autoplay}}"
+  duration="{{duration}}"
+  interval="{{interval}}"
+  navigation="{{ { type: 'dots' } }}"
+  list="{{swiperList}}"
+  bind:click="onTap"
+  bind:change="onChange"
+  bind:image-load="onImageLoad"
+>
+</t-swiper> -->
+<swiper 
+  autoplay="true" 
+  interval="{{3000}}"
+  duration="500"
+  indicator-dots="true"
+  indicator-color="0,0,0,0.8"
+  indicator-active-color="white"
+  >
+  <swiper-item wx:for="{{swiperList}}" wx:for-item="url" wx:key="url">
+    <image class="" mode="aspectFit" src="{{url}}"/>
+  </swiper-item>
+</swiper>

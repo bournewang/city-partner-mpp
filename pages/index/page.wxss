@@ -98,3 +98,11 @@ rich-text{
   justify-content: space-between;
   background-color: #fff;
 }
+
+.t-grid-item__content .t-grid-item__text {
+  color: var(--td-brand-color);
+  font-size: 1.5em;
+}
+.t-grid-item__content .t-grid-item__description {
+  margin-top: .1em;
+}

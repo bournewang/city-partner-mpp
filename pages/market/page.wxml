@@ -1,0 +1,18 @@
+<scroll-view scroll-y type="list">
+  <view>  
+    <swiper-show/>
+  </view>
+  <t-grid class="block" column="3">
+    <t-grid-item 
+      wx:for="{{$state.apps}}" 
+      wx:for-item="app" 
+      wx:key="id"
+      text="{{app.name}}" 
+      image="{{app.icon}}" 
+      data-type="{{app.type}}"
+      data-url="{{app.url}}"
+      bind:tap="openApp"
+      />
+  </t-grid>
+</scroll-view>
+<tab-bar value="/pages/market/page"></tab-bar>

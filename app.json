@@ -3,6 +3,7 @@
     "pages/index/page",
     "pages/projects/page",
     "pages/discovery/page",
+    "pages/market/page",
     "pages/apply/page",
     "pages/funding-rules/page",
     "pages/my/page",
@@ -14,6 +15,7 @@
     "pages/recommends/page",
     "pages/company/page",
     "pages/agent/page",
+    "pages/web/page",
     "pages/company-consumer/page"
   ],
   "usingComponents": {
@@ -48,6 +50,7 @@
     "uploader": "components/uploader/page",
     "funding-stats": "components/funding-stats/page",
     "privacy-agree": "components/privacy/page",
+    "swiper-show": "components/swiper/page",
     "loading": "components/loading/page"
   },
   "window": {

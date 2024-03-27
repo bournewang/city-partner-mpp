@@ -40,9 +40,26 @@ function companyOptions() {
   })
 }
 
+function apps(){
+  return request({
+    uri: '/public/apps',
+  }).then(res => {
+    getApp().store.setState({apps: res.data})
+    return res
+  })
+}
+
+function banners(){
+  return request({
+    uri: '/public/banners',
+  })
+}
+
 export default {
   index,
   privacy,
   companyOptions,
+  apps,
+  banners,
   areaData
 }

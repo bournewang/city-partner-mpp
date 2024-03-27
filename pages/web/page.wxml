@@ -1,0 +1,4 @@
+<scroll-view scroll-y style="height: 85vh;">
+  <web-view src="{{url}}" bindload="ready"/>
+  <loading/>
+</scroll-view>
