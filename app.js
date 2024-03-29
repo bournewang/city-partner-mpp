@@ -2,19 +2,17 @@
 import {store} from "./store"
 App({
   store,
-  onLaunch() {
+  onLaunch(option) {
     // 展示本地存储能力
-    const logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-
-    // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        // alert(res.code)
+    console.log("onShow, extraData: ====")
+    const data = option.referrerInfo.extraData
+    console.log(data)
+    if (data) {
+      let {nickname, name, mobile, avatar,uid} = data
+      if (name || mobile) {
+        store.setState({jump_user: {nickname, name, mobile, avatar, uid}})
       }
-    })
+    }
   },
   globalData: {
     userInfo: null

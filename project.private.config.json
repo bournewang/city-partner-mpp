@@ -9,6 +9,17 @@
     "miniprogram": {
       "list": [
         {
+          "name": "jump",
+          "pathName": "pages/index/page",
+          "query": "",
+          "launchMode": "default",
+          "scene": 1037,
+          "referrerInfo": {
+            "appId": "wx330488813101da7a",
+            "extraData": "{\"name\":\"Bourne\",\"nickname\":\"Hello\",\"mobile\":\"138\"}"
+          }
+        },
+        {
           "name": "pages/my/page",
           "pathName": "pages/my/page",
           "query": "",

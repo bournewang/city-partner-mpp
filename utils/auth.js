@@ -35,7 +35,16 @@ function wxLogin(callback = null) {
   return new Promise((resolve, reject) => {
     wx.login({
       success: res2 => {
-        login({ code: res2.code, referer_id: wx.getStorageSync('referer_id') }).then(res3 => {
+        let {jump_user} = getApp().store.getState()
+        let param = { code: res2.code, referer_id: wx.getStorageSync('referer_id') }
+        if (jump_user) {
+          Object.keys(jump_user).map(key => {
+            if (jump_user[key]){
+              param[key] = jump_user[key]
+            }
+          })
+        }
+        login(param).then(res3 => {
           // log('login', res3)
           if (res3.data.api_token) {
             console.log("------ set token "+res3.data.api_token)
