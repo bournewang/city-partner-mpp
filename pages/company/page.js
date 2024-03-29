@@ -8,6 +8,8 @@ Page({
     pickerShow: {},
     company: {},
     pickerText: {},
+    privacy_agree: false,
+    showPrivacyError: false,  
     errors: {}
   },
   onLoad() {
@@ -70,12 +72,20 @@ Page({
     console.log(show)
     this.setData({pickerShow: show})
   },
+  onAgreeChange(e){
+    console.log("checked: "+e.detail.value)
+    this.setData({privacy_agree: e.detail.value})
+  },
   onSubmit(){
+    let {company, privacy_agree} = this.data
+    if (!privacy_agree) {
+      this.setData({showPrivacyError: true});
+      return;
+    }        
     console.log(this.data.company)
     let {fieldOptions} = getApp().store.getState().companyOptions
     let requiredFields = [];
     let errors = {}
-    let {company} = this.data
     fieldOptions.map( item => item.required && !company[item.name] ? errors[item.name] = true : "")
     console.log(errors)
     if (Object.keys(errors).length) {

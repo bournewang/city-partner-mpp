@@ -30,6 +30,9 @@
       disabled="{{item.disabled ? '1' : null}}"
       />
   </view>
+  <view class="privacy mt-4 p-1em">
+    <privacy-agree bind:agreeChange="onAgreeChange" showError="{{showPrivacyError}}"></privacy-agree>
+  </view>
   <t-button class="mt-4 mb-10" size="large" theme="primary" block bind:tap="onSubmit">提交
   </t-button>
   <t-toast id="t-toast" />
