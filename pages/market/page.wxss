@@ -1,0 +1,20 @@
+image.ad{
+  width: 100%;
+  /* height: 100% !important; */
+  object-fit: contain;
+  /* border: 1px solid blue; */
+}
+
+.ad-view{
+  overflow: hidden; 
+  margin-left: .5em;
+  margin-right: .5em;
+  /* height: 8em;  */
+  width: calc(100%-2em); 
+  /* border: 2px solid green;  */
+}
+
+.t-image--shape-round {
+  border-radius: var(--td-image-round-radius, var(--td-radius-default, 20rpx)) !important;
+  overflow: hidden;
+}

@@ -41,7 +41,7 @@ height: 15em;}
   /* width: 100%; */
 }
 .success{color: var(--td-success-color);}
-.danger{color: var(--td-error-color);}
+.danger{color: var(--td-brand-color);}
 
 .t-icon {
   /* font-family: t !important; */

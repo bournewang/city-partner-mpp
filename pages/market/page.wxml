@@ -1,18 +1,48 @@
-<scroll-view scroll-y type="list">
+<scroll-view scroll-y style="height: 85vh; background: #F7F8FB;">
   <view>  
     <swiper-show/>
   </view>
-  <t-grid class="block" column="3">
-    <t-grid-item 
-      wx:for="{{$state.apps}}" 
-      wx:for-item="app" 
-      wx:key="id"
-      text="{{app.name}}" 
-      image="{{app.icon}}" 
-      data-type="{{app.type}}"
-      data-url="{{app.url}}"
-      bind:tap="openApp"
-      />
-  </t-grid>
+  <view class="mt-6 ml-2">
+    <t-row>
+      <t-col>消费者所有制度</t-col>
+      <t-col class="danger ml-4">通路消费侧生态圈</t-col>
+    </t-row>
+  </view>
+  <view class="apps m-2">
+    <t-grid class="block" column="3" style="border-radius: 1em;">
+      <t-grid-item 
+        wx:for="{{$state.market.app}}" 
+        wx:for-item="app" 
+        wx:key="id"
+        text="{{app.name}}" 
+        image="{{app.icon}}" 
+        data-category="{{app.category}}"
+        data-type="{{app.type}}"
+        data-url="{{app.url}}"
+        bind:tap="openApp"
+        />
+    </t-grid>
+  </view>
+  <view class="ad-view" wx:for="{{$state.market.ad}}" wx:for-item="ad" wx:key="id" >
+    <t-image mode="aspectFit" style="height: {{ad.height}};" src="{{ad.image}}" bind:tap="openApp" data-url="{{ad.url}}" data-type="{{ad.type}}"/>
+  </view>
+  <view class="apps ">
+    <view class="m-2">运用工具</view>
+    <view class="m-2">
+      <t-grid class="block" column="4" style="border-radius: 1em;">
+        <t-grid-item 
+          wx:for="{{$state.market.tool}}" 
+          wx:for-item="app" 
+          wx:key="id"
+          text="{{app.name}}" 
+          image="{{app.icon}}" 
+          data-category="{{app.category}}"
+          data-type="{{app.type}}"
+          data-url="{{app.url}}"
+          bind:tap="openApp"
+          />
+      </t-grid>
+    </view>
+  </view>
 </scroll-view>
 <tab-bar value="/pages/market/page"></tab-bar>

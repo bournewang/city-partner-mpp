@@ -5,33 +5,53 @@ Page({
   },
   onLoad() {
     // const {apps}  = getApp().store.getState()
-    publicApi.apps()    
+    publicApi.market()  
   },
   openApp(e){
     console.log(e)
-    let {type, url} = e.currentTarget.dataset
-    console.log("url: "+ url)
+    let {type, url, category} = e.currentTarget.dataset
+    console.log("url: "+ url+", category: "+category)
     if(!url) return
     // wx.navigateToMiniProgram({appId})
-    let {user} = getApp().store.getState()
-    let query = [
-      "url="    + url, 
-      "name="   + user.name,
-      "mobile=" + user.mobile,
-      "avatar=" + user.avatar,
-    ]
-    if (type == "web") {
-      wx.navigateTo({
-        url: "/pages/web/page?"+query.join("&")
-      })
-    }else if (type == "mpp") {
-      wx.navigateToMiniProgram({
-        appId: url,
-        extraData: {
+    let query = null
+    let extraData = {}
+    if (category == "app") {
+      let {user} = getApp().store.getState()
+      console.log("user name: "+user.name)
+      console.log("user mobile: "+user.mobile)
+      if (user) {
+        extraData = {
           name: user.name,
           mobile: user.mobile,
           avatar: user.avatar
         }
+        query = [
+          "url="    + url, 
+          "name="   + user.name,
+          "mobile=" + user.mobile,
+          "avatar=" + user.avatar,
+        ].join("&")
+
+        console.log("extra Data: ")
+        console.log(extraData)
+        console.log("query: ")
+        console.log(query)
+      }else{
+        console.log("use not login -----")
+      }
+    }
+    if (type == "web" || type == "outer_url") {
+      wx.navigateTo({
+        url: "/pages/web/page?"+(query || "")
+      })
+    }else if (type == "inner_url") {  
+      wx.navigateTo({
+        url: url,
+      })
+    }else if (type == "mpp") {
+      wx.navigateToMiniProgram({
+        appId: url,
+        extraData
       })
     }
   },

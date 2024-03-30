@@ -1,0 +1,36 @@
+<scroll-view scroll-y type="list">
+  <view class="p-05em" wx:if="{{$state.car}}">
+    <smart-form fieldOptions="{{$state.carOptions ? $state.carOptions.viewOptions : []}}" value="{{$state.car}}" displayMode="1" bind:fireSubmit="onSubmit" />
+  </view>
+  <view wx:else>
+    <!-- <smart-form 
+      fieldOptions="{{$state.carOptions ? $state.carOptions.formOptions : []}}"
+      bind:fireSubmit="onSubmit" 
+      /> -->
+    <view class='input-container'>
+      <t-input prefixIcon="data-display" label="车牌号" is="inputField" placeholder="{{car.plate_no || '请输入车牌号'}}" bindfocus="onFocusTap" value="{{car.plate_no}}" align="right" status="error" tips="{{errors.plate_no ? '必填项' : ''}}" />
+    </view>
+    <view class=''>
+      <t-input prefixIcon="barcode-1" label="车架号  (VIN码)" description="VIN" placeholder="{{car.vin || '请输入车架号'}}" bindchange="bindVin" value="{{car.vin}}" align="right" status="error" tips="{{errors.vin ? '必填项' : ''}}" />
+    </view>
+    <view>
+      <!-- <t-divider /> -->
+      <view class="mt-2 ml-2 bold">上传行车证</view>
+      <view>
+        <uploader text="行车证" collection="car" preview="" />
+      </view>
+    </view>
+    <view class="privacy mt-4 p-1em">
+      <privacy-agree bind:agreeChange="onAgreeChange" showError="{{showPrivacyError}}"></privacy-agree>
+    </view>
+    <view class="mt-4 ">
+      <t-button size="large" theme="primary" block bind:tap="onSubmit">提交</t-button>
+    </view>
+
+    <plateKeyboard 
+      showPlateKeyboard="{{isShowKeyboard}}" 
+      plate="{{plate}}" 
+      bind:plateKeyboardChange="onPlateKeyboardValueChange" />
+    <t-toast id="t-toast" />
+  </view>
+</scroll-view>

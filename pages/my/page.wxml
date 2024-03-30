@@ -39,6 +39,9 @@
     <t-cell leftIcon="qrcode" title="我的推广码" hover arrow url="/pages/qrcode/page" />
     <t-cell leftIcon="usergroup" title="我的推广" hover arrow url="/pages/recommends/page" />
   </view>
+  <view>
+    <t-cell leftIcon="vehicle" title="我的车辆" hover arrow url="/pages/my-car/page" />
+  </view>
   <view wx:if="{{$state.user.crowd_funding_id}}" >
     <t-cell leftIcon="cooperate" title="车管家互助社" hover arrow url="/pages/my-funding/page" />
   </view>

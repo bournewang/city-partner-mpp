@@ -9,6 +9,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "my",
+          "pathName": "pages/my/page",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "jump",
           "pathName": "pages/index/page",
           "query": "",
@@ -18,13 +25,6 @@
             "appId": "wx330488813101da7a",
             "extraData": "{\"name\":\"Bourne\",\"nickname\":\"Hello\",\"mobile\":\"138\"}"
           }
-        },
-        {
-          "name": "pages/my/page",
-          "pathName": "pages/my/page",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
         },
         {
           "name": "company",

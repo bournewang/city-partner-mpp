@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "城市合伙人",
+  "navigationBarTitleText": "征召城市合伙人",
   "usingComponents": {
     "tab-bar": "../../components/tab-bar/page"
   }

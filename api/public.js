@@ -40,6 +40,15 @@ function companyOptions() {
   })
 }
 
+function carOptions() {
+  return request({
+    uri: '/public/car-options',
+  }).then(res => {
+    getApp().store.setState({carOptions: res.data})
+    return res
+  })
+}
+
 function apps(){
   return request({
     uri: '/public/apps',
@@ -52,6 +61,28 @@ function apps(){
 function banners(){
   return request({
     uri: '/public/banners',
+  }).then(res => {
+    getApp().store.setState({banners: res.data})
+    return res
+  })
+}
+
+function market(){
+  return request({
+    uri: '/public/market',
+  }).then(res => {
+    getApp().store.setState({market: res.data})
+    return res
+  })
+}
+
+function rules(){
+  getApp().store.setState({loading: true})
+  return request({
+    uri: '/public/rules',
+  }).then(res => {
+    getApp().store.setState({rules: res.data, loading: false})
+    return res
   })
 }
 
@@ -59,7 +90,10 @@ export default {
   index,
   privacy,
   companyOptions,
+  carOptions,
   apps,
   banners,
+  market,
+  rules,
   areaData
 }

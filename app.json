@@ -11,6 +11,8 @@
     "pages/my-challenge/page",
     "pages/my-funding/page",
     "pages/my-agent/page",
+    "pages/my-car/page",
+    "pages/rules/page",
     "pages/qrcode/page",
     "pages/recommends/page",
     "pages/company/page",
@@ -51,6 +53,7 @@
     "funding-stats": "components/funding-stats/page",
     "privacy-agree": "components/privacy/page",
     "swiper-show": "components/swiper/page",
+    "smart-form": "components/form/page",
     "loading": "components/loading/page"
   },
   "window": {

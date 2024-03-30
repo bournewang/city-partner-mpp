@@ -29,12 +29,12 @@ Component({
   },
   methods: {
     onTap(e) {
-      const { index } = e.detail;
+      const { index } = e.currentTarget.dataset;
       console.log(index);
       let {banners} = this.data
       const banner = banners[index]
       console.log(banners[index])
-      if (!banner.url) {
+      if (!banner || !banner.url) {
         return
       }
       if (banner.type == "inner_url") {

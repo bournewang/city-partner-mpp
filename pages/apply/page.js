@@ -122,14 +122,18 @@ Page({
     // update profile
     const fields = [
       "name","id_no", "mobile",
-      "province_code","city_code","county_code","province_name","city_name", "county_name","street", 
-      "agent_province_code","agent_city_code","agent_province_name","agent_city_name"
+      "province_code","city_code","county_code","province_name","city_name", "county_name","street"
     ];
     if (apply_type == "challenge") {
       fields.push("challenge_type")
     }
     if (apply_type != "agent") {
       fields.push("partner_role")
+    }else{
+      fields.push("agent_province_code")
+      fields.push("agent_city_code")
+      fields.push("agent_province_name")
+      fields.push("agent_city_name")
     }
     let errors = {};
     let {user} = getApp().store.getState()

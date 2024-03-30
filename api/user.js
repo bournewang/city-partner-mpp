@@ -71,6 +71,30 @@ export function agent() {
   })
 }
 
+export function car() {
+  getApp().store.setState({loading: true})
+  return request({
+    uri: '/user/car',
+  }).then(res => {
+    getApp().store.setState({car: res.data, loading: false})
+    return res
+  })
+}
+
+export function addCar(data) {
+  getApp().store.setState({loading: true})
+  return request({
+    uri: '/user/car',
+    method: 'post',
+    data
+  }).then(res => {
+    if (res.success) {
+      getApp().store.setState({car: res.data, loading: false})
+    }
+    return res
+  })
+}
+
 export function getLocalChallenge(){
   return wx.getStorageSync('my_challenge')
 }
@@ -195,6 +219,8 @@ export default {
   crowdFunding,
   company,
   agent,
+  car,
+  addCar,
   recommends,
   apply,
   getLocalChallenge,
