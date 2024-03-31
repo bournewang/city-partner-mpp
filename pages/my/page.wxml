@@ -18,7 +18,7 @@
     </t-row>
   </view>
   <t-divider />
-  <view class="block1" wx:if="{{$state.challenge}}">
+  <view class="block1" wx:if="{{$state.user.challenge_id}}">
     <t-grid column="2">
       <t-grid-item wx:for="{{teamOverview}}" wx:for-item="item" wx:key="index" text="{{item.value}}" description="{{item.label}}" />
     </t-grid>

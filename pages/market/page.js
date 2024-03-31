@@ -17,8 +17,6 @@ Page({
     let extraData = {}
     if (category == "app") {
       let {user} = getApp().store.getState()
-      console.log("user name: "+user.name)
-      console.log("user mobile: "+user.mobile)
       if (user) {
         extraData = {
           name: user.name,

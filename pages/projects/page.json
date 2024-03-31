@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "发现",  
+  "navigationBarTitleText": "入伙登记",  
   "usingComponents": {
     "tab-bar": "../../components/tab-bar/page"
   }

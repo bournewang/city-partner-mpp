@@ -25,22 +25,18 @@ Page({
   },
   onLoad(option) {
     const propmpts = {
-      challenge: "征召权益金",
-      funding: "风险保证金",
-      consumer: "实缴",
-      agent: "代理保证金"
+      challenge:{title: "征召授职申请表", payPrompt: "征召权益金", submitText: "确认征召"},
+      funding:  {title: "加入互助申请表", payPrompt: "风险保证金", submitText: "确认加入互助"},
+      consumer: {title: "入伙申请表",     payPrompt: "实缴",      submitText: "确认入伙"},
+      agent:    {title: "征召代理申请表",  payPrompt: "代理保证金", submitText: "确认申请代理"}
     };
-    const submitString = {
-      challenge: "确认征召",
-      funding: "确认加入互助",
-      consumer: "确认入伙",
-      agent: "确认申请代理"
-    };
+    let {title, payPrompt, submitText} = propmpts[option.type];
     this.setData({
       apply_type: option.type, 
-      payPrompt: propmpts[option.type],
-      submitText: submitString[option.type]
+      payPrompt,
+      submitText
     })
+    wx.setNavigationBarTitle({title})
     // const {user} = getApp().store.getState()
     // this.setData({user})
     userApi.info("include_images").then(res => {
