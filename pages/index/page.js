@@ -27,6 +27,11 @@ Page({
     fabButton: {
       icon: 'info',
     },
+    marquee: {
+      speed: 60,
+      loop: -1,
+      delay: 0,
+    },
     popup: false,
     popup_title: "",
     popup_text: "",
@@ -63,11 +68,12 @@ Page({
     }
   },
   showRules(e) {
-    //console.log(e);
+    let {type} = e.currentTarget.dataset
+    console.log(type);
     wx.navigateTo({
-      url: '/pages/funding-rules/page',
+      url: '/pages/rules/page?page=challenge&type='+type,
     })
-  },  
+  },
   onTabsChange(event) {
     //console.log(`Change tab, tab-panel value is ${event.detail.value}.`);
     this.setData({tab: event.detail.value})

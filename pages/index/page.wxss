@@ -106,3 +106,14 @@ rich-text{
 .t-grid-item__content .t-grid-item__description {
   margin-top: .1em;
 }
+
+.show-detail{
+  /* background-color: black !important; 
+  color:white !important; 
+  opacity: 0.6; */
+  background-color: red;
+  color: white;
+  position: fixed !important; 
+  top: 40%;
+  right: 1em;
+}

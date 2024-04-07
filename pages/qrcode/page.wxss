@@ -2,3 +2,16 @@
   width: 15em;
   height: 15em;
 }
+
+.t-icon{
+  font-size: 3em;
+  color:lightseagreen !important;
+  margin-bottom: .5em;
+  /* position: relative;
+  width: 2em;
+  height: 2em; */
+}
+
+.message{
+  font-size: 1.1em;
+}

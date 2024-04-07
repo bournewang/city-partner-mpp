@@ -14,5 +14,15 @@ Page({
       })
     }
 
+  },
+  showUser(e){
+    console.log(e)
+    // console.log()
+    let {userid} = e.currentTarget.dataset
+    console.log("userid: "+userid)
+
+    wx.navigateTo({
+      url: '/pages/consumer/page?user_id='+userid,
+    })
   }
 })

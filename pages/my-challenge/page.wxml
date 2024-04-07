@@ -6,27 +6,28 @@
       <view class="mt-4 text-left" >
         <rich-text nodes="{{$state.challenge.status_prompt}}"/>
       </view>
-      <view wx:if="{{$state.challenge.status == 'challenging'}}">
-        <!-- <image class="qrcode mt-4" src="{{$state.challenge.qrcode}}" /> -->
+      <view class="mt-4" wx:if="{{$state.challenge.status == 'challenging'}}">
         <view style="text-align: right;">
           <t-button theme="primary" size="medium" bind:tap="toggleRank">排位</t-button>
         </view>
+        <view wx:if="{{show_rank}}" class="mt-10">
+          <view class="pos-wrap">
+            <view id="progress" style="width:{{$state.challenge.overview.percent}}%;">
+              <t-icon name="flag" size="2em" />
+            </view>
+          </view>
+          <view class="mt-4">
+            <rich-text nodes="{{$state.challenge.overview.text}}"></rich-text>
+          </view>
+          <t-divider></t-divider>
+        </view>
+
+        <view class="bold ">{{$state.welcome.benifits.title}}</view>
+        <rich-text class="text-left" nodes="{{$state.welcome.benifits.content}}"/>
       </view>
       <view wx:elif="{{$state.challenge.status == 'success'}}">
         <t-button size="large" theme="primary" block t-class="challenge-btn mt-8" bind:tap="startChallenge">继续征召</t-button>
         <!-- <t-button size="large" theme="" block t-class="challenge-btn mt-8" bind:tap="startChallenge">放弃征召</t-button> -->
-        
-      </view>
-
-      <view wx:if="{{show_rank}}" class="mt-10">
-        <view class="pos-wrap">
-          <view id="progress" style="width:{{$state.challenge.overview.percent}}%;">
-            <t-icon name="flag" size="2em" />
-          </view>
-        </view>
-        <view class="mt-4">
-          <rich-text nodes="{{$state.challenge.overview.text}}"></rich-text>
-        </view>
       </view>
     </view>
 

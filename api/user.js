@@ -61,6 +61,16 @@ export function company() {
   })
 }
 
+export function partnerCompany() {
+  getApp().store.setState({loading: true})
+  return request({
+    uri: '/user/partner-company',
+  }).then(res => {
+    getApp().store.setState({partnerCompany: res.data, loading: false})
+    return res
+  })
+}
+
 export function agent() {
   getApp().store.setState({loading: true})
   return request({
@@ -176,6 +186,14 @@ export function recommends(page=1) {
   })
 }
 
+export function partnerStats() {
+  return request({
+    uri: '/user/partner-stats'
+  }).then(res => {
+    getApp().store.setState({partnerStats: res.data})
+  })
+}
+
 // export function uploadCommonFile(filePath, data) {
 //   return uploadFile({
 //     uri: '/file',
@@ -209,15 +227,22 @@ export function teamDetail(){
   })
 }
 
+export function consumer(id){
+  return request({uri: "/consumer/"+id})
+}
+
 export default {
   register,
   login,
+  consumer,
   info,
   saveInfo,
   uploadImage,
   challenge,
   crowdFunding,
   company,
+  partnerCompany,
+  partnerStats,
   agent,
   car,
   addCar,

@@ -9,6 +9,9 @@
   color: gray !important;
 }
 
+.t-grid-item__content{
+  padding: 0 !important;
+}
 .t-grid-item__content .t-grid-item__text {
   color: var(--td-brand-color);
   font-size: 1.5em;

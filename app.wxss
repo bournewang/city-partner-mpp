@@ -53,6 +53,10 @@ height: 15em;}
 .bold{font-weight: bold;}
 .p-05em{padding: .5em;}
 .p-1em{padding: 1em;}
+.pl-05em{padding-left: .5em;}
+.pl-1em{padding-left: 1em;}
+.pr-05em{padding-right: .5em;}
+.pr-1em{padding-right: 1em;}
 .p-2em{padding: 2em;}
 .m-0{margin: 0px;}
 .mx-0{margin-left: 0px;

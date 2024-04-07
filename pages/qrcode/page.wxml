@@ -1,6 +1,33 @@
-<view>
-  <view class="text-center mt-10">
-    <image id="qrcode" src="{{$state.user.qrcode}}"/>
+<view class="pt-4">
+  <view class="mt-4 title text-center" wx:if="{{$state.user.challenge_id}}">
+    <p class="danger">{{$state.user.challenge_type_label}}</p>企业码
   </view>
   <view class="text-center mt-8">可截屏保存该推荐码转发该给其他人开始推广</view>
+  <view class="text-center mt-10">
+    <image id="qrcode" src="{{$state.user.qrcode}}" />
+  </view>
+  <view wx:if="{{$state.user.challenge_id}}">
+    <view class="mt-10 title bold text-center danger">东家通路消费侧</view>
+    <view class="mt-4 text-center">仅需四步！快速入伙登记</view>
+    <view class="mt-6 text-center danger">
+      <t-row>
+        <t-col span="6">
+          <t-icon name="scan"></t-icon> 微信扫码
+        </t-col>
+        <t-col span="6">
+          <t-icon name="mobile-list"></t-icon> 入伙登记
+        </t-col>
+        <t-col span="6">
+          <t-icon name="certificate"></t-icon> 认证确权
+        </t-col>
+        <t-col span="6">
+          <t-icon name="money"></t-icon> 终身受益
+        </t-col>
+      </t-row>
+    </view>
+  </view>
+  <view wx:else class="p-05em message" >
+    <rich-text nodes="{{$state.welcome.non_challenge}}" />
+  </view>
+
 </view>

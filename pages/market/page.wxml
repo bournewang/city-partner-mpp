@@ -27,7 +27,7 @@
     <t-image mode="aspectFit" style="height: {{ad.height}};" src="{{ad.image}}" bind:tap="openApp" data-url="{{ad.url}}" data-type="{{ad.type}}"/>
   </view>
   <view class="apps ">
-    <view class="m-2">运用工具</view>
+    <view class="m-2">推荐工具箱</view>
     <view class="m-2">
       <t-grid class="block" column="4" style="border-radius: 1em;">
         <t-grid-item 

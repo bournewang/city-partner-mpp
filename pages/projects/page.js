@@ -19,8 +19,12 @@ Page({
   },
   onLoad(options){
     let {user} = getApp().store.getState()
-    if (user.challenge_type) {
+    if (user && user.challenge_type) {
       this.setData({tab: user.challenge_type})
+    }
+    if (user.level == 2) {
+      userApi.partnerCompany()
+      userApi.partnerStats()
     }
   },
   onTabsChange(event) {
@@ -33,5 +37,12 @@ Page({
       url: "/pages/apply/page?type="+type
     })
   },
+  showRules(e) {
+    let {type} = e.currentTarget.dataset
+    console.log(type);
+    wx.navigateTo({
+      url: '/pages/rules/page?page=partner&type='+type,
+    })
+  },  
 
 })

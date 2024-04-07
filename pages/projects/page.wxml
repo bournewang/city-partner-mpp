@@ -1,32 +1,55 @@
 <!-- <view class="block"> -->
-<scroll-view class="scrollarea" scroll-y type="list">
+  <scroll-view scroll-y style="height: 85vh;">
   <t-tabs value="{{tab}}" bind:change="onTabsChange" t-class="custom-tabs">
     <t-tab-panel label="消费商合作社" value="consumer">
       <view class="head">
-        <image class="project-image" src="{{$state.images.consumer}}" />
+        <image class="project-image" mode="aspectFit" src="{{$state.images.partner.consumer}}" />
       </view>
+      <t-button wx:if="{{tab=='consumer'}}" class="show-detail" bind:tap="showRules" data-type="consumer" size="small"> 详情></t-button>
     </t-tab-panel>
     <t-tab-panel label="车管家合作社" value="car_manager">
       <view class="head">
-        <image class="project-image" mode="aspectFit" src="{{$state.images.car_manager}}" />
+        <image class="project-image" mode="aspectFit" src="{{$state.images.partner.car_manager}}" />
       </view>
+      <t-button wx:if="{{tab=='car_manager'}}" class="show-detail" bind:tap="showRules" data-type="car_manager" size="small"> 详情></t-button>
     </t-tab-panel>
     <t-tab-panel label="车东家合作社" value="car_owner">
       <view class="head">
-        <image class="project-image" mode="aspectFit"  src="{{$state.images.car_owner}}" />
+        <image class="project-image" mode="aspectFit"  src="{{$state.images.partner.car_owner}}" />
       </view>
+      <t-button wx:if="{{tab=='car_owner'}}" class="show-detail" bind:tap="showRules" data-type="car_owner" size="small"> 详情></t-button>
     </t-tab-panel>
   </t-tabs>
 
-  <view class="block btn-wrap">
-    <view wx:if="{{$state.user.challenge_type != tab}}" class="text-center caution">无保荐人不得入伙</view>
-    <!-- <t-divider/> -->
-    <view wx:if="{{$state.user.level == 0}}" class="text-center mt-2">请先扫消费商码完成注册，方可入伙。</view>
-    <view wx:elif="{{$state.user.level == 1 && $state.user.challenge_type == tab}}" class="mt-2">
-      <t-button size="large" theme="primary" block bind:tap="goApply" data-type="consumer">{{submitText[$state.user.challenge_type]}}消费者入伙登记</t-button>
+  <view class="block btn-wrap mt-4">
+    <view wx:if="{{$state.user.challenge_type != tab}}" > 
+      <view class="text-center caution">无保荐人不得入伙</view>
+      <t-button class="mt-6" size="large" theme="primary" block disabled>{{submitText[tab]}}消费者入伙登记</t-button>
     </view>
-    <view wx:if="{{$state.user.level > 1 && $state.user.challenge_type == tab}}" class="mt-2 text-center caution">
-    恭喜，您已入伙！
+    <view wx:else>
+      <view wx:if="{{$state.user.level == 0}}" class="text-center mt-2">请先扫消费商码完成注册，方可入伙。</view>
+      <view wx:elif="{{$state.user.level == 1 }}" class="mt-2">
+        <t-button size="large" theme="primary" block bind:tap="goApply" data-type="consumer">{{submitText[$state.user.challenge_type]}}消费者入伙登记</t-button>
+      </view>
+      <view wx:if="{{$state.user.level == 2 && $state.user.challenge_type == tab}}" class="pl-1em pr-1em">
+        <view class="text-center caution">恭喜，您已入伙！</view>
+        <view class="mt-4">
+          <view class="caution bold">我的{{$state.user.challenge_type_label}}企业信息</view>
+          <view class="p-05em mt-2" style="background: #F3F3F3; line-height: 2em;">
+            <view>企业名称: {{$state.partnerCompany.company_name}}</view>
+            <view>企业发起人: {{$state.partnerCompany.referer_name}}</view>
+            <view>发起人电话: {{$state.partnerCompany.referer_mobile}}</view>
+          </view>
+
+          <view class="caution bold mt-6">我的合伙资产</view>
+          <view>
+            <t-grid column="2">
+              <t-grid-item wx:for="{{$state.partnerStats}}" wx:key="label" wx:for-item="item" text="{{item.value}}" description="{{item.label}}" />
+            </t-grid>
+          </view>        
+        </view>
+        
+      </view>
     </view>
   </view>
 

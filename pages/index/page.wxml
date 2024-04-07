@@ -5,7 +5,14 @@
     <t-tab-panel label="城市合伙人" value="0">
       <scroll-view class="scrollarea" scroll-y type="list">
         <view class="block text-center">
-          <image class="partner-img" src="{{$state.images.city_partner}}" />
+          <image style="height: 50vh;" mode="aspectFill" src="{{$state.images.apply.consumer}}" />
+          <t-button wx:if="{{tab==0}}" class="show-detail" bind:tap="showRules" data-type="consumer" size="small"> 详情></t-button>
+          <t-notice-bar
+            prefixIcon="sound-high"
+            visible="{{true}}"
+            marquee="{{marquee}}"
+            content="{{$state.notice}}"
+          ></t-notice-bar>
           <t-grid column="{{challengeData.length}}">
             <t-grid-item wx:for="{{$state.challengeStats}}" wx:key="label" wx:for-item="item" text="{{item.value}}" description="{{item.label}}" />
           </t-grid>
@@ -28,19 +35,38 @@
             </t-popup>
           </view>
         </view>
-
       </scroll-view>
     </t-tab-panel>
-    <t-tab-panel label="车管家互助社" value="1">
+    <t-tab-panel label="车东家公社" value="1">
       <scroll-view class="scrollarea" scroll-y type="list">
         <view class="head">
-          <image class="funding-img" style="position:relative;" src="{{$state.images.funding}}" />
+          <image style="height: 70vh;" mode="aspectFill" src="{{$state.images.apply.car_owner}}" />
+        </view>
+        <view>
+          <t-grid column="{{$state.carOwnerStats.length}}">
+            <t-grid-item wx:for="{{$state.carOwnerStats}}" wx:key="label" wx:for-item="item" text="{{item.value}}" description="{{item.label}}" />
+          </t-grid>
+        </view>
+        <!-- <view>
+          <funding-stats/>
+        </view> -->
+        <t-button wx:if="{{tab==1}}" class="show-detail" bind:tap="showRules" data-type="car_owner" size="small"> 详情></t-button>
+        
+        <t-button size="large" theme="primary" block data-type="challenge">城市合伙人认证</t-button>
+        <!-- <view wx:else class="text-center">
+            <t-button size="large" theme="primary" block bind:tap="goMyChallenge">我的车东家授职</t-button>
+          </view> -->
+      </scroll-view>
+    </t-tab-panel>
+    <t-tab-panel label="车管家互助社" value="2">
+      <scroll-view class="scrollarea" scroll-y type="list">
+        <view class="head">
+          <image class="funding-img" style="position:relative;" src="{{$state.images.apply.car_manager}}" />
         </view>
         <view>
           <funding-stats/>
         </view>
-        <t-button wx:if="{{tab==1}}" bind:tap="showRules" style="background-color: rgba(0,0,0,.5); color:white; position: fixed; bottom: 20em;right: 1em;" size="small"> 查看详情>
-        </t-button>
+        <t-button wx:if="{{tab==2}}" class="show-detail" bind:tap="showRules" data-type="car_manager" size="small"> 详情></t-button>
         
         <t-button wx:if="{{!$state.user.crowd_funding_id}}" size="large" theme="primary" block bind:tap="goApply" data-type="funding">请完成身份认证</t-button>
         <view wx:else class="text-center">

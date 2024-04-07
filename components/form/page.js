@@ -16,6 +16,8 @@ Component({
   },
   ready: function(){
     let {value} = this.properties
+    console.log("form ready -------- ")
+    console.log(value)
     if (value) {
       this.setData({model: value})
     }

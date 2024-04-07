@@ -1,7 +1,7 @@
 <scroll-view scroll-y type="list" >
   <view class="p-1em ">
-    <view class="text-center bold mb-6">{{$state.rules[type].title}}</view>
-    <rich-text nodes="{{$state.rules[type].content}}"/>
+    <view class="text-center bold mb-6">{{$state.rules[page][type].title}}</view>
+    <rich-text nodes="{{$state.rules[page][type].content}}"/>
   </view>
   <loading />
 </scroll-view>

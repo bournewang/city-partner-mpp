@@ -1,6 +1,0 @@
-<scroll-view scroll-y type="list" >
-  <view class="p-1em ">
-    <view class="text-center bold mb-6">车管家汽车使用费互助金公约</view>
-    <rich-text nodes="{{$state.fundingConfig.rules}}"/>
-  </view>
-</scroll-view>

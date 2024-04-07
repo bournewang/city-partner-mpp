@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "征召城市合伙人",
   "usingComponents": {
+    "t-notice-bar": "tdesign-miniprogram/notice-bar/notice-bar",
     "tab-bar": "../../components/tab-bar/page"
   }
 }

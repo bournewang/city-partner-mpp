@@ -33,7 +33,7 @@ page {
   /* object-fit: contain; */
 }
 .project-image{
-  height: 70vh;
+  height: 60vh;
   /* mode: heightFix; */
   /* width: 100%; */
 }
@@ -101,4 +101,23 @@ page {
   display: flex;
   justify-content: space-between;
   background-color: #fff;
+}
+
+.show-detail{
+  /* background-color: black !important; 
+  color:white !important; 
+  opacity: 0.6; */
+  background-color: red;
+  color: white;
+  position: fixed !important; 
+  top: 40%;
+  right: 1em;
+}
+
+.t-grid-item__wrapper{
+  width: 80%;
+  height: 80%;
+  margin-top: 1em;
+  margin-left: 1em;
+  background-color: #f3f3f3;
 }

@@ -5,12 +5,15 @@
   <view wx:else>
     <view wx:for="{{$state.recommends}}" wx:key="id" wx:for-item="item">
       <!-- <view class="ml-24 mt- updated_at">{{item.updated_at}}</view> -->
-      <view class="avatar-example ml-2 flex">
+      <view class="avatar-example ml-2 flex" bind:tap="showUser" data-userid="{{item.id}}">
         <t-avatar wx:if="{{item.avatar}}" class="avatar-example--large1" size="large" image="{{item.avatar}}" />
         <t-avatar wx:else class="avatar-example--medium1" size="large" icon="user" />
         <view class="ml-4 mt-2">
           <view>{{item.display_name}}</view>
           <view class="date">{{item.created_at}}</view>
+        </view>
+        <view class="mt-4 ml-10" >
+          <t-icon name="chevron-right" style="font-size: 2em;"/>
         </view>
       </view>
       <t-divider align="left" />
