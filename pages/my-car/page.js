@@ -11,7 +11,11 @@ Page({
     car: {}
   },
   onLoad() {
-    publicApi.carOptions()
+    // publicApi.carOptions()
+    let {user, formOptions} = getApp().store.getState()
+    if (!formOptions) {
+      publicApi.formOptions()
+    }
     userApi.car()
   },
   onPlateKeyboardValueChange(e) {
@@ -69,7 +73,7 @@ Page({
       return
     }
 
-    userApi.addCar(car).then(res => {
+    userApi.saveCar(car).then(res => {
       if (!res.success) {
       // this.setData({errors: {vin: true}})
         Toast({

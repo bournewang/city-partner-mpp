@@ -1,10 +1,3 @@
-const imageCdn = '/static';
-const swiperList = [
-  `${imageCdn}/swiper-1.jpg`,
-  `${imageCdn}/swiper-2.jpg`,
-  // `${imageCdn}/swiper-3.jpg`,
-  // `${imageCdn}/swiper-4.jpg`
-];
 import publicApi from "../../api/public"
 
 Component({
@@ -13,7 +6,7 @@ Component({
     autoplay: false,
     duration: 500,
     interval: 5000,
-    swiperList,
+    swiperList: [],
     banners: []
   },
   ready(){

@@ -1,6 +1,6 @@
 import request from '../utils/request'
 
-function create(data)
+function save(data)
 {
   getApp().store.setState({loading: true})
   return request({
@@ -13,6 +13,20 @@ function create(data)
   })
 }
 
+export function partnerAsset(companyId, data)
+{
+  getApp().store.setState({loading: true})
+  return request({
+    uri: '/company/'+companyId+"/partner-asset",
+    method: "post",
+    data
+  }).then(res => {
+    getApp().store.setState({partnerAsset: res.data, loading: false})
+    return res
+  })  
+}
+
 export default {
-  create
+  save,
+  partnerAsset
 }

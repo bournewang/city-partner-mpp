@@ -1,0 +1,28 @@
+<scroll-view scroll-y type="list">
+  <t-tabs value="{{tab}}" bind:change="onTabsChange" t-class="custom-tabs">
+    <t-tab-panel label="合伙公司信息" value="company">
+      <view>
+        <smart-form fieldOptions="{{$state.formOptions.companyOptions}}" value="{{$state.partnerCompany}}" bind:fireSubmit="onSubmit" displayMode="1" />
+        <!-- <t-button wx:if="{{!edit.company}}" size=" large" theme="primary" block bind:tap="onEdit" data-type="company">编辑</t-button> -->
+      </view>
+    </t-tab-panel>
+    <t-tab-panel label="{{$state.partnerAsset.assetTitle}}" value="asset">
+      <view>
+        <smart-form fieldOptions="{{$state.formOptions.partnerAssetFields}}" value="{{$state.partnerAsset}}" bind:fireSubmit="onSubmit" displayMode="{{!edit.asset}}" />
+        <!-- <t-button wx:if="{{!edit.asset}}" size=" large" theme="primary" block bind:tap="onEdit" data-type="asset">编辑</t-button> -->
+      </view>
+    </t-tab-panel>
+    <t-tab-panel label="车辆信息" value="car" wx:if="{{$state.user.challenge_type != 'consumer'}}">
+      <view>
+        <smart-form wx:if="{{edit.car}}" fieldOptions="{{$state.formOptions.carFormFields}}" value="{{$state.car}}" bind:fireSubmit="onSubmit"/>
+        <smart-form wx:else fieldOptions="{{$state.formOptions.carViewFields}}" value="{{$state.car}}" displayMode="1" />
+        <t-button wx:if="{{$state.user.challenge_type == 'car_owner' && !edit.car}}" size="large" theme="primary" block bind:tap="onEdit" data-type="car">编辑</t-button>
+      </view>
+    </t-tab-panel>
+  </t-tabs>
+  <!-- <view wx:else>
+    <smart-form fieldOptions="{{$state.companyOptions.fieldOptions}}"  />
+  </view> -->
+  <t-toast id="t-toast" />
+  <loading />
+</scroll-view>

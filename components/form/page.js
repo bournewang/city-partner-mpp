@@ -44,7 +44,7 @@ Component({
       this.setData({model, pickerText})
     },
     showPicker(e){
-      console.log()
+      console.log("show picker ")
       console.log(e.currentTarget.dataset.name)
       let field = e.currentTarget.dataset.name
       let show = this.data.pickerShow
@@ -59,6 +59,16 @@ Component({
       show[field] = false
       console.log(show)
       this.setData({pickerShow: show})
+    },
+    onDateConfirm(e) {
+      console.log("on date confirm")
+      console.log(e.detail.value)
+      let {model, pickerShow} = this.data
+      let {name} = e.currentTarget.dataset
+
+      model[name] = e.detail.value
+      pickerShow[name] = false
+      this.setData({model, pickerShow})
     },
     onAgreeChange(e){
       console.log("checked: "+e.detail.value)

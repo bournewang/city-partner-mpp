@@ -31,20 +31,11 @@ function privacy() {
   })
 }
 
-function companyOptions() {
+function formOptions() {
   return request({
-    uri: '/public/company-options',
+    uri: '/public/form-options',
   }).then(res => {
-    getApp().store.setState({companyOptions: res.data})
-    return res
-  })
-}
-
-function carOptions() {
-  return request({
-    uri: '/public/car-options',
-  }).then(res => {
-    getApp().store.setState({carOptions: res.data})
+    getApp().store.setState({formOptions: res.data})
     return res
   })
 }
@@ -89,8 +80,7 @@ function rules(){
 export default {
   index,
   privacy,
-  companyOptions,
-  carOptions,
+  formOptions,
   apps,
   banners,
   market,

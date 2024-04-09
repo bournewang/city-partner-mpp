@@ -1,3 +1,6 @@
 <view>
-  <t-tree-select options="{{options}}" value="{{value}}" bind:change="onChange" />
+  <t-input prefixIcon="map" label="{{areaLabel}}" placeholder="{{valueText || displayLabel}}">
+      <t-button bind:tap="toggleCitySelector" content="选择" slot="suffix" theme="primary" size="extra-small"></t-button>
+  </t-input>
+  <t-tree-select wx:if="{{editArea}}" options="{{options}}" value="{{value}}" bind:change="onChange" />
 </view>

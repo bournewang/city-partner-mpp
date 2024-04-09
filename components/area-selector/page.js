@@ -47,10 +47,15 @@ import publicApi from "../../api/public"
 
 Component({
   properties: {
+    areaLabel: String,
+    displayLabel: String,
+    defaultValue: String
   },
   data: {
     areaList: {},
     options: {},
+    editArea: false,
+    valueText: "",
     value: [],    
   },
   created: function(){
@@ -61,13 +66,15 @@ Component({
       // console.log(options)
       this.setData({options, areaList: data})
     })
-    const {user} = getApp().store.getState()
-    this.setData({value: [user.province_code, user.city_code, user.county_code]})
+    // const {user} = getApp().store.getState()
+    this.setData({value: this.properties.defaultValue.split('|')})
   },
   methods:{  
     onLoad: function(){
       console.log("area selector onload =====")
-
+    },
+    toggleCitySelector(){
+      this.setData({editArea: !this.data.editArea})
     },
     onChange(e) {
       // const area_code = e.detail.value
@@ -99,9 +106,10 @@ Component({
       // console.log(area_name)
       this.setData({
         value: area_code,
+        valueText: area_name,
         area_name
       });
-      this.triggerEvent('areaChange', { area_code, area_name });
+      this.triggerEvent('areaChange', { value: area_code.join('|')});
     },  
       
   }

@@ -5,6 +5,7 @@ import authApi from "../../utils/auth"
 import userApi, { challenge } from "../../api/user"
 import carManagerApi from "../../api/car-manager"
 import { getScene } from "../../utils/util"
+import Toast from 'tdesign-miniprogram/toast/index';
 
 function fetchUserData(){
   userApi.challenge()
@@ -106,6 +107,14 @@ Page({
   // },  
   goApply(e){
     let type = e.currentTarget.dataset.type
+    let {user} = getApp().store.getState()
+    if (type == 'funding' && user.level < 11) {
+      return Toast({
+        context: this,
+        selector: '#t-toast',
+        message: '请先取得消费者管家资格',
+      });
+    }
     return wx.navigateTo({
       url: "/pages/apply/page?type="+type
     })
@@ -115,6 +124,17 @@ Page({
       url: "/pages/my-challenge/page"
     })
   },  
+  carOwnerCertity(){
+    let {user} = getApp().store.getState()
+    if (!user || !user.agent_id) {
+      Toast({
+        context: this,
+        selector: '#t-toast',
+        message: '请先取得车东家运营资格',
+      });
+      return
+    }
+  },
   // goFunding(){
   //   return wx.navigateTo({
   //     url: "/pages/apply/page?type=funding"

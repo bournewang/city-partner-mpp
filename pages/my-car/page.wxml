@@ -1,6 +1,6 @@
 <scroll-view scroll-y type="list">
   <view class="p-05em" wx:if="{{$state.car}}">
-    <smart-form fieldOptions="{{$state.carOptions ? $state.carOptions.viewOptions : []}}" value="{{$state.car}}" displayMode="1" bind:fireSubmit="onSubmit" />
+    <smart-form fieldOptions="{{$state.formOptions.carViewFields}}" value="{{$state.car}}" displayMode="1" />
   </view>
   <view wx:else>
     <!-- <smart-form 

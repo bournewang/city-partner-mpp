@@ -52,7 +52,7 @@
         </view> -->
         <t-button wx:if="{{tab==1}}" class="show-detail" bind:tap="showRules" data-type="car_owner" size="small"> 详情></t-button>
         
-        <t-button size="large" theme="primary" block data-type="challenge">城市合伙人认证</t-button>
+        <t-button size="large" theme="primary" block data-type="challenge" bind:tap="carOwnerCertity">车东家企业认证</t-button>
         <!-- <view wx:else class="text-center">
             <t-button size="large" theme="primary" block bind:tap="goMyChallenge">我的车东家授职</t-button>
           </view> -->
@@ -75,6 +75,7 @@
       </scroll-view>
     </t-tab-panel>
   </t-tabs>
+  <t-toast id="t-toast" />
 </view>
 
 <tab-bar value="/pages/index/page"></tab-bar>

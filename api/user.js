@@ -66,7 +66,8 @@ export function partnerCompany() {
   return request({
     uri: '/user/partner-company',
   }).then(res => {
-    getApp().store.setState({partnerCompany: res.data, loading: false})
+    let {partnerCompany, partnerAsset, car} = res.data
+    getApp().store.setState({partnerCompany, partnerAsset, car, loading: false})
     return res
   })
 }
@@ -91,7 +92,7 @@ export function car() {
   })
 }
 
-export function addCar(data) {
+export function saveCar(data) {
   getApp().store.setState({loading: true})
   return request({
     uri: '/user/car',
@@ -99,7 +100,7 @@ export function addCar(data) {
     data
   }).then(res => {
     if (res.success) {
-      getApp().store.setState({car: res.data, loading: false})
+      getApp().store.setState({car: res.data, myCar: res.data, loading: false})
     }
     return res
   })
@@ -179,10 +180,11 @@ export function apply(data) {
 }
 
 export function recommends(page=1) {
+  getApp().store.setState({loading: true})
   return request({
     uri: '/user/recommends'
   }).then(res => {
-    getApp().store.setState({recommends: res.data})
+    getApp().store.setState({recommends: res.data, loading:false})
   })
 }
 
@@ -245,7 +247,7 @@ export default {
   partnerStats,
   agent,
   car,
-  addCar,
+  saveCar,
   recommends,
   apply,
   getLocalChallenge,

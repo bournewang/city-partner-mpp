@@ -15,6 +15,7 @@
     "pages/qrcode/page",
     "pages/recommends/page",
     "pages/company/page",
+    "pages/partnerCompany/page",
     "pages/agent/page",
     "pages/web/page",
     "pages/consumer/page",

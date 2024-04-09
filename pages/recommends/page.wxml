@@ -19,4 +19,5 @@
       <t-divider align="left" />
     </view>
   </view>
+  <loading/>
 </scroll-view>

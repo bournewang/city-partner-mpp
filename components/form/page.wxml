@@ -1,22 +1,39 @@
 <scroll-view scroll-y type="list">
   <view wx:if="{{displayMode}}">
     <view wx:for="{{fieldOptions}}" wx:key="name" wx:for-item="item">
-      <t-cell title="{{item.label}}" hover note="{{model[item.name]}}" />
+      <t-cell title="{{item.label}}" hover note="{{value[item.display_field || item.name]}}" />
     </view>
   </view>
   <view wx:else>
     <view wx:for="{{fieldOptions}}" wx:key="name" wx:for-item="item">
-      <view wx:if="{{item.type == 'checkbox' || item.type == 'radio'}}" class="p-1em bold">{{item.label}}
+      <view wx:if="{{item.type == 'radio'}}">
+        <view  class="p-1em bold">{{item.label}}
         <p wx:if="{{errors[item.name]}}" class="text-center danger ml-10" style=" font-size: .8em;">必填项</p>
+        </view>
+        <t-radio-group wx:if="{{item.type == 'radio'}}" t-class="box" bind:change="bindInput" options="{{item.options}}" value="{{model[item.name]}}" data-name="{{item.name}}" />
       </view>
-      <t-radio-group wx:if="{{item.type == 'radio'}}" t-class="box" bind:change="bindInput" options="{{item.options}}" value="{{model[item.name]}}" data-name="{{item.name}}" />
-      <t-checkbox-group wx:if="{{item.type == 'checkbox'}}" t-class="box" bind:change="bindInput" options="{{item.options}}" value="{{model[item.name]}}" data-name="{{item.name}}" />
-
-      <t-cell class="" wx:if="{{item.type == 'picker'}}" title="选择{{item.label}}" arrow hover bind:click="showPicker" note="{{pickerText[item.name]}}" data-name="{{item.name}}" />
-      <t-picker wx:if="{{item.type == 'picker'}}" visible="{{pickerShow[item.name]}}" value="{{[model[item.name]]}}" data-name="{{item.name}}" title="{{item.label}}" cancelBtn="取消" confirmBtn="确认" bindpick="bindPicker" bindcancel="onPickerCancel">
-        <t-picker-item options="{{item.options}}" />
-      </t-picker>
-      <t-input wx:if="{{!item.type || item.type == 'input'}}" prefixIcon="{{item.icon}}" label="{{item.label}}" placeholder="{{'请输入'+item.label}}" value="{{model[item.name]}}" bindenter="bindInput" bindblur="bindInput" data-name="{{item.name}}" align="right" status="error" tips="{{errors[item.name] ? '必填项' : ''}}" disabled="{{item.disabled ? '1' : null}}" />
+      <view wx:elif="{{item.type == 'checkbox'}}">
+        <view  class="p-1em bold">{{item.label}}
+        <p wx:if="{{errors[item.name]}}" class="text-center danger ml-10" style=" font-size: .8em;">必填项</p>
+        </view>
+        <t-checkbox-group wx:if="{{item.type == 'checkbox'}}" t-class="box" bind:change="bindInput" options="{{item.options}}" value="{{model[item.name]}}" data-name="{{item.name}}" />
+      </view>
+      <view wx:elif="{{item.type == 'date'}}">
+        <t-cell leftIcon="{{item.icon}}" title="{{item.label}}" note="{{model[item.name] || ''}}" arrow hover data-mode="date" bindtap="showPicker" data-name="{{item.name}}" t-class="panel-item" />
+        <t-date-time-picker title="选择日期" visible="{{pickerShow[item.name]}}" mode="date" defaultValue="{{date}}" format="YYYY-MM-DD" bindchange="onDateConfirm" bindcancel="onPickerCancel" start="{{start}}" end="{{end}}" data-name="{{item.name}}" />
+      </view>
+      <view wx:elif="{{item.type == 'picker'}}">
+        <t-cell class="" wx:if="{{item.type == 'picker'}}" title="选择{{item.label}}" arrow hover bind:click="showPicker" note="{{pickerText[item.name] || (item.display_field && model[item.display_field]) }}" data-name="{{item.name}}" />
+        <t-picker wx:if="{{item.type == 'picker'}}" visible="{{pickerShow[item.name]}}" value="{{[model[item.name]]}}" data-name="{{item.name}}" title="{{item.label}}" cancelBtn="取消" confirmBtn="确认" bindpick="bindPicker" bindcancel="onPickerCancel">
+          <t-picker-item options="{{item.options}}" />
+        </t-picker>
+      </view>
+      <view wx:elif="{{item.type == 'area'}}">
+        <area-selector bind:areaChange="bindInput" areaLabel="{{item.label}}" displayLabel="{{model[item.display_field]}}" data-name="{{item.name}}" defaultValue="{{model[item.name]}}"/>
+      </view>
+      <view wx:elif="{{item.type == 'input' || !item.type}}">
+        <t-input wx:if="{{!item.type || item.type == 'input'}}" prefixIcon="{{item.icon}}" label="{{item.label}}" placeholder="{{'请输入'+item.label}}" value="{{model[item.name]}}" bindenter="bindInput" bindblur="bindInput" data-name="{{item.name}}" align="right" status="error" tips="{{errors[item.name] ? '必填项' : ''}}" disabled="{{item.disabled ? '1' : null}}" />
+      </view>
     </view>
     <view class="privacy mt-4 p-1em">
       <privacy-agree bind:agreeChange="onAgreeChange" showError="{{showPrivacyError}}"></privacy-agree>
