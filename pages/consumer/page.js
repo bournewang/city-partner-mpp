@@ -1,4 +1,6 @@
 import userApi from "../../api/user"
+import publicApi from "../../api/public"
+
 Page({
   data: {
     consumer: null,
@@ -8,19 +10,16 @@ Page({
     tab: 0
   },
   onLoad(option) {
+    let {formOptions} = getApp().store.getState()
+    if (!formOptions){
+      publicApi.formOptions()
+    }
     let {user_id} = option
     console.log(option)
     userApi.consumer(user_id).then(res => {
-      let {consumer, consumerFields, 
-          car, carFields,
-          partnerAsset, partnerAssetFields
-        } = res.data
+      let {consumer,  car,  partnerAsset,} = res.data
       // console.log(info)
-      this.setData({
-        consumer, consumerFields, 
-        car, carFields, 
-        partnerAsset, partnerAssetFields
-      })
+      this.setData({consumer, car,  partnerAsset})
     })
   },
   onTabsChange(event) {

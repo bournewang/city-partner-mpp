@@ -20,9 +20,11 @@ Page({
     // console.log()
     let {userid} = e.currentTarget.dataset
     console.log("userid: "+userid)
-
-    wx.navigateTo({
-      url: '/pages/consumer/page?user_id='+userid,
-    })
+    let {user} = getApp().store.getState()
+    if (user.challenge_id) {
+      wx.navigateTo({
+        url: '/pages/consumer/page?user_id='+userid,
+      })
+    }
   }
 })
