@@ -14,17 +14,25 @@ Page({
   },
   onLoad() {
     let {user, formOptions} = getApp().store.getState()
+    if (!user.is_partner) {
+        return Toast({
+          context: this,
+          duration: 2000,
+          selector: '#t-toast-precheck',
+          message: '请先入伙登记',
+        });
+      }
     this.setData({user})
     if (user && user.challenge_type) {
       wx.setNavigationBarTitle({
-        title: '我的' + user.challenge_type_label
+        title: '我的' + user.challenge_type_label + "合作社"
       })
     }
     if (!formOptions){
       publicApi.formOptions()
     }
     userApi.company().then(res => {
-      let company = res.data
+      let {company} = res.data
       if (company && company.id) {
         this.setData({company})
       }else{
@@ -36,6 +44,9 @@ Page({
         // }
       }
     })
+  },
+  goBack(){
+    wx.navigateBack();
   },
   onEdit(e){
     let {type} = e.currentTarget.dataset

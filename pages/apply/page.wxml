@@ -10,7 +10,8 @@
     <t-row>
       <t-col span="18">
         <t-checkbox-group t-class="box" borderless bind:change="onChange" defaultValue="{{demoCheckboxMax}}">
-          <t-checkbox block="{{false}}" value="common_partner" label="普通合伙人" class="ml-1" />
+          <t-checkbox wx:if="{{apply_type == 'consumer'}}" block="{{false}}" value="limited_partner" label="有限合伙人" class="ml-1" />
+          <t-checkbox wx:if="{{apply_type != 'consumer'}}" block="{{false}}" value="common_partner" label="普通合伙人" class="ml-1" />
           <t-checkbox wx:if="{{apply_type != 'consumer'}}" block="{{false}}" value="company_launcher" label="企业发起人" class="ml-2" />
         </t-checkbox-group>
       </t-col>
@@ -27,18 +28,13 @@
   </view>
   <view class="address">
     <view class="mt-1 p-1em bold">居住地址</view>
-    <t-input prefixIcon="map" label="省市区" placeholder="{{user.province_name+(user.city_name || '')+user.county_name}}" status="error" tips="{{errors.province_code || errors.city_code || errors.county_code ? '必填项' : ''}}">
-      <t-button bind:tap="toggleCitySelector" content="选择" slot="suffix" theme="primary" size="extra-small"></t-button>
-    </t-input>
-
-    <view wx:if="{{edit_city}}">
-      <area-selector bind:areaChange="onAreaChange" />
-    </view>
+    <area-selector bind:areaChange="bindInput" areaLabel="省市区" displayLabel="{{$state.user.display_area}}" data-name="area"/>
     <t-input prefixIcon="street-road" label="街道门牌号" placeholder="{{$state.user.street || '请输入街道门牌号'}}" bindenter="bindInputStreet" bindblur="bindInputStreet" align="right" status="error" tips="{{errors.street ? '必填项' : ''}}" />
   </view>
   <view class="address" wx:if="{{apply_type == 'agent'}}">
     <view class="mt-1 p-1em bold">代理区域</view>
-    <t-input prefixIcon="map" label="省市区" 
+    <area-selector bind:areaChange="bindInput" areaLabel="省市区" data-name="agent_area"/>
+    <!-- <t-input prefixIcon="map" label="省市区" 
       placeholder="{{agent_area_text}}" status="error" 
       tips="{{errors.agent_province_code || errors.agent_city_code ? '必填项' : ''}}">
       <t-button bind:tap="toggleCitySelector1" content="选择" slot="suffix" theme="primary" size="extra-small"></t-button>
@@ -46,7 +42,7 @@
 
     <view wx:if="{{edit_city1}}">
       <area-selector bind:areaChange="onAreaChange1" />
-    </view>
+    </view> -->
   </view>  
   <view class="ID-card">
     <view class="mt-2 ml-2 bold">上传身份证正反面</view>
@@ -101,4 +97,5 @@
   </view>
   <loading />
   <t-toast id="t-toast" />
+  <t-toast id="t-toast-precheck" bind:close="goBack" bind:destroy="goBack"/>
 </scroll-view>

@@ -1,6 +1,6 @@
 
 import userApi from "../../api/user"
-// import Toast from '../../tdesign-miniprogram/toast/index';
+import Toast from '../../tdesign-miniprogram/toast/index';
 
 Page({
   data: {
@@ -9,7 +9,8 @@ Page({
       'consumer': "消费商",
       'car_manager': "车管家",
       'car_owner': "车东家"
-    }
+    },
+    partnerCompany: null,
     // popup: false,
     // name: null,
     // mobile: null,
@@ -22,8 +23,12 @@ Page({
     if (user && user.challenge_type) {
       this.setData({tab: user.challenge_type})
     }
-    if (user.level == 2) {
-      userApi.partnerCompany()
+    if (user.is_partner) {
+      userApi.partnerCompany().then(res => {
+        this.setData({
+          partnerCompany: res.data.company
+        })
+      })
       userApi.partnerStats()
     }
   },
@@ -33,6 +38,15 @@ Page({
   },
   goApply(e){
     let type = e.currentTarget.dataset.type
+    let {user} = getApp().store.getState()
+    if (user.level < 1) {// REGISTER_CONSUMER
+      return Toast({
+        context: this,
+        selector: '#t-toast',
+        message: '请先扫码注册消费者',
+      });
+    }
+
     return wx.navigateTo({
       url: "/pages/apply/page?type="+type
     })

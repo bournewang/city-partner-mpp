@@ -30,7 +30,7 @@ Page({
     let {user} = app.store.getState()
     if (!user){
       authApi.wxLogin()
-    }else if(user.challenge_id) {
+    }else if(user.is_challenging) {
       // this.setData({challenge})
       userApi.teamOverview().then(res => {
         this.setData({teamOverview: res.data})

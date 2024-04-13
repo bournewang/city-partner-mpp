@@ -56,7 +56,11 @@ export function company() {
   return request({
     uri: '/user/company',
   }).then(res => {
-    getApp().store.setState({company: res.data, loading: false})
+    getApp().store.setState({
+      company: res.data.company, 
+      partnerStats: res.data.partnerStats, 
+      loading: false
+    })
     return res
   })
 }

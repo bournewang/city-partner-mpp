@@ -5,15 +5,15 @@
     <t-tab-panel label="合伙人挑战动态" value="0">
       <scroll-view>
         <t-grid column="{{challengeStats.length}}">
-          <t-grid-item wx:for="{{challengeStats}}" wx:for-item="item" text="{{item.value}}" description="{{item.label}}" />
+          <t-grid-item wx:for="{{challengeStats}}" wx:key="index" wx:for-item="item" text="{{item.value}}" description="{{item.label}}" />
         </t-grid>
         <t-divider />
-        <view wx:for="{{challengeActivity}}" wx:key="index" wx:for-item="item">
+        <view wx:for="{{challengeActivity}}" wx:key="id" wx:for-item="item">
           <!-- <view class="ml-24 mt- updated_at">{{item.updated_at}}</view> -->
           <view class="avatar-example ml-2">
-            <t-avatar wx:if="{{item.avatar}}" class="avatar-example--large" size="large" image="{{item.avatar}}" />
-            <t-avatar wx:else class="avatar-example--medium" size="large" icon="user" />
-            <view class="ml-4 mt-2">
+            <t-avatar wx:if="{{item.avatar}}" size="medium" image="{{item.avatar}}" />
+            <t-avatar wx:else size="medium" icon="user" />
+            <view class="ml-4 mt-1">
               <view class="date">{{item.updated_at}}</view>
               <view>{{item.content}}</view>
             </view>
@@ -29,15 +29,15 @@
     <t-tab-panel label="车管家互助动态" value="1">
       <scroll-view>
         <t-grid column="{{fundingStats.length}}">
-          <t-grid-item wx:for="{{fundingStats}}" wx:for-item="item" text="{{item.value}}" description="{{item.label}}" />
+          <t-grid-item wx:for="{{fundingStats}}" wx:key="index" wx:for-item="item" text="{{item.value}}" description="{{item.label}}" />
         </t-grid>
         <t-divider />
         <view wx:for="{{fundingActivity}}" wx:key="index" wx:for-item="item">
           <!-- <view class="ml-24 mt- updated_at">{{item.updated_at}}</view> -->
           <view class="avatar-example ml-2">
-            <t-avatar wx:if="{{item.avatar}}" class="avatar-example--large" size="large" image="{{item.avatar}}" />
-            <t-avatar wx:else class="avatar-example--medium" size="large" icon="user" />
-            <view class="ml-4 mt-2">
+            <t-avatar wx:if="{{item.avatar}}" size="medium" image="{{item.avatar}}" />
+            <t-avatar wx:else  size="medium" icon="user" />
+            <view class="ml-4 mt-1">
               <view class="date">{{item.updated_at}}</view>
               <view>{{item.content}}</view>
             </view>

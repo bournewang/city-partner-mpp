@@ -9,9 +9,16 @@
     "miniprogram": {
       "list": [
         {
-          "name": "my",
-          "pathName": "pages/my/page",
-          "query": "",
+          "name": "profile",
+          "pathName": "pages/profile/page",
+          "query": "scene=referer_id%3D175",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "pages/index/page",
+          "pathName": "pages/index/page",
+          "query": "scene=referer_id%3D151",
           "launchMode": "default",
           "scene": null
         },
@@ -23,12 +30,12 @@
           "scene": 1037,
           "referrerInfo": {
             "appId": "wx330488813101da7a",
-            "extraData": "{\"name\":\"Bourne\",\"nickname\":\"Hello\",\"mobile\":\"138\"}"
+            "extraData": "{\"name\":\"test\",\"nickname\":\"test\",\"mobile\":\"1388886666\"}"
           }
         },
         {
-          "name": "company",
-          "pathName": "pages/company/page",
+          "name": "my",
+          "pathName": "pages/my/page",
           "query": "",
           "launchMode": "default",
           "scene": null
@@ -37,13 +44,6 @@
           "name": "my-challenge",
           "pathName": "pages/my-challenge/page",
           "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "pages/index/page",
-          "pathName": "pages/index/page",
-          "query": "scene=referer_id%3D202",
           "launchMode": "default",
           "scene": null
         }

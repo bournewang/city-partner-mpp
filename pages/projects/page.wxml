@@ -27,18 +27,18 @@
       <t-button class="mt-6" size="large" theme="primary" block disabled>{{submitText[tab]}}消费者入伙登记</t-button>
     </view>
     <view wx:else>
-      <view wx:if="{{$state.user.level == 0}}" class="text-center mt-2">请先扫消费商码完成注册，方可入伙。</view>
-      <view wx:elif="{{$state.user.level == 1 }}" class="mt-2">
+      <!-- <view wx:if="{{$state.user.level == 0}}" class="text-center mt-2">请先扫消费商码完成注册，方可入伙。</view> -->
+      <view wx:if="{{!$state.user.is_partner}}" class="mt-2">
         <t-button size="large" theme="primary" block bind:tap="goApply" data-type="consumer">{{submitText[$state.user.challenge_type]}}消费者入伙登记</t-button>
       </view>
-      <view wx:if="{{$state.user.level == 2 && $state.user.challenge_type == tab}}" class="pl-1em pr-1em">
+      <view wx:if="{{$state.user.is_partner && $state.user.challenge_type == tab}}" class="pl-1em pr-1em">
         <view class="text-center caution">恭喜，您已入伙！</view>
         <view class="mt-4">
           <view class="caution bold">我的{{$state.user.challenge_type_label}}企业信息</view>
           <view class="p-05em mt-2" style="background: #F3F3F3; line-height: 2em;">
-            <view>企业名称: {{$state.partnerCompany.company_name}}</view>
-            <view>企业发起人: {{$state.partnerCompany.referer_name}}</view>
-            <view>发起人电话: {{$state.partnerCompany.referer_mobile}}</view>
+            <view>企业名称: {{partnerCompany.company_name}}</view>
+            <view>企业发起人: {{partnerCompany.referer_name}}</view>
+            <view>发起人电话: {{partnerCompany.referer_mobile}}</view>
           </view>
 
           <view class="caution bold mt-6">我的合伙资产</view>
@@ -52,7 +52,7 @@
       </view>
     </view>
   </view>
-
+  <t-toast id="t-toast" />
 </scroll-view>
 
 <tab-bar value="/pages/projects/page"></tab-bar>

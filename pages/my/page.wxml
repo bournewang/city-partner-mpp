@@ -7,41 +7,45 @@
         <t-avatar wx:else class="avatar-example--large" icon="user" size="large" />
       </t-col>
       <t-col span="12" t-class="nickname1">
-        <view class="mt-4 ml-6">{{$state.user.display_name || '微信用户'}}</view>
+        <view class="mt-4 ml-6">{{$state.user.nickname || '微信用户'}}</view>
         <box class="ml-6 referer" wx:if="{{$state.user.referer_name}}">保荐人： {{$state.user.referer_name}}</box>
       </t-col>
       <t-col span="8">
         <view class="mt-4">
           <t-link wx:if="{{$state.user.referer_id && !$state.user.mobile }}" prefixIcon="assignment-checked" size="large" theme="primary" content="注册登记" hover underline navigatorProps="{{profileLink}}" />
-          <t-link wx:else prefixIcon="verify" size="large" theme="primary" content="个人信息" hover navigatorProps="{{profileLink}}" />
+          <t-link wx:elif="{{$state.user.level > 0}}" prefixIcon="verify" size="large" theme="primary" content="个人信息" hover navigatorProps="{{profileLink}}" />
         </view>
       </t-col>
     </t-row>
   </view>
   <t-divider />
   <!-- <view class="block1" > -->
-    <t-grid column="2" wx:if="{{$state.user.challenge_id}}">
+    <t-grid column="{{teamOverview.length}}" wx:if="{{$state.user.is_challenging}}">
       <t-grid-item wx:for="{{teamOverview}}" wx:for-item="item" wx:key="index" text="{{item.value}}" description="{{item.label}}" />
     </t-grid>
     <t-divider />
   <!-- </view> -->
-
-  <view  wx:if="{{$state.user.challenge_id}}">
-    <t-cell leftIcon="certificate" title="我的授职" hover arrow url="/pages/my-challenge/page"/>
+  <t-cell wx:if="{{$state.user.challenge_id}}" leftIcon="certificate" title="我的授职" hover arrow url="/pages/my-challenge/page"/>
+  <view  wx:if="{{$state.user.is_challenging}}">
     <t-cell leftIcon="qrcode" title="我的保荐码" hover arrow url="/pages/qrcode/page" />
     <t-cell leftIcon="usergroup" title="我的保荐" hover arrow url="/pages/recommends/page"/>
     
-    <t-cell leftIcon="{{linkIcon[$state.user.challenge_type]}}" title="我的{{$state.user.challenge_type_label}}合作社" hover arrow url="/pages/company/page"/>
-    <!-- <t-cell wx:if="{{$state.user.challenge_type == 'car_manager'}}" leftIcon="vehicle" title="我的车管家合作社" hover arrow url="/pages/{{$state.user.challenge_id ? 'company' : 'partnerCompany'}}/page"/>
+    <t-cell leftIcon="{{linkIcon[$state.user.challenge_type]}}" title="我发起的{{$state.user.challenge_type_label}}合作社" hover arrow url="/pages/company/page"/>
+    <!-- <t-cell wx:if="{{$state.user.challenge_type == 'car_manager'}}" leftIcon="vehicle" title="我的车管家合作社" hover arrow url="/pages/{{$state.user.is_challenging ? 'company' : 'partnerCompany'}}/page"/>
     <t-cell wx:if="{{$state.user.challenge_type == 'car_owner'}}" leftIcon="houses-2" title="我的车东家合作社" hover arrow url="/pages/company/page"/> -->
   </view>
-  <view wx:else>
+  <view wx:elif="{{$state.user.level > 0}}">
     <t-cell leftIcon="qrcode" title="我的推广码" hover arrow url="/pages/qrcode/page" />
     <t-cell leftIcon="usergroup" title="我的推广" hover arrow url="/pages/recommends/page" />
-    <t-cell leftIcon="{{linkIcon[$state.user.challenge_type]}}" title="我的{{$state.user.challenge_type_label}}合作社" hover arrow url="/pages/partnerCompany/page"/>
   </view>
+  <view wx:if="{{$state.user.is_partner}}">
+    <t-cell wx:if="{{$state.user.level > 1}}" leftIcon="{{linkIcon[$state.user.challenge_type]}}" title="我入伙的{{$state.user.challenge_type_label}}合作社" hover arrow url="/pages/partnerCompany/page"/>
+    </view>
   <view wx:if="{{$state.user.crowd_funding_id}}" >
     <t-cell leftIcon="cooperate" title="车管家互助社" hover arrow url="/pages/my-funding/page" />
+  </view>
+  <view wx:if="{{$state.user.agent_status == 'approved'}}"> 
+    <t-cell leftIcon="usergroup" title="我的征召服务站" hover arrow url="/pages/my-managers/page" />
   </view>
   <view class="disabled-cell">
     <t-cell wx:if="{{$state.user.challenge_type != 'consumer'}}" leftIcon="cart" title="我的消费商合作社" description="未入伙" hover />
@@ -49,12 +53,12 @@
     <t-cell wx:if="{{$state.user.challenge_type != 'car_owner'}}" leftIcon="houses-2" title="我的车东家合作社" description="未入伙" hover />
     <t-cell leftIcon="shop-5" title="我的商家" hover description="未入驻" />
   </view>
-  <view>
+  <!-- <view>
     <t-cell leftIcon="vehicle" title="我的车辆" hover arrow url="/pages/my-car/page" />
-  </view>
+  </view> -->
   <view>
     <t-cell wx:if="{{$state.user.agent_id}}" leftIcon="certificate" title="我的代理" hover arrow url="/pages/my-agent/page"/>
-    <t-cell wx:else leftIcon="certificate" title="征召代理" hover arrow url="/pages/apply/page?type=agent"/>
+    <t-cell wx:elif="{{$state.user.level > 1}}" leftIcon="certificate" title="征召代理" hover arrow url="/pages/apply/page?type=agent"/>
   </view>
 </scroll-view>
 <tab-bar value="/pages/my/page"></tab-bar>

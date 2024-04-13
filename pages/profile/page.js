@@ -8,6 +8,7 @@ Page({
   data: {
     privacy_agree: false,
     showPrivacyError: false,
+    referer_id: null,
     info: {}
   },
   onLoad(options) {
@@ -17,15 +18,14 @@ Page({
       if (referer_id) {
         console.log("set referer_id: ", referer_id)
         wx.setStorageSync('referer_id', referer_id)
+        this.setData({referer_id})
       }
       authApi.wxLogin()
+    }else{
+      userApi.info("include_images").then(res => {
+        this.setData({info: res.data})
+      })
     }
-    // let {user} = getApp().store.getState()    
-    // if (!user.id_card_front || !user.id_card_front.preview) {
-    userApi.info("include_images").then(res => {
-      this.setData({info: res.data})
-    })
-    // }
     
   },
   chooseAvatar(e) {

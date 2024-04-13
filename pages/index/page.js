@@ -108,6 +108,13 @@ Page({
   goApply(e){
     let type = e.currentTarget.dataset.type
     let {user} = getApp().store.getState()
+    if (user.level < 1) {// REGISTER_CONSUMER
+      return Toast({
+        context: this,
+        selector: '#t-toast',
+        message: '请先扫码注册消费者',
+      });
+    }
     if (type == 'funding' && user.level < 11) {
       return Toast({
         context: this,

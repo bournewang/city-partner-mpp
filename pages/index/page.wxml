@@ -8,6 +8,7 @@
           <image style="height: 50vh;" mode="aspectFill" src="{{$state.images.apply.consumer}}" />
           <t-button wx:if="{{tab==0}}" class="show-detail" bind:tap="showRules" data-type="consumer" size="small"> 详情></t-button>
           <t-notice-bar
+            wx:if="{{$state.user.level > 11}}"
             prefixIcon="sound-high"
             visible="{{true}}"
             marquee="{{marquee}}"

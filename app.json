@@ -11,6 +11,7 @@
     "pages/my-funding/page",
     "pages/my-agent/page",
     "pages/my-car/page",
+    "pages/my-managers/page",
     "pages/rules/page",
     "pages/qrcode/page",
     "pages/recommends/page",
@@ -19,6 +20,7 @@
     "pages/agent/page",
     "pages/web/page",
     "pages/consumer/page",
+    "pages/manager/page",
     "pages/company-consumer/page"
   ],
   "usingComponents": {

@@ -1,14 +1,14 @@
 <scroll-view scroll-y type="list">
-  <view class="mt-10 text-center" wx:if="{{$state.recommends.length < 1}}"> 
+  <view class="mt-10 text-center" wx:if="{{$state.managers.length < 1}}"> 
     没有记录
   </view>
   <view wx:else>
-    <view wx:for="{{$state.recommends}}" wx:key="id" wx:for-item="item">
+    <view wx:for="{{$state.managers}}" wx:key="id" wx:for-item="item">
       <!-- <view class="ml-24 mt- updated_at">{{item.updated_at}}</view> -->
       <view class="avatar-example ml-2 flex" bind:tap="showUser" data-userid="{{item.id}}">
         <t-avatar wx:if="{{item.avatar}}" size="medium" image="{{item.avatar}}" />
         <t-avatar wx:else size="medium" icon="user" />
-        <view class="ml-4 mt-1">
+        <view class="ml-4 mt-2">
           <view>{{item.display_name}}</view>
           <view class="date">{{item.created_date}} {{item.level_label}}</view>
         </view>

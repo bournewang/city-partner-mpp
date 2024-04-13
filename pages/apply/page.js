@@ -24,6 +24,23 @@ Page({
     errors: {}
   },
   onLoad(option) {
+    let {user} = getApp().store.getState()
+    if (option.type == 'agent' && user.level < 11) {
+      return Toast({
+        context: this,
+        duration: 2000,
+        selector: '#t-toast-precheck',
+        message: '请先征召授职消费者管家',
+      });
+    }
+    if (user.level < 1) {
+      return Toast({
+        context: this,
+        duration: 2000,
+        selector: '#t-toast-precheck',
+        message: '请先扫码注册消费者',
+      });
+    }
     const propmpts = {
       challenge:{title: "征召授职申请表", payPrompt: "征召权益金", submitText: "确认征召"},
       funding:  {title: "加入互助申请表", payPrompt: "风险保证金", submitText: "确认加入互助"},
@@ -45,6 +62,9 @@ Page({
     })
     
   },
+  goBack(){
+    wx.navigateBack();
+  },
   onChallengeChange(e){
     console.log(e)
     this.setData({"user.challenge_type": e.detail.value})
@@ -53,45 +73,12 @@ Page({
     console.log(e)
     this.setData({"user.partner_role": JSON.stringify(e.detail.value)})
   },
-  
-  toggleCitySelector(){
-    this.setData({edit_city: !this.data.edit_city})
-  },
-  toggleCitySelector1(){
-    this.setData({edit_city1: !this.data.edit_city1})
-  },
-  onAreaChange(e) {
-    console.log("======= onAreaChange")
+  bindInput(e){
     console.log(e)
-    this.setData({
-      // area_name: e.detail.area_name,
-      "user.province_code": e.detail.area_code[0],
-      "user.city_code":     e.detail.area_code[1] || "",
-      "user.county_code":   e.detail.area_code[2] || "",
-      "user.province_name": e.detail.area_name[0],
-      "user.city_name":     e.detail.area_name[1] || "",
-      "user.county_name":   e.detail.area_name[2] || "",
-    })
-  },
-  onAreaChange1(e) {
-    console.log("======= onAreaChange")
-    console.log(e)
-    this.setData({
-      // area_name: e.detail.area_name,
-      "user.agent_province_code": e.detail.area_code[0],
-      "user.agent_city_code":     e.detail.area_code[1] || "",
-      "user.agent_county_code":   e.detail.area_code[2] || "",
-      "user.agent_province_name": e.detail.area_name[0],
-      "user.agent_city_name":     e.detail.area_name[1] || "",
-      "user.agent_county_name":   e.detail.area_name[2] || "",
-      agent_area_text: (e.detail.area_name[0] || "")
-                      + (e.detail.area_name[1] || "") 
-                      + (e.detail.area_name[2] || "")
-    })
-
-      
-
-  },
+    let {user} = this.data
+    user[e.currentTarget.dataset.name] = e.detail.value
+    this.setData({user})
+  },  
   bindInputName(e) {
     this.setData({ 'user.name': e.detail.value })
   },
@@ -117,8 +104,9 @@ Page({
     
     // update profile
     const fields = [
-      "name","id_no", "mobile",
-      "province_code","city_code","county_code","province_name","city_name", "county_name","street"
+      "name","id_no", "mobile", "area",
+      // "province_code","city_code","county_code","province_name","city_name", "county_name",
+      "street"
     ];
     if (apply_type == "challenge") {
       fields.push("challenge_type")
@@ -126,18 +114,16 @@ Page({
     if (apply_type != "agent") {
       fields.push("partner_role")
     }else{
-      fields.push("agent_province_code")
-      fields.push("agent_city_code")
-      fields.push("agent_province_name")
-      fields.push("agent_city_name")
+      fields.push("agent_area")
+      // fields.push("agent_province_code")
+      // fields.push("agent_city_code")
+      // fields.push("agent_province_name")
+      // fields.push("agent_city_name")
     }
     let errors = {};
     let {user} = getApp().store.getState()
     fields.map((key) => {
-      if (key != 'city_name' 
-        && key != 'agent_city_name' 
-        && !this.data.user[key] 
-        && !user[key])
+      if (!this.data.user[key] && !user[key])
       errors[key] = true
     })
     if (Object.keys(errors).length) {

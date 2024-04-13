@@ -8,7 +8,12 @@ Page({
     show_rank: false
   },
   onLoad() {
-    userApi.challenge()
+    userApi.challenge().then(res => {
+      let {user} = getApp().store.getState()
+      if (res.status != user.challenge_status) {
+        userApi.info()
+      }
+    })
   },
   toggleRank(){
     this.setData({show_rank: !this.data.show_rank})
