@@ -58,7 +58,7 @@
   </view> -->
   <view>
     <t-cell wx:if="{{$state.user.agent_id}}" leftIcon="certificate" title="我的代理" hover arrow url="/pages/my-agent/page"/>
-    <t-cell wx:elif="{{$state.user.level > 1}}" leftIcon="certificate" title="征召代理" hover arrow url="/pages/apply/page?type=agent"/>
+    <t-cell wx:elif="{{$state.user.level > 1}}" leftIcon="certificate" title="征召代理" hover arrow url="/pages/agent/page"/>
   </view>
 </scroll-view>
 <tab-bar value="/pages/my/page"></tab-bar>

@@ -8,18 +8,24 @@ Page({
     tab: 0,
     challengeStats: [],
     challengeActivity: [],
+    page: 1,
+    hasMorepages: false,
     fundingStats: [],
     fundingActivity: [],
     loading: true
   },
   onLoad() {
-    // challengeApi.activity().then(res => {
-    //   this.setData({ challengeList: res.data, loading: false })
-    // })
-    challengeApi.stats("include_activity").then(res => {
+    challengeApi.activity().then(res => {
+      this.setData({ 
+        challengeActivity: res.data.items, 
+        hasMorepages: res.data.hasMorepages,
+        loading: false 
+      })
+    })
+    challengeApi.stats().then(res => {
       this.setData({
         challengeStats:     res.data.stats, 
-        challengeActivity:  res.data.activity, 
+        // challengeActivity:  res.data.activity, 
         loading: false
       })
     }) 
@@ -34,5 +40,24 @@ Page({
     // })           
     // 
     
-  }
+  },
+  onReachBottom(){
+    console.log("onReachBottom ====")
+    let {hasMorepages, page, challengeActivity} = this.data
+    console.log("page : "+page)
+    if (hasMorepages) {
+      page++
+      console.log("page + 1: "+page)
+      challengeApi.activity(page).then(res => {
+        challengeActivity = challengeActivity.concat(res.data.items)
+        this.setData({ 
+          challengeActivity, 
+          page: res.data.page,
+          hasMorepages: res.data.hasMorepages,
+          loading: false 
+        })
+      })
+    }else{
+    }
+  },
 })

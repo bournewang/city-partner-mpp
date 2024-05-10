@@ -18,6 +18,7 @@
         image="{{app.icon}}" 
         data-category="{{app.category}}"
         data-type="{{app.type}}"
+        data-appid="{{app.appid}}"
         data-url="{{app.url}}"
         bind:tap="openApp"
         />

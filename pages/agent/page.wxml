@@ -1,3 +1,7 @@
-<scroll-view scroll-y type="list">
-申请代理
+<scroll-view scroll-y type="list" >
+  <view class="p-1em">
+    <rich-text nodes="{{$state.rules.agent}}"/>
+  </view>
+  <t-button size="large" theme="primary" block bind:tap="goApply" data-type="agent" class="mb-10">已阅读以上内容，继续申请代理</t-button>
+  <loading />
 </scroll-view>

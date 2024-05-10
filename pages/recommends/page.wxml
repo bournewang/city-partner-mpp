@@ -1,16 +1,16 @@
 <scroll-view scroll-y type="list">
-  <view class="mt-10 text-center" wx:if="{{$state.recommends.length < 1}}"> 
+  <view class="mt-10 text-center" wx:if="{{items.length < 1}}"> 
     没有记录
   </view>
   <view wx:else>
-    <view wx:for="{{$state.recommends}}" wx:key="id" wx:for-item="item">
+    <view wx:for="{{items}}" wx:key="id" wx:for-item="item">
       <!-- <view class="ml-24 mt- updated_at">{{item.updated_at}}</view> -->
       <view class="avatar-example ml-2 flex" bind:tap="showUser" data-userid="{{item.id}}">
         <t-avatar wx:if="{{item.avatar}}" size="medium" image="{{item.avatar}}" />
         <t-avatar wx:else size="medium" icon="user" />
         <view class="ml-4 mt-1">
           <view>{{item.display_name}}</view>
-          <view class="date">{{item.created_date}} {{item.level_label}}</view>
+          <view class="date">{{item.created_date}} {{item.challenge_type_label}}{{item.level_label}}</view>
         </view>
         <div wx:if="{{item.level > 1}}" class="mt-4 " style="position: absolute; right: 3em;">
           <t-icon name="verify" style="font-size: 1.5em;"></t-icon>
@@ -20,6 +20,9 @@
         </view>
       </view>
       <t-divider align="left" />
+    </view>
+    <view wx:if="{{!hasMorePages}}" class="text-center mb-20">
+      ～～没有了，继续加油！～～
     </view>
   </view>
   <loading/>

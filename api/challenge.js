@@ -15,6 +15,14 @@ function stats(include_activity) {
   })
 }
 
+function activity(page=1) {
+  getApp().store.setState({loading: true})
+  return request({uri: '/challenge/activity?page='+page}).then(res => {
+    getApp().store.setState({loading: false})
+    return res
+  })
+}
+
 function levels() {
   let app = getApp();
   if (!app.store.getState().challengeLevels) {
@@ -39,7 +47,7 @@ function range() {
 }
 
 export default {
-  // activity,
+  activity,
   successList, 
   stats,
   levels,

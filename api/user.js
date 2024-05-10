@@ -186,9 +186,10 @@ export function apply(data) {
 export function recommends(page=1) {
   getApp().store.setState({loading: true})
   return request({
-    uri: '/user/recommends'
+    uri: '/user/paginate-recommends?page='+page
   }).then(res => {
-    getApp().store.setState({recommends: res.data, loading:false})
+    getApp().store.setState({loading:false})
+    return res
   })
 }
 

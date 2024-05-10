@@ -20,7 +20,7 @@
           <t-grid column="{{3}}">
             <t-grid-item wx:for="{{$state.challengeLevels}}" wx:key="level" wx:for-item="item" description="{{item.label}}" icon="{{item.icon}}" data-title="{{item.rules}}" data-text="{{item.bonus_text}}" bindclick="popup" />
           </t-grid>
-          <view wx:if="{{!$state.user.challenge_id}}">
+          <view wx:if="{{!$state.user.is_challenging}}">
             <t-radio-group bind:change="onChange" value="{{current}}" options="{{options}}" borderless t-class="box" />
             <t-button size="large" theme="primary" block bind:tap="goApply" data-type="challenge">我要征召</t-button>
           </view>

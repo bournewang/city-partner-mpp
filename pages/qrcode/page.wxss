@@ -1,8 +1,29 @@
+.body{
+  width: 100%;
+  height: 100vh;
+  background-color: black;
+}
+.head{
+  height: 2em;
+  color: white;
+}
 #qrcode{
   width: 15em;
   height: 15em;
+  border-radius: 7.5em;
+}
+.vip #qrcode{
+  width: 8em;
+  height: 8em;
+  border-radius: 4em;
+  /* border: 1px solid red; */
 }
 
+.white{color: #FFFFFF; opacity: .7;}
+.title{
+  color: white;
+  font-size: 1.2em;
+}
 .t-icon{
   font-size: 3em;
   color:lightseagreen !important;
@@ -12,6 +33,100 @@
   height: 2em; */
 }
 
+.desc{
+  font-size: .8em;
+}
 .message{
   font-size: 1.1em;
+}
+
+.t-button--default.btn-back{
+  background-color: black !important;
+  color: white !important;
+  border-width: 0  !important;
+}
+/* .card{position: relative; border: 1px solid red;} */
+/* .info{font-size: .8em;} */
+#name{position: absolute; left: 1em; top: 12em; z-index: 99; }
+#mobile{position: absolute; left: 4em; top: 12em; z-index: 99; }
+.view-btn{
+  line-height: 1.5;
+  position: absolute; 
+  left: 14em; 
+  top: 15em; 
+  z-index: 99; 
+  background: rgba(0,0,0,0);
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 1em;
+  font-size: .8em;
+  padding-top: .1em;
+}
+
+
+.id-change-btn{
+  /* position: absolute;
+  left: 15px;
+  top: 708px; */
+  width: 345px;
+  height: 50px;
+  border-radius: 100px;
+  opacity: 1;
+
+
+  font-family: PingFang SC;
+  /* font-size: 16px; */
+  font-weight: normal !important;
+  letter-spacing: 0em;
+  font-variation-settings: "opsz" auto;  
+  }
+  
+.level-11 .info, .level-11 .view-btn, 
+.level-12 .info, .level-12 .view-btn, 
+.level-13 .info, .level-13 .view-btn{
+  color: #DCC098;
+  border-color: #DCC098;
+}
+.level-11 .id-change-btn, 
+.level-12 .id-change-btn, 
+.level-13 .id-change-btn
+{
+  background: linear-gradient(90deg, #683516 0%, #A26B3B 100%) !important;  
+  color: white;
+}
+.level-14 .info, .level-14 .view-btn{
+  color: #999999;
+  border-color: #999999;
+}
+
+.level-14 .id-change-btn{
+  background: linear-gradient(90deg, #989898 0%, #FFFFFF 100%) !important;
+  color: #363636;
+}
+
+.level-15 .info, .level-15 .view-btn{
+  color: #DCC098;
+  border-color: #DCC098;
+}
+.level-15 .id-change-btn{
+  background: linear-gradient(90deg, #251F16 0%, #544E3B 100%) !important;
+  color: #EADBC6;
+}
+
+.level-16 .info, .level-16 .view-btn{
+  color: #C3CCD9;
+  border-color: #C3CCD9;
+}
+.level-16 .id-change-btn{
+  background: linear-gradient(90deg, #4D5765 0%, #727E8C 100%) !important;
+  color: #EBEEF3;
+}
+
+.union-founder .info, .union-founder .view-btn{
+  color: #C3B5A0;
+  border-color: #C3B5A0;
+}
+.union-founder .id-change-btn{
+  background: linear-gradient(90deg, #1E1713 0%, #413329 100%) !important;
+  color: #C3B5A0;
 }

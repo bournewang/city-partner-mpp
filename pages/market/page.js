@@ -9,9 +9,9 @@ Page({
   },
   openApp(e){
     console.log(e)
-    let {type, url, category} = e.currentTarget.dataset
+    let {type, appid, url, category} = e.currentTarget.dataset
     console.log("url: "+ url+", category: "+category)
-    if(!url) return
+    if(!appid && !url) return
     // wx.navigateToMiniProgram({appId})
     let query = null
     let extraData = {}
@@ -47,10 +47,11 @@ Page({
         url: url,
       })
     }else if (type == "mpp") {
-      wx.navigateToMiniProgram({
-        appId: url,
-        extraData
-      })
+      console.log("type == mpp, wx.navigateToMiniProgram params: ")
+      let params = { appId: appid, extraData }
+      if (url) params.path = url;
+      console.log(params)
+      wx.navigateToMiniProgram(params)
     }
   },
 })

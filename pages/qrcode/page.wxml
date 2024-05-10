@@ -1,33 +1,41 @@
-<view class="pt-4">
-  <view class="mt-4 title text-center" wx:if="{{$state.user.is_challenging}}">
-    <p class="danger">{{$state.user.challenge_type_label}}</p>企业码
+<scroll-view scroll-y class="body">
+  <view class="" style="height:48px; ">
+  </view>  
+  <view class="head text-center">
+    <!-- <t-button icon="chevron-left" class="btn-bac1k"></t-button> -->
+    <t-icon name="chevron-left" style="color: white !important; position: absolute; left: .2em; font-size: 2em;" bind:tap="goBack"></t-icon>
+
+    <view class="mt-2">东家通路权益卡</view>
   </view>
-  <view class="text-center mt-8">可截屏保存该推荐码转发该给其他人开始推广</view>
-  <view class="text-center mt-10">
-    <image id="qrcode" src="{{$state.user.qrcode}}" />
+  <view class="text-center vip {{$state.user.is_union_founder ? 'union-founder' : 'level-'+$state.user.level}}" wx:if="{{$state.user.is_challenging}}">
+    <view class="text-center card">
+      <image style="height: 13em;" mode="aspectFit" wx:if="{{$state.user.vip_card}}" src="{{$state.user.vip_card}}" />
+      <view class=" info">
+        <view id="name">{{$state.user.name_with_star}}</view>
+        <view id="mobile">{{$state.user.mobile_with_star}}</view>
+        <button class="view-btn" bind:tap="goChallenge">查看信息</button>
+      </view>
+    </view>
+    <view class="title mt-">保荐码</view>
+    <view class="text-center mt-6">
+      <image id="qrcode" mode="aspectFit" src="{{$state.user.qrcode}}" />
+    </view>
+    <view class="text-center mt-8 white">可截屏保存该推荐码转发该给其他人开始推广</view>
+    <view class="mt-10 p-1em white desc text-left">
+      温馨提示： 1.请点击卡片上的查看信息按钮，以显示完整个人信息，供使用本卡时供工作人员审核
+    </view>
+    <view class="text-center mt-16">
+      <button class="id-change-btn white mb-6">持卡人身份变更</button>
+    </view>
+    <view class="mb-6">&nbsp;</view>
   </view>
-  <view wx:if="{{$state.user.is_challenging}}">
-    <view class="mt-10 title bold text-center danger">东家通路消费侧</view>
-    <view class="mt-4 text-center">仅需四步！快速入伙登记</view>
-    <view class="mt-6 text-center danger">
-      <t-row>
-        <t-col span="6">
-          <t-icon name="scan"></t-icon> 微信扫码
-        </t-col>
-        <t-col span="6">
-          <t-icon name="mobile-list"></t-icon> 入伙登记
-        </t-col>
-        <t-col span="6">
-          <t-icon name="certificate"></t-icon> 认证确权
-        </t-col>
-        <t-col span="6">
-          <t-icon name="money"></t-icon> 终身受益
-        </t-col>
-      </t-row>
+  <view wx:else>
+    <view class="text-center mt-8">可截屏保存该推荐码转发该给其他人开始推广</view>
+    <view class="text-center mt-10">
+      <image id="qrcode" src="{{$state.user.qrcode}}" />
+    </view>
+    <view class="p-05em message">
+      <rich-text nodes="{{$state.welcome.non_challenge}}" />
     </view>
   </view>
-  <view wx:else class="p-05em message" >
-    <rich-text nodes="{{$state.welcome.non_challenge}}" />
-  </view>
-
-</view>
+</scroll-view>
