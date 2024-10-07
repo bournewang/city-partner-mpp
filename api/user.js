@@ -201,6 +201,28 @@ export function partnerStats() {
   })
 }
 
+export function submitSales(data) {
+  getApp().store.setState({loading: true})
+  return request({
+    uri: '/user/sales',
+    method: 'post',
+    data
+  }).then(res => {
+    getApp().store.setState({loading: false})
+    if (res.success) {
+      getApp().store.setState({user: res.data})
+    }
+    return res
+  })
+}
+
+export function topup(amount){
+  return request({
+    uri: '/user/topup',
+    method: 'post',
+    data: {amount}
+  })
+}
 // export function uploadCommonFile(filePath, data) {
 //   return uploadFile({
 //     uri: '/file',
@@ -255,6 +277,8 @@ export default {
   saveCar,
   recommends,
   apply,
+  submitSales,
+  topup,
   getLocalChallenge,
   start_challenge,
   qrcode,

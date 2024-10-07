@@ -1,0 +1,15 @@
+<scroll-view scroll-y type="list">
+    <view wx:for="{{txes.items}}" wx:key="id" wx:for-item="tx">
+      <view class="avatar-example ml-2" bind:tap="topupAudit" data-id="{{tx.id}}">
+        <t-avatar wx:if="{{tx.user_avatar}}" size="medium" image="{{tx.user_avatar}}" />
+        <t-avatar wx:else size="medium" icon="user" />
+        <view class="ml-4 mt-4 border1">
+          <view>{{tx.user_label}} 充值 {{tx.amount}}</view>
+        </view>
+        <view class="ml-8 mt-4 border1">
+          <view class="date">{{tx.created_date}}</view>
+        </view>
+      </view>
+    </view>
+    <!-- <view wx:if="{{txes.items.count < 1}}">暂时没有需要处理的充值！</view> -->
+</scroll-view>

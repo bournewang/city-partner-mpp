@@ -1,0 +1,16 @@
+<scroll-view scroll-y>
+  <view class="p-05em">
+    <view>用户：{{tx.user_label}} </view>
+    <view>充值金额：{{tx.amount}}</view>
+    <view>时间：{{tx.created_at}}</view>
+    <view>状态：{{tx.status_label}}</view>
+    <view>截图：
+      <image style="height: 50vh;" mode="aspectFit" src="{{tx.topup_evidence.preview}}" />
+    </view>
+    <view wx:if="{{tx.status == 'created'}}">
+      <t-button class="mt-6 mb-6" size="small" theme="default" block bind:tap="cancelTx">取消，没收到该付款</t-button>
+      <t-button class="mt-6 mb-6" size="large" theme="primary" block bind:tap="auditTx">确认充值，已收到该付款</t-button>
+    </view>
+  </view>
+  <t-toast id="t-toast" />
+</scroll-view>

@@ -46,7 +46,8 @@
             <t-grid column="2">
               <t-grid-item wx:for="{{$state.partnerStats}}" wx:key="label" wx:for-item="item" text="{{item.value}}" description="{{item.label}}" />
             </t-grid>
-          </view>        
+          </view>   
+          <t-button class="mt-6" size="large" theme="primary" block bind:tap="goTopup">充值合伙资产</t-button>         
         </view>
         
       </view>

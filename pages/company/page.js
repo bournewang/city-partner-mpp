@@ -82,5 +82,10 @@ Page({
         Toast({context: this,selector: '#t-toast',message: res.msg});
       }
     })
+  },
+  goAuditTopup(){
+    wx.navigateTo({
+      url: '/pages/topup-admin/page',
+    })
   }
 })

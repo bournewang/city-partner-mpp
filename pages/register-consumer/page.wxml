@@ -1,0 +1,16 @@
+<scroll-view scroll-y type="list">
+<!-- <view class="title text-center">
+    注册消费者
+    <t-divider/>
+  </view> -->
+  <view class="content">
+    级别： {{$state.user.level_label}}
+  </view>
+  <view class="content" wx:if="{{$state.user.level == 1}}">
+    缴纳信息服务费后可成为注册消费者。
+    信息服务年费 360元/年，首年享受优惠价36.5元。
+    <t-button size="large" theme="primary" block bind:tap="callPayment" data-type="challenge">立即缴纳-开通权限</t-button>
+  </view>
+
+
+</scroll-view>

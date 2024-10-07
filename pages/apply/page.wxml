@@ -74,15 +74,11 @@
       <uploader text="{{payPrompt}}付款凭证" collection="pay_receipt_{{apply_type}}" preview="{{$state.user['pay_receipt_'+apply_type].preview}}" />
       <view class="mt-4 ml-2" wx:if="{{apply_type != 'consumer'}}">
         <view class="bold">{{payPrompt}}须转入企业对公账号：</view>
-        <view>账户名称：广西东家通路消费侧发展有限公司</view>
-        <view>开户行：
-          中国建设银行股份有限公司深圳创业支行
-          <!-- 中国邮储银行梧州市新兴二路东支行 -->
-          <!-- 中国邮政储蓄银行股份有限公司梧州市新兴二路东支行 -->
-        </view>
-        <view>账号：4425 0100 0081 0000 4637
-        <!-- 945009010089928889 -->
-        </view>
+        <view>账户名称：{{$state.cityPartner.bank_account.name}}</view>
+        <view>开户行：{{$state.cityPartner.bank_account.bank}}</view>
+        <view>账号：{{$state.cityPartner.bank_account.account_no}}</view>
+        <view class="bold mt-4">或截图扫码支付：</view>
+        <view><image style="height: 10em;width: 10em; margin-left: 25%;" mode1="aspectFill" src="{{$state.cityPartner.receive_qrcode}}"/></view>
       </view>
     </view>
   </view>

@@ -1,7 +1,13 @@
 .body{
   width: 100%;
   height: 100vh;
+}
+.body.challenging{
   background-color: black;
+}
+/* .back{color: gray !important;} */
+.back.challenging{
+  color: white !important;
 }
 .head{
   height: 2em;

@@ -26,7 +26,16 @@ export function partnerAsset(companyId, data)
   })  
 }
 
+export function topups()
+{
+  return request({
+    uri: '/company/topups',
+    method: 'get'
+  })
+}
+
 export default {
   save,
-  partnerAsset
+  partnerAsset,
+  topups
 }

@@ -21,6 +21,12 @@
     "pages/web/page",
     "pages/consumer/page",
     "pages/manager/page",
+    "pages/sales/page",
+    "pages/pay-result/page",
+    "pages/register-consumer/page",
+    "pages/topup/page",
+    "pages/topup-admin/page",
+    "pages/topup-audit/page",
     "pages/company-consumer/page"
   ],
   "usingComponents": {
@@ -51,6 +57,7 @@
     "t-radio-group": "tdesign-miniprogram/radio-group/radio-group",  
     "t-toast": "tdesign-miniprogram/toast/toast",
     "t-fab": "tdesign-miniprogram/fab/fab",
+    "t-result": "tdesign-miniprogram/result/result",
     "tab-bar": "components/tab-bar/page",
     "uploader": "components/uploader/page",
     "funding-stats": "components/funding-stats/page",

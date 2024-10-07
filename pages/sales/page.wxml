@@ -1,0 +1,25 @@
+<scroll-view scroll-y type="list">
+  <view class=""></view>
+  <smart-form value="{{$state.user}}" fieldOptions="{{$state.formOptions.salesFields}}" displayMode="1" />
+
+  <view wx:if="{{$state.user.sales}}">
+    <!-- <view>{{$state.user.sales_label}}</view> -->
+    <t-button theme="primary" size="large" block bind:tap="gotoQrCode" style="margin-top: 2em;">展示推荐码</t-button>
+  </view>
+  <view wx:elif="{{$state.user.level > 0}}">
+    <view>
+      <t-radio-group t-class="box" bind:change="bindInput" options="{{respOptions}}" value="{{resp}}" data-name="resp" />
+    </view>
+    <view class="ml-4 mt-4">规章制度：</view>
+    <view class="mt-4">
+      <rich-text nodes="{{$state.rules.sales[resp]}}" />
+    </view>
+    <view>
+      <t-button theme="primary" size="large" block bind:tap="onSubmit" style="margin-top: 2em;">提交登记</t-button>
+    </view>
+  </view>
+  <view wx:else>
+    <t-result class="mt-10" theme="error" title="请先扫码注册消费者"/>
+  </view>
+  <t-toast id="t-toast" />
+</scroll-view>

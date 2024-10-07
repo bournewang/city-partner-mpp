@@ -1,10 +1,9 @@
-<scroll-view scroll-y class="body">
+<scroll-view scroll-y class="body {{$state.user.is_challenging ? 'challenging' : ''}}">
   <view class="" style="height:48px; ">
   </view>  
   <view class="head text-center">
-    <!-- <t-button icon="chevron-left" class="btn-bac1k"></t-button> -->
-    <t-icon name="chevron-left" style="color: white !important; position: absolute; left: .2em; font-size: 2em;" bind:tap="goBack"></t-icon>
-
+    <!-- <t-button icon="chevron-left" class="btn-back"></t-button> -->
+    <t-icon name="chevron-left" style="position: absolute; left: .2em; font-size: 2em;" class="back {{$state.user.is_challenging ? 'challenging' : ''}}" bind:tap="goBack"></t-icon>
     <view class="mt-2">东家通路权益卡</view>
   </view>
   <view class="text-center vip {{$state.user.is_union_founder ? 'union-founder' : 'level-'+$state.user.level}}" wx:if="{{$state.user.is_challenging}}">
@@ -30,9 +29,12 @@
     <view class="mb-6">&nbsp;</view>
   </view>
   <view wx:else>
-    <view class="text-center mt-8">可截屏保存该推荐码转发该给其他人开始推广</view>
-    <view class="text-center mt-10">
+    <!-- <view class="text-center white mt-8">可截屏保存该推荐码转发该给其他人开始推广</view> -->
+    <view class="text-center mt-10 ">
       <image id="qrcode" src="{{$state.user.qrcode}}" />
+    </view>
+    <view class="text-center">
+      {{$state.user.name}}  {{$state.user.mobile_with_star}}
     </view>
     <view class="p-05em message">
       <rich-text nodes="{{$state.welcome.non_challenge}}" />

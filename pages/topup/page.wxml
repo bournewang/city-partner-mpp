@@ -1,0 +1,23 @@
+<scroll-view  scroll-y type="list">
+  <t-tabs value="{{tab}}" bind:change="onTabsChange" t-class="custom-tabs">
+    <t-tab-panel label="银行转账" value="0">
+      <view class="content">
+        <view wx:if="{{$state.partnerCompany.bank}}">银行：{{$state.partnerCompany.bank_label}} </view>
+        <view wx:if="{{$state.partnerCompany.sub_bank}}">支行：{{$state.partnerCompany.sub_bank}}</view>
+        <view>开户名称：{{$state.partnerCompany.account_name}}</view>
+        <view>账号：{{$state.partnerCompany.account_no}} </view>
+      </view>
+    </t-tab-panel>
+    <t-tab-panel label="微信/支付宝" value="1">
+      <view class="content">
+        请截图保存该二维码并扫码支付，并将付款成功页面截图上传以完成充值。
+      </view>
+      <image style="height: 50vh;" mode="aspectFit" src="{{$state.partnerCompany.receive_qrcode}}" />
+    </t-tab-panel>
+  </t-tabs>
+
+  <t-input prefixIcon="money" label="充值金额" placeholder="请输入充值金额" value="{{amount}}" bindenter="inputAmount" bindblur="inputAmount" data-name="amount" align="right" status="error" tips="{{errors['amount'] ? '请输入充值金额' : ''}}" />
+  <uploader text="上传支付凭证" collection="topup_evidence"/>
+  <t-button class="mt-6 mb-6" size="large" theme="primary" block bind:tap="submitTopup">提交充值</t-button> 
+  <t-toast id="t-toast" />
+</scroll-view>

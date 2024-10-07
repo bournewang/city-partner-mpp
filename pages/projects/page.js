@@ -10,7 +10,7 @@ Page({
       'car_manager': "车管家",
       'car_owner': "车东家"
     },
-    partnerCompany: null,
+    partnerCompany: null
     // popup: false,
     // name: null,
     // mobile: null,
@@ -28,6 +28,7 @@ Page({
         this.setData({
           partnerCompany: res.data.company
         })
+        getApp().store.setState({partnerCompany: res.data.company})
       })
       userApi.partnerStats()
     }
@@ -58,5 +59,9 @@ Page({
       url: '/pages/rules/page?page=partner&type='+type,
     })
   },  
-
+  goTopup(){
+    wx.navigateTo({
+      url: '/pages/topup/page',
+    })
+  },
 })

@@ -43,6 +43,11 @@ page {
   font-weight: bold;
 } 
 
+.topup-wrap{
+  max-width: 100%;
+  max-height: 80%;
+}
+
 #qrcode{
   /* object-fit: contain; */
   /* width: 80%; */

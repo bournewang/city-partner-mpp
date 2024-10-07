@@ -3,6 +3,7 @@
     <t-tab-panel label="合伙公司信息" value="company">
       <view wx:if="{{company}}">
         <smart-form fieldOptions="{{$state.formOptions.companyOptions}}" value="{{company}}" bind:fireSubmit="onSubmit" displayMode="{{!edit.company}}" />
+        <uploader text="充值/收款码" collection="receive_qrcode" preview="{{$state.user.receive_qrcode.preview}}" />
         <t-button wx:if="{{!edit.company}}" size=" large" theme="primary" block bind:tap="onEdit" data-type="company">编辑</t-button>
       </view>
     </t-tab-panel>
@@ -15,6 +16,7 @@
     <t-tab-panel label="合伙消费者" value="consumer">
       <view>
         <smart-form fieldOptions="{{$state.formOptions.partnerStatsFields}}" value="{{$state.partnerStats}}" displayMode="1"/>
+        <t-button size=" large" theme="primary" block bind:tap="goAuditTopup" data-type="user">合伙资产充值审核</t-button>
       </view>
     </t-tab-panel>
   </t-tabs>

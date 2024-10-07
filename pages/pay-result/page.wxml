@@ -1,0 +1,12 @@
+<scroll-view scroll-y type="list">
+  <view>
+    result: {{result}}
+    <t-result 
+      theme="{{result}}" 
+      title="{{title}}" 
+      description="{{description}}" 
+      class="space" 
+      />
+
+  </view>
+</scroll-view>
