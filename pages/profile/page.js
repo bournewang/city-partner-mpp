@@ -49,6 +49,9 @@ Page({
     //console.log(e.type +"," + e.detail.value)
     this.setData({ 'info.mobile': e.detail.value })
   },
+  bindInputAlipay(e) {
+    this.setData({ 'info.alipay_account_no': e.detail.value })
+  },
   onAgreeChange(e){
     console.log("checked: "+e.detail.value)
     this.setData({privacy_agree: e.detail.value})
@@ -58,9 +61,9 @@ Page({
       this.setData({showPrivacyError: true});
       return;
     }
-    let { nickname, avatar, name, id_no, mobile } = this.data.info
+    let { nickname, avatar, name, id_no, mobile, alipay_account_no } = this.data.info
     //console.log({nickname, avatar, name, id_no, mobile})
-    userApi.saveInfo({nickname, avatar, name, id_no, mobile}).then(res => {
+    userApi.saveInfo({nickname, avatar, name, id_no, mobile, alipay_account_no}).then(res => {
       // authApi.setLocalUserInfo(res.data)
       wx.navigateTo({url: "/pages/my/page"})
     })

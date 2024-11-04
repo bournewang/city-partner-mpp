@@ -77,6 +77,13 @@ function rules(){
   })
 }
 
+function userActivity(page=1) {
+  getApp().store.setState({loading: true})
+  return request({uri: '/public/user-activity?page='+page}).then(res => {
+    getApp().store.setState({loading: false})
+    return res
+  })
+}
 export default {
   index,
   privacy,
@@ -85,5 +92,6 @@ export default {
   banners,
   market,
   rules,
+  userActivity,
   areaData
 }

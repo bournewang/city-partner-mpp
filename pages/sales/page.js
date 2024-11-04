@@ -6,7 +6,10 @@ import Toast from 'tdesign-miniprogram/toast/index';
 Page({
   data: {
     resp: "non_resp",
-    respOptions: [{label: "无责", value: "non_resp"}, {label: "有责", value:"resp"}]
+    respOptions: [{label: "无责", value: "non_resp"}, {label: "有责", value:"resp"}],
+    operationOptions: [{label: "市场总监", value: "marketing_director"}, {label: "总监助理", value:"director_assistant"}],
+    tab: 'sales',
+    user: {}
   },
   onLoad() {
     const {user, rules, formOptions} = getApp().store.getState()
@@ -40,9 +43,18 @@ Page({
         message: '请先扫码注册消费者',
       });
     }
-    const {resp} = this.data
-    userApi.submitSales({sales: resp})
+    const {resp, tab} = this.data
+    const data = {}
+    data[tab] = resp
+    const that = this
+    userApi.submitSales(data).then(res => {
+      that.onLoad()
+    })
   },
+  onTabsChange(event) {
+    //console.log(`Change tab, tab-panel value is ${event.detail.value}.`);
+    this.setData({tab: event.detail.value})
+  },  
   gotoQrCode(){
     wx.navigateTo({
       url: '/pages/qrcode/page',

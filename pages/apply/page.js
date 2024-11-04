@@ -88,6 +88,9 @@ Page({
   bindInputMobile(e) {
     this.setData({ 'user.mobile': e.detail.value })
   },
+  bindInputAlipay(e) {
+    this.setData({ 'user.alipay_account_no': e.detail.value })
+  },
   bindInputStreet(e) {
     this.setData({ 'user.street': e.detail.value })
   },
@@ -104,7 +107,7 @@ Page({
     
     // update profile
     const fields = [
-      "name","id_no", "mobile", "area",
+      "name","id_no", "mobile", "alipay_account_no", "area",
       // "province_code","city_code","county_code","province_name","city_name", "county_name",
       "street"
     ];

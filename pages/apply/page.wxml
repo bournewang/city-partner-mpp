@@ -25,6 +25,7 @@
     <t-input prefixIcon="app" label="姓名" placeholder="{{$state.user.name ||'请输入您的真实姓名'}}" bindenter="bindInputName" bindblur="bindInputName" align="right" status="error" tips="{{errors.name ? '必填项' : ''}}" />
     <t-input prefixIcon="app" label="身份证" placeholder="{{$state.user.id_no || '请输入您的身份证号码'}}" bindenter="bindInputIdNo" bindblur="bindInputIdNo" align="right" status="error" tips="{{errors.id_no ? '必填项' : ''}}" />
     <t-input prefixIcon="mobile" label="手机号码" placeholder="{{$state.user.mobile || '请输入手机号码'}}" bindenter="bindInputMobile" bindblur="bindInputMobile" align="right" status="error" tips="{{errors.mobile ? '必填项' : ''}}" />
+    <t-input prefixIcon="email" label="支付宝账号" placeholder="{{$state.user.alipay_account_no || '请输入支付宝账号'}}" bindenter="bindInputMobile" bindblur="bindInputAlipay" align="right" status="error" tips="{{errors.alipay_account_no ? '必填项' : ''}}" />
   </view>
   <view class="address">
     <view class="mt-1 p-1em bold">居住地址</view>

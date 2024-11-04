@@ -2,23 +2,27 @@
 // const util = require('../../utils/util.js')
 import "../../api/challenge";
 import challengeApi from "../../api/challenge";
-import carManagerApi from "../../api/car-manager"
+// import carManagerApi from "../../api/car-manager"
+import publicApi from "../../api/public"
 Page({
   data: {
     tab: 0,
     challengeStats: [],
     challengeActivity: [],
     page: 1,
-    hasMorepages: false,
-    fundingStats: [],
-    fundingActivity: [],
+    hasMoreChallenges: false,
+    hasMoreUsers: false,
+    // fundingStats: [],
+    // fundingActivity: [],
+    userActivity: [],
     loading: true
   },
   onLoad() {
     challengeApi.activity().then(res => {
+      console.log("hasMorepages: "+res.data.hasMorepages)
       this.setData({ 
         challengeActivity: res.data.items, 
-        hasMorepages: res.data.hasMorepages,
+        hasMoreChallenges: res.data.hasMorepages,
         loading: false 
       })
     })
@@ -29,10 +33,12 @@ Page({
         loading: false
       })
     }) 
-    carManagerApi.fundingStats("include_activity").then(res => {
+    publicApi.userActivity(1).then(res => {
       this.setData({
-        fundingStats:     res.data.stats, 
-        fundingActivity:  res.data.activity
+        // fundingStats:     res.data.stats, 
+        userActivity:  res.data.items,
+        // challengeActivity: res.data.items, 
+        hasMoreUsers: res.data.hasMorepages,        
       })
     })
     // carManagerApi.fundingActivity().then(res => {
@@ -43,9 +49,9 @@ Page({
   },
   onReachBottom(){
     console.log("onReachBottom ====")
-    let {hasMorepages, page, challengeActivity} = this.data
-    console.log("page : "+page)
-    if (hasMorepages) {
+    let {tab, hasMoreChallenges, hasMoreUsers, page, challengeActivity, userActivity} = this.data
+    console.log(`page : ${page}, hasmoreChallenge: ${hasMoreChallenges}, hasMoreUsers: ${hasMoreUsers}`)
+    if (tab == 0 && hasMoreChallenges) {
       page++
       console.log("page + 1: "+page)
       challengeApi.activity(page).then(res => {
@@ -53,11 +59,27 @@ Page({
         this.setData({ 
           challengeActivity, 
           page: res.data.page,
-          hasMorepages: res.data.hasMorepages,
+          hasMoreChallenges: res.data.hasMoreChallenges,
           loading: false 
         })
       })
-    }else{
+    }else if (tab == 1 && hasMoreUsers) {
+        page++
+        publicApi.userActivity(page).then(res => {
+          userActivity = userActivity.concat(res.data.items)
+          console.log("user activity length: ", userActivity.length)
+          this.setData({
+            // fundingStats:     res.data.stats, 
+            userActivity,
+            page: res.data.page,
+            hasMoreUsers: res.data.hasMorepages,        
+            loading: false
+          })
+        })
     }
   },
+  onTabsChange(event) {
+    // console.log(`Change tab, tab-panel value is ${event.detail.value}.`);
+    this.setData({tab: event.detail.value, page: 1})
+  },  
 })
