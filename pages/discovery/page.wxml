@@ -32,6 +32,11 @@
           <t-grid-item wx:for="{{fundingStats}}" wx:key="index" wx:for-item="item" text="{{item.value}}" description="{{item.label}}" />
         </t-grid>
         <t-divider /> -->
+        <t-search value="{{keyword}}" placeholder="手机号码后四位" 
+          bind:blur="search"
+          bind:action-click="search"
+          />
+        <t-divider />
         <view wx:for="{{userActivity}}" wx:key="index" wx:for-item="item">
           <view class="avatar-example ml-2">
             <t-avatar wx:if="{{item.avatar}}" size="medium" image="{{item.avatar}}" />

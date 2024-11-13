@@ -1,5 +1,6 @@
 {
   "navigationBarTitleText": "信息中心",
   "usingComponents": {
+    "t-search": "tdesign-miniprogram/search/search"
   }
 }

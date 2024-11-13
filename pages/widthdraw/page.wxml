@@ -1,0 +1,11 @@
+<scroll-view scroll-y type="list">
+  <view>
+    <view class="mt-1 p-1em bold">提现</view>
+    <t-input prefixIcon="money" label="余额" placeholder="{{$state.user.balance}}" disabled align="right"/>
+    <t-input prefixIcon="money" label="提现金额" placeholder="请输入提现金额" bindenter="bindInputAmount" bindblur="bindInputAmount" align="right"/>
+    <t-input prefixIcon="user" label="姓名" placeholder="{{$state.user.name}}" disabled align="right"/>
+    <t-input prefixIcon="mobile" label="同名支付宝账号" placeholder="{{$state.user.alipay_account_no}}" bindenter="bindInputAccount" bindblur="bindInputAccount" align="right"/>
+    <t-button theme="primary" size="large" block bind:tap="submit" style="margin-top: 2em;">提交</t-button>
+</view>
+<t-toast id="t-toast" />
+</scroll-view>

@@ -24,5 +24,10 @@ Page({
         url: '/pages/my/page',
       })
     })
+  },
+  officialChallenge(){
+    return wx.navigateTo({
+      url: "/pages/apply/page?type=challenge"
+    })
   }
 })

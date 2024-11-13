@@ -15,13 +15,16 @@ Page({
     // wx.navigateToMiniProgram({appId})
     let query = null
     let extraData = {}
+    let {token} = getApp().store.getState()
+
     if (category == "app") {
       let {user} = getApp().store.getState()
       if (user) {
         extraData = {
           name: user.name,
           mobile: user.mobile,
-          avatar: user.avatar
+          avatar: user.avatar,
+          token
         }
         query = [
           "url="    + url, 

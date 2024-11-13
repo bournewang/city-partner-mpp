@@ -6,7 +6,7 @@ import challengeApi from "../../api/challenge";
 import publicApi from "../../api/public"
 Page({
   data: {
-    tab: 0,
+    tab: 1,
     challengeStats: [],
     challengeActivity: [],
     page: 1,
@@ -15,7 +15,8 @@ Page({
     // fundingStats: [],
     // fundingActivity: [],
     userActivity: [],
-    loading: true
+    loading: true,
+    keyword: ""
   },
   onLoad() {
     challengeApi.activity().then(res => {
@@ -33,7 +34,7 @@ Page({
         loading: false
       })
     }) 
-    publicApi.userActivity(1).then(res => {
+    publicApi.userActivity(1, "").then(res => {
       this.setData({
         // fundingStats:     res.data.stats, 
         userActivity:  res.data.items,
@@ -65,7 +66,7 @@ Page({
       })
     }else if (tab == 1 && hasMoreUsers) {
         page++
-        publicApi.userActivity(page).then(res => {
+        publicApi.userActivity(page, this.data.keyword).then(res => {
           userActivity = userActivity.concat(res.data.items)
           console.log("user activity length: ", userActivity.length)
           this.setData({
@@ -82,4 +83,15 @@ Page({
     // console.log(`Change tab, tab-panel value is ${event.detail.value}.`);
     this.setData({tab: event.detail.value, page: 1})
   },  
+  search(e){
+    let keyword = e.detail.value
+    console.log("keyword change, search: "+keyword)
+    this.setData({keyword, page: 1})
+    publicApi.userActivity(1, keyword).then(res => {
+      this.setData({
+        userActivity: res.data.items,
+        hasMoreUsers: res.data.hasMorepages,        
+      })
+    })
+  }
 })

@@ -6,3 +6,27 @@
 .date{
   color: gray;
 }
+
+#btn-widthdraw{
+  position: absolute; 
+  right: 2em; 
+  top: 3em;
+  width: 10em;
+}
+
+
+.disabled-cell .t-cell__title-text,
+.disabled-cell .t-icon {
+  color: gray !important;
+}
+
+.t-grid-item__content{
+  padding: 0 !important;
+}
+.t-grid-item__content .t-grid-item__text {
+  color: var(--td-brand-color);
+  font-size: 1.5em;
+}
+.t-grid-item__content .t-grid-item__description {
+  margin-top: .1em;
+}

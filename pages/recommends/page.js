@@ -50,5 +50,11 @@ Page({
         url: '/pages/consumer/page?user_id='+userid,
       })
     }
+  },
+  goWidthdraw()
+  {
+    wx.navigateTo({
+      url: "/pages/widthdraw/page"
+    })
   }
 })

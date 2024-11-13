@@ -1,4 +1,10 @@
 <scroll-view scroll-y type="list">
+  <t-divider/>
+  <!-- <t-grid column="2" wx:if="{{$state.user.balance}}">
+    <t-grid-item wx:key="balance" text="{{$state.user.balance}}" description="佣金余额" />
+    <t-button class="mt-2" size="small" theme="primary"  bind:tap="goWidthdraw" data-type="funding"> 提 现 </t-button>
+  </t-grid>
+  <t-divider/> -->
   <view class="mt-10 text-center" wx:if="{{items.length < 1}}"> 
     没有记录
   </view>
