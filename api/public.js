@@ -77,9 +77,9 @@ function rules(){
   })
 }
 
-function userActivity(page=1) {
+function userActivity(page=1, keyword) {
   getApp().store.setState({loading: true})
-  return request({uri: '/public/user-activity?page='+page}).then(res => {
+  return request({uri: `/public/user-activity?keyword=${keyword}&page=${page}`}).then(res => {
     getApp().store.setState({loading: false})
     return res
   })

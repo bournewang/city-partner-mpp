@@ -223,6 +223,15 @@ export function topup(amount){
     data: {amount}
   })
 }
+
+export function withdraw(data){
+  return request({
+    uri: "/user/withdraw",
+    method: 'post',
+    data
+  })
+}
+
 // export function uploadCommonFile(filePath, data) {
 //   return uploadFile({
 //     uri: '/file',
@@ -279,6 +288,7 @@ export default {
   apply,
   submitSales,
   topup,
+  withdraw,
   getLocalChallenge,
   start_challenge,
   qrcode,

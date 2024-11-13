@@ -27,6 +27,7 @@
     "pages/topup/page",
     "pages/topup-admin/page",
     "pages/topup-audit/page",
+    "pages/widthdraw/page",
     "pages/company-consumer/page"
   ],
   "usingComponents": {
